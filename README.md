@@ -1,4 +1,5 @@
 # 3dcart common-html5
+The main repository where all global templates are housed.
 
 ##Suggestions
 1. See the list of [known issues](https://github.com/3dcart/Common-HTML5/issues).
