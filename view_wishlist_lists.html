@@ -1,0 +1,180 @@
+<section id="viewWishlistLists">
+  <h1 class="page_headers"><!--START: MULTIPLE_WISHLIST_TITLE-->[wishlist_multiple-title]<!--END: MULTIPLE_WISHLIST_TITLE--></h1>
+  <!--START: myAccount--> 
+  <!--START: MULTIPLE_WISHLIST_BACK_ACCOUNT-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">[wishlist_back-to-account]</a></div>
+  <!--END: MULTIPLE_WISHLIST_BACK_ACCOUNT-->
+  <div class="clear"></div>
+  <!--END: myAccount--> 
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="viewWishlistListsHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER--> 
+  <!--START: MULTIPLE_WISHLIST-->
+  <div class="wishListsView">
+    <div class="titles2">
+      <div class="wl-name">[wishlist_multiple-name]</div>
+      <div class="wl-items">[wishlist_multiple-items]</div>
+      <!--START: MULTIPLE_WISHLIST_VISIBILTY_HEADER-->
+      <div class="wl-visibility">[wishlist_multiple-visibility]</div>
+      <!--END: MULTIPLE_WISHLIST_VISIBILTY_HEADER-->
+      <div class="wl-actions">[wishlist_multiple-actions]</div>
+      <div class="clear"></div>
+    </div>
+    <!--START: MULTIPLE_WISHLIST_ITEMS-->
+    <div class="row">
+      <div class="wl-name"> <span style="display: inline;" id="multiple_wishlist_label_[wishListId]"><a href="view_wishlist.asp?k=[wishListId]" class="myList-links">[wishListName]</a></span> <span style="display: none;" id="multiple_wishlist_textbox_[wishListId]">
+        <div class="left"><input type="text" size="18" name="multiple_wishlist_[wishListId]" id="multiple_wishlist_[wishListId]" value="[wishListName]" maxlength="30" class="txtBoxStyle" /></div>
+        <div class="button left"><a href="#" onclick="RenameMultipleList([wishListId],0);" class="icon-btn icon-btn-minus">[wishlist_multiple-cancel]</a></div>
+        <div class="button left"><a href="#" onclick="SaveMultipleList([wishListId]);" class="icon-btn icon-btn-save">[wishlist_multiple-save]</a></div>
+        </span>
+        <div class="clear"></div>
+        </div>
+      <div class="wl-items">[wishListTotalItems]</div>
+      <!--START: MULTIPLE_WISHLIST_VISIBILTY_ROW-->
+      <div class="wl-visibility"><!--START: MULTIPLE_WISHLIST_VISIBILITY_PUBLIC-->[wishlist_multiple-visibility-public]<!--END: MULTIPLE_WISHLIST_VISIBILITY_PUBLIC--><!--START: MULTIPLE_WISHLIST_VISIBILITY_PRIVATE-->[wishlist_multiple-visibility-private]<!--END: MULTIPLE_WISHLIST_VISIBILITY_PRIVATE--></div>
+      <!--END: MULTIPLE_WISHLIST_VISIBILTY_ROW-->
+      <div class="wl-actions">
+        <div class="button left"><a href="#" onclick="RenameMultipleList([wishListId],1);" class="icon-btn icon-btn-edit">[wishlist_multiple-rename]</a></div>
+        <div class="button left"><a href="#" onclick="DeleteMultipleList([wishListId]);" class="icon-btn icon-btn-minus">[wishlist_multiple-delete]</a></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--END: MULTIPLE_WISHLIST_ITEMS-->
+    <div class="clear"></div>
+  </div>
+  <!--END: MULTIPLE_WISHLIST-->
+  <!--START: MULTIPLE_WISHLIST_NO_ITEM-->
+    <div class="emptylist">[wishlist_multiple-nolists]</div>
+  <!--END: MULTIPLE_WISHLIST_NO_ITEM-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="viewWishlistListsFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<form action="view_wishlist.asp" method="post" name="frmForm" id="frmForm">
+  <input type="hidden" name="action"	id="action"	value="" />
+  <input type="hidden" name="wsiId"	id="wsiId"	value="" />
+  <input type="hidden" name="k"	id="intListId"	value="" />
+  <input type="hidden" name="qty"	id="qty"	value="" />
+  <input type="hidden" name="multiple_wishlist_name"	id="multiple_wishlist_name"	value="" />
+  <input type="hidden" name="optListVisibility"	id="Hidden1"	value="" />
+</form>
+<script type="text/javascript">
+function DeleteMultipleList(intListId) {
+
+str = 'multiple_wishlist_' + intListId;
+
+if (confirm("[wishlist_multiple-message-deletelist]")) {
+		document.frmForm.action.value = 'removeList';
+		document.frmForm.k.value = intListId;
+		frmForm.submit();
+
+	} 
+}
+
+function SaveMultipleList(intListId) {
+	str = 'multiple_wishlist_' + intListId;
+	WshName = document.getElementById(str).value;
+	strMsg = '';
+
+	if (WshName.trim() == "")
+		strMsg += "[wishlist_multiple-message-renamelist]";
+		String.prototype.trim = function () {
+		return this.replace(/^\s+|\s+$/g, "");
+	}
+
+	if (strMsg != "") {
+		alert(strMsg);
+		return false;
+	}
+
+
+	document.frmForm.action.value = 'saveList';
+	document.frmForm.k.value = intListId;
+	document.frmForm.multiple_wishlist_name.value = WshName;
+
+	frmForm.submit();
+}
+
+function RenameMultipleList(intListId,act) {
+
+	Spanlabel = 'multiple_wishlist_label_' + intListId;
+	SpanLink = 'multiple_wishlist_textbox_' + intListId;
+
+	if (act == 1)
+	{
+		document.getElementById(SpanLink).style.display = 'block';
+		document.getElementById(Spanlabel).style.display = 'none';
+
+	}
+	else
+	{
+		document.getElementById(SpanLink).style.display = 'none';
+		document.getElementById(Spanlabel).style.display = 'block';
+	}
+
+
+}
+
+function submitForm(strAction)
+{
+	window.document.body.style.cursor = 'wait';
+	if(window.document.activeElement){window.document.activeElement.style.cursor='wait'; }
+	
+	document.frmForm.action.value = strAction;
+	document.frmForm.submit();
+}
+	 
+function removeItem(intWsiId,intListId)
+{
+	var rep;
+	rep = confirm("[wishlist_viewwishlist-message-removeitem]");
+	if (!rep)
+		return false;
+	
+	document.frmForm.wsiId.value = intWsiId;
+	document.frmForm.k.value = intListId;
+	submitForm('removeItem');
+}
+
+function addToCart(intWsiId, intListId)
+{
+	var rep;
+	rep = confirm("[wishlist_viewwishlist-message-addtocart]");
+	if (!rep)
+		return false;
+	
+	document.frmForm.wsiId.value = intWsiId;
+	document.frmForm.k.value = intListId;
+	submitForm('addToCart');
+}
+
+function saveItem(intWsiId, intListId) {
+    
+	var qty = document.getElementById("txtQty" + intWsiId).value;
+
+
+    document.frmForm.wsiId.value = intWsiId;
+    document.frmForm.k.value = intListId;
+    document.frmForm.qty.value = qty;
+
+    submitForm('saveItem');
+}
+
+function savePublicOrPrivate(intListId) {
+	var optVisibility = '';
+
+	if (document.getElementById("optListVisibilityPublic").checked == true) {
+		optVisibility = '1'
+	}
+	else {
+		optVisibility = '0'
+
+	}
+	document.frmForm.optListVisibility.value = optVisibility;
+	document.frmForm.action.value = 'savePublicOrPrivate';
+	document.frmForm.k.value = intListId;
+	frmForm.submit();
+}
+</script>

@@ -1,0 +1,26 @@
+<section id="rewards">
+    <h1 class="page_headers">[rewards_details-detail]</h1>
+    <!--START: myAccount-->
+    <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+    <!--END: myAccount-->
+    <div class="clear"></div>
+    <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="rewardsHeader">[CONTENT]</div>
+    <!--END: CATEGORY_HEADER-->
+    <div class="titles">[rewards_redeem-productsList]</div>
+    <!--START: CATEGORY_ITEMS-->
+    <!--START: ITEM_TEMPLATE-->
+    <div class="product-item alternative">
+        <div class="img"><a href="product.asp?itemid=[catalogid]"><img src="thumbnail.asp?file=[THUMBNAIL]&amp;maxx=0&amp;maxy=150" alt="[name]" /></a></div>
+        <div class="name"><a href="product.asp?itemid=[catalogid]">[name]</a></div>
+        <div class="price">[reward_redeem] points</div>
+        <div class="action"><input type="button" class="btn" onclick="window.location='redeem.asp?action=redeem&item_id=[catalogid]';" value="Redeem" onmouseOver="this.className='btn_over'" onmouseout="this.className='btn'" /></div>
+        <div class="clear"></div>
+      </div>
+    <!--END: ITEM_TEMPLATE-->
+    <!--END: CATEGORY_ITEMS-->
+    <div class="clear"></div>
+    <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="rewardsFooter">[CONTENT]</div>
+    <!--END: CATEGORY_FOOTER-->
+</section>

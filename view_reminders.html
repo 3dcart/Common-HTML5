@@ -1,0 +1,102 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	.viewReminders td:nth-of-type(1):before { content: "[reminders_product-code]"; }
+	.viewReminders td:nth-of-type(2):before { content: "[reminders_reminder]"; }
+	.viewReminders td:nth-of-type(3):before { content: "[reminders_suggested]"; }
+	.viewReminders td:nth-of-type(4):before { content: "[reminders_next-change]"; }
+	.viewReminders td.emptylist:nth-of-type(1):before { content: ""; }
+}
+</style>
+
+<section id="viewReminders">
+  <h1 class="page_headers">[reminders_my-reminders]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="viewRemindersHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="viewReminders">
+    <form name="form[id]" action="view_reminders.asp" method="post">
+    <input type="hidden" name="id" value="[id]" id="Hidden1" />
+    <input type="hidden" name="action" value="update" id="Hidden2" />
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="code">[reminders_product-code]</th>
+			<th class="reminder">[reminders_reminder]</th>
+			<th class="suggested">[reminders_suggested]</th>
+			<th class="next-change">[reminders_next-change]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: no_reminders_item-->
+		<tr class="row">
+            <td colspan="5" class="emptylist">[reminders_emptylist]</td>
+        </tr>
+		<!--END: no_reminders_item-->
+		<!--START: reminders_item-->
+		<tr class="row">
+			<td class="code">
+              <div>[itemid]</div>
+              <a href="product.asp?itemid=[catalogid]">[name]</a>
+			</td>
+			<td class="reminder"><!--START: reminders_block-->
+              <select name="reminder" class="txtBoxStyle" id="Select1">
+                <!--START: reminders_frequency_option-->
+                <option value="[optionvalue]" [selected]>[optiontext]</option>
+                <!--END: reminders_frequency_option-->
+              </select>
+              <!--END: reminders_block--></td>
+			<td class="suggested">[suggested]</td>
+			<td class="next-change">
+                <input type="text" value="[nextchange]" name="nextchange" class="txtBoxStyle" size="6" id="Text1" />
+			</td>
+			<td class="actions">
+              <input name="update" type="submit" class="btn" value="[reminders_update]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+              <input name="delete" type="button" class="btn" onclick="deletereminder([id]);"  value="[reminders_delete]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+            </td>
+		</tr>
+		<!--END: reminders_item-->
+		</tbody>
+	</table>
+	</form>
+  </div>
+  <!--START: related_title-->
+  <div class="header">
+    <h3>[reminders_related-products]</h3>
+  </div>
+  <!--END: related_title--> 
+  <!--START: related_block--> 
+  <!--START: related_item-->
+  <div class="relatedItem pad10 boxShadow">
+    <div class="item-name">[name]</div>
+    <!--START: related_subitem-->
+    <div class="sub-item"><a href="product.asp?itemid=[catalogid]">[name]</a></div>
+    <div class="button right"><a href="view_reminders.asp?action=add&catalogid=[catalogid]" class="icon-btn icon-btn-add">[reminders_related-add-to-reminders]</a></div>
+    <!--END: related_subitem-->
+    <div class="clear"></div>
+  </div>
+  <!--END: related_item--> 
+  <!--END: related_block-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="viewRemindersFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript" src="assets/templates/common/calendar/popcalendar.js"></script> 
+<script type="text/javascript">
+function deletereminder(id)
+{
+	var rep;
+	rep = confirm("[reminders_message-deletereminder]");
+	if (!rep)
+		return false;	
+	document.location.href="view_reminders.asp?action=delete&id=" + id;
+}
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+</script>

@@ -1,0 +1,81 @@
+<section id="loginAccountMultiple">
+  <div class="multipleship-message">[login_multipleship-message]</div>
+  <!--START: error_message-->
+  <div class="error pad10 boxShadow">[error_message]</div>
+  <!--END: error_message-->
+  <div class="header">
+    <h3>[login_Header-login]</h3>
+  </div>
+  <div class="myaccountLogin pad10 boxShadow">
+    <form action="login.asp?ordertracking=[otrack][redirecturl]" method="post">
+      <input type="hidden" name="catalogid" value="[catalogid]" />
+      <p>[login_Header-loginmessage]</p>
+      <div class="loginField">
+        <label for="email">[CustomerInfo_email]:</label>
+        <input type="text" size="30" name="email" value="[email]" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="password">[CustomerInfo_password]:</label>
+        <input type="password" size="12" autocomplete="off" name="password" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="loginField">
+        <label for="randomWord">[registration_verification]:</label>
+        <div class="captcha"><img src="admin/image_pw.asp?cache=[now]" width="148" />
+          <div class="captcha-text">[registration_verification_message]</div>
+          <input type="text" name="randomWord" id="randomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="3" class="txtBoxStyle" />
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="loginField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="submit-button">
+        <input type="submit" value="[login_button]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </form>
+  </div>
+  <div class="header">
+    <h3>[login_Header-forgotpassword]</h3>
+  </div>
+  <div class="myaccountForgotPassword pad10 boxShadow">
+    <form action="login.asp?action=forgotpass&ordertracking=[otrack][redirecturl]" method="post">
+      <div class="loginField">
+        <label for="email">[CustomerInfo_email]:</label>
+        <input type="text" size="30" name="email" value="[email]" tabindex="4" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="reset-button">
+        <input type="submit" value="[login_resetpasswordbutton]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="resetpassword-text">[login_resetpasswordtext]</div>
+    </form>
+  </div>
+  <div class="header">
+    <h3>[registration_Header-createnewaccount]</h3>
+  </div>
+  <div class="createNewAccount pad10 boxShadow">
+    <p>[registration_create-account]</p>
+    <div class="clear"></div>
+    <div class="create-account-button">
+      <input type="button" value="[registration_button-createaccount]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" onclick="window.location='register.asp?cg=0&view_cart=1';" />
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</section>

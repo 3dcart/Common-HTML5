@@ -1,0 +1,85 @@
+<form enctype="multipart/form-data" method="post" action="add_cart.asp" name="add">
+<table width="95%" cellpadding="0" cellspacing="0" align="center" border="0">
+	<tr>
+		<td class="page_headers" align="left">[account_previously-purchased] </td>
+		<!--START: myAccount-->
+		<td valign="middle" align="right"><a href="myaccount.asp"><img src="assets/templates/common/images/arrow_back.png" border="0" align="absmiddle"></a>&nbsp;<a href="myaccount.asp">back to my account</a></td>
+		<!--END: myAccount-->
+	</tr>
+	<tr>
+		<td colspan="3"><!--START: CATEGORY_HEADER-->
+			<table width="95%" cellspacing="0" cellpadding="2" border="0">
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="data">[CONTENT]</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+			</table>
+			<!--END: CATEGORY_HEADER-->
+			<!--START: previouspurchase_none-->
+			<em>[product_no_previous]</em>
+			<!--END: previouspurchase_none-->
+			<!--START: previouspurchase-->
+			<table width="100%" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td colspan="2">
+						<table width="100%" cellpadding="0" cellspacing="2" class="alternative" border="0">
+							<tr>
+								<td style="vertical-align:middle; text-align: right;" colspan="4">
+								<input type="submit" value="[product_addtocart]" class="btn" onMouseOver="this.className='btn_over'" onMouseOut="this.className='btn'" id="Button7" name="Button7"></td>
+							</tr>
+							<tr>
+								<td class="titles2" colspan="2"><strong>[shoppingcart_items]</strong></td>
+								<td class="titles2" align="right"><strong>[shoppingcart_quantity]</strong></td>
+								<td class="titles2" align="right"><strong>[shoppingcart_price]</strong></td>
+							</tr>
+							<!--START: previousPurchaseDetails-->
+							<!--START: SHOPPING_CART_ITEM-->
+							<tr>
+								<td style="width:60px;">
+								<!--START: itemthumbnail--><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" border="0" height="55" width="55" id="tl"></a><!--END: itemthumbnail-->
+								</td>
+								<td class="item l" style="width:350px;">
+								<!--START: itemnamelink-->
+								<a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a>
+								<br /><em>[ITEMS_PURCHASED]&nbsp;[account_previously-purchased]</em>
+								
+								<!--END: itemnamelink-->
+								</td>
+								<td class="item" style="text-align:right;">
+									<input type="text" name="qty-[ITEM_COUNT]" id="qty-[ITEM_COUNT]" value="0" size="3" maxlength="5" class="txtBoxStyle">
+									<input type="hidden" name="item_id" value="[ITEM_CATALOGID]" />
+								</td>
+								<td class="item" align="right">[ITEM_PRICE]</td>
+							</tr>
+
+							<tr>
+								<td height="1" colspan="4" class="borders2"><img src="assets/images/spacer.gif" height="1"></td>
+							</tr>
+							<!--END: SHOPPING_CART_ITEM-->
+							<!--END: previousPurchaseDetails-->
+							<tr>
+								<td style="vertical-align:middle; text-align: right;" colspan="4">
+								<input type="submit" value="[product_addtocart]" class="btn" onMouseOver="this.className='btn_over'" onMouseOut="this.className='btn'" id="Button7" name="Button7"></td>
+							</tr>
+						</table>
+						<br>
+					</td>
+				</tr>
+			</table>
+			<!--END: previouspurchase-->
+			<!--START: CATEGORY_FOOTER-->
+			<table width="95%" cellspacing="0" cellpadding="2" border="0">
+				<tr>
+					<td class="data">[CONTENT]</td>
+				</tr>
+			</table>
+			<!--END: CATEGORY_FOOTER-->
+		</td>
+	</tr>
+</table>
+</form>

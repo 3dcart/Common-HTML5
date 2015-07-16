@@ -1,0 +1,219 @@
+<script type="text/javascript" src="state_countryjs.asp"></script>
+<script type="text/javascript">
+function editCard(isEdit)
+{
+	if (isEdit)
+	{
+		document.getElementById('divCard').style.display = 'none';
+		document.getElementById('divCardEdit').style.display = '';
+		document.getElementById('hdnEditCard').value = "1";
+	}
+	else
+	{
+		document.getElementById('divCard').style.display = '';
+		document.getElementById('divCardEdit').style.display = 'none';
+		document.getElementById('hdnEditCard').value = "0";
+	}
+}
+</script>
+
+<section id="manageMyCc">
+  <h1 class="page_headers">[account_creditcard-details]</h1>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="manageMyCcHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="managemycc.asp" name="frmForm" id="frmForm" method="post">
+    <input type="hidden" id="hdnAction" name="hdnAction" value="" />
+    <input type="hidden" id="pp" name="pp" value="[strCustomerPaymentProfileId]" />
+    <input type="hidden" id="hdnEditCard" name="hdnEditCard" value="[hdnEditCardValue]" />
+    <!--START: ERROR_MSG-->
+    <div class="error pad10 boxShadow">[strErrMsg]</div>
+    <!--END: ERROR_MSG-->
+    <div class="header">
+      <h3>[account_creditcard-info]</h3>
+    </div>
+    <div id="divCardEdit" class="pad10 boxShadow" name="divCardEdit" style="display:[ShowCardEdit];">
+      <div class="updCcField">
+        <label for="card_number">[CustomerInfo_creditcardnumber]</label>
+        <input type="text" id="card_number" name="card_number" maxlength="20" size="25" value="[card_number]" class="txtBoxStyle" [card_number_disabled] />
+        <div class="clear"></div>
+      </div>
+      <div class="updCcField">
+        <label for="drpDate_original">[CustomerInfo_creditexpiration]</label>
+        <select name="drpMonth" id="drpMonth" class="txtBoxStyle">
+          <!--START: drpRegMonth-->
+          <option value="[intMonth]" [selected]>[month]</option>
+          <!--END: drpRegMonth-->
+        </select>
+        <select name="drpYear" id="drpYear" class="txtBoxStyle">
+          <!--START: drpRegYear-->
+          <option value="[year]" [selected]>[year]</option>
+          <!--END: drpRegYear-->
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--START: editCard-->
+      <div class="button left"><a href="#" onclick="javascript:editCard(false);" class="icon-btn icon-btn-close">[account_button-cancel]</a></div>
+      <!--END: editCard-->
+      <div class="clear"></div>
+    </div>
+    <div id="divCard" class="pad10 boxShadow" name="divCard" style="display:[ShowCard];">
+      <div class="updCcField">
+        <label for="card_number_original">[CustomerInfo_creditcardnumber]</label>
+        <div class="text">[card_number]</div>
+        <input type="hidden" id="card_number_original" name="card_number_original" value="[card_number]" />
+        <div class="clear"></div>
+      </div>
+      <div class="updCcField">
+        <label for="drpDate_original">[CustomerInfo_creditexpiration]</label>
+        <div class="text">[month] - [year]</div>
+        <input type="hidden" id="drpMonth_original" name="drpMonth_original" value="[month]" />
+        <input type="hidden" id="drpYear_original" name="drpYear_original" value="[year]" />
+        <div class="clear"></div>
+      </div>
+      <!--START: edit_card-->
+      <div class="button left"><a href="#" onclick="javascript:editCard(true);" class="icon-btn icon-btn-edit">[account_creditcard-edit]</a></div>
+      <!--END: edit_card-->
+      <div class="clear"></div>
+    </div>
+    <!--START: billing_info-->
+    <div class="header">
+      <h3>[account_billing-info]</h3>
+    </div>
+    <div class="ccBillingInfo pad10 boxShadow"> 
+      <!--START: authNet-->
+      <div class="updCcField">
+        <label for="billing_firstname">[CustomerInfo_firstname]</label>
+        <input size="40" name="billing_firstname" value="[billing_firstname]" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updCcField">
+        <label for="billing_lastname">[CustomerInfo_lastname]</label>
+        <input size="40" name="billing_lastname" value="[billing_lastname]" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <!--START: company-->
+      <div class="updCcField">
+        <label for="billing_company">[CustomerInfo_company]</label>
+        <input size="40" name="billing_company" value="[billing_company]" tabindex="3" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <!--END: company--> 
+      <!--END: authNet-->
+      <div class="updCcField">
+        <label for="billing_address">[CustomerInfo_address]</label>
+        <input size="40" name="billing_address" value="[billing_address]" tabindex="4" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+	<!--START: address2-->
+	<tr>
+		<td align="right" class="item"><b>[CustomerInfo_address2]</b></td>
+		<td nowrap><input name="billing_address2" type="text" id="billing_address2" maxlength="60" value="[billing_address2]" size="25" class="txtBoxStyle">
+	</tr>
+	<!--END: address2-->
+      <!--START: city-->
+      <div class="updCcField">
+        <label for="billing_city">[CustomerInfo_city]</label>
+        <input size="40" name="billing_city" value="[billing_city]" tabindex="5" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <!--END: city--> 
+      <!--START: country-->
+      <div class="updCcField">
+        <label for="billing_country">[CustomerInfo_country]</label>
+        <select name="billing_country" onchange="this.form.billing_zip.value='';populateState('billing_state','billing_country');check_stateValidator('billing');check_address('billing');" tabindex="6" class="txtBoxStyle" id="billing_country">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--END: country--> 
+      <!--START: state-->
+      <div class="updCcField">
+        <label for="billing_state">[CustomerInfo_state]</label>
+        <select id="billing_state" onChange="this.form.billing_zip.value='';check_address('billing');" name="billing_state" tabindex="7" class="txtBoxStyle">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--END: state-->
+      <div class="updCcField">
+        <label for="billing_zip">[CustomerInfo_zip]</label>
+        <input name="billing_zip" maxlength="20" type="text" id="billing_zip" value="[billing_zip]" size="10" class="txtBoxStyle" onchange="clearContent(this);check_address('billing');" />
+        <div class="clear"></div>
+      </div>
+        <!--END: billing_info-->
+      <div class="update-btn">
+        <input type="button" id="cmdCancel" name="cmdCancel" onclick="javascript:location.href='myaccount.asp';" class="btn" value="[account_button-back]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        <input type="button" id="cmdDelete" name="cmdDelete" onclick="javascript:deleteProfile();" class="btn" value="[account_button-delete]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        <!--START: save-->
+        <input type="button" id="cmdSave" name="cmdSave" onclick="javascript:saveProfile();" class="btn" value="[account_button-Save]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        <!--END: save-->
+        <div class="clear"></div>
+      </div>
+    </div>
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="manageMyCcFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+initCountry('[billing_country]','[billing_state]','billing_state','billing_country');
+
+function deleteProfile()
+{
+	var rep = confirm("[account_creditcard-delete-confirmation]");
+	
+	if (rep)
+	{
+		document.frmForm.hdnAction.value = "delete";
+		document.frmForm.submit();
+	}
+}
+
+function saveProfile()
+{
+	var strMsg = "";
+	if (document.frmForm.card_number.value.trim() == "")
+		strMsg += " - [CustomerInfo_creditcardnumber] cannot be blank.\n";
+	if (document.frmForm.drpMonth.value.trim() == "" || document.frmForm.drpYear.value.trim() == "")
+		strMsg += " - [CustomerInfo_creditexpiration] is invalid.\n";
+		
+	//<!--START: authNetValidation-->
+	if (document.frmForm.billing_firstname.value.trim() == "")
+		strMsg += " - [CustomerInfo_firstname] cannot be blank.\n";
+	if (document.frmForm.billing_lastname.value.trim() == "")
+		strMsg += " - [CustomerInfo_lastname] cannot be blank.\n";
+	//<!--END: authNetValidation-->
+
+	if (document.frmForm.billing_address.value.trim() == "")
+	    strMsg += " - [CustomerInfo_address] cannot be blank.\n";
+
+    //<!--START: CityValidation-->
+	if (document.frmForm.billing_city.value.trim() == "")
+		strMsg += " - [CustomerInfo_city] cannot be blank.\n";
+	//<!--END: CityValidation-->
+
+    //<!--START: CountryValidation-->
+	if (document.frmForm.billing_country.value.trim() == "")
+		strMsg += " - [CustomerInfo_country] cannot be blank.\n";
+    //<!--END: CountryValidation-->
+
+    //<!--START: StateValidation-->
+	if (document.frmForm.billing_state.value.trim() == "")
+		strMsg += " - [CustomerInfo_state] cannot be blank.\n";
+    //<!--END: StateValidation-->   
+
+	if (document.frmForm.billing_zip.value.trim() == "")
+		strMsg += " - [CustomerInfo_zip] cannot be blank.\n";
+
+	if (strMsg != ""){
+		alert(strMsg);
+		return false;
+	}
+	document.frmForm.hdnAction.value = "save";
+	document.frmForm.submit();
+}
+
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+</script>

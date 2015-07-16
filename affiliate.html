@@ -1,0 +1,214 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+    /* Affiliate Statistics */
+	.affiliateStatistics td:nth-of-type(1):before { content: "[affiliate_summary-header-membersince]"; }
+	.affiliateStatistics td:nth-of-type(2):before { content: "[affiliate_summary-header-orders]"; }
+	.affiliateStatistics td:nth-of-type(3):before { content: "[affiliate_summary-header-amount]"; }
+	.affiliateStatistics td:nth-of-type(4):before { content: "[affiliate_summary-header-commission]"; }
+	.affiliateStatistics td:nth-of-type(5):before { content: "[affiliate_summary-header-paid]"; }
+	.affiliateStatistics td:nth-of-type(6):before { content: "[affiliate_summary-header-balance]"; }
+    .affiliateStatistics td.no-display:nth-of-type(1):before { content: ""; }
+    /* Affiliate Payments */
+	.affiliatePayments td:nth-of-type(1):before { content: "[affiliate_payments-header-date]"; }
+	.affiliatePayments td:nth-of-type(2):before { content: "[affiliate_payments-header-amount]"; }
+	.affiliatePayments td:nth-of-type(3):before { content: "[affiliate_payments-header-check]"; }
+    .affiliatePayments td.no-display:nth-of-type(1):before { content: ""; }
+    /* Affiliate Approved Orders */
+	.affiliateAppOrders td:nth-of-type(1):before { content: "[affiliate_orders-header-date]"; }
+	.affiliateAppOrders td:nth-of-type(2):before { content: "[affiliate_orders-header-ordernum]"; }
+	.affiliateAppOrders td:nth-of-type(3):before { content: "[affiliate_orders-header-amount]"; }
+	.affiliateAppOrders td:nth-of-type(4):before { content: "[affiliate_orders-header-commissionperc]"; }
+	.affiliateAppOrders td:nth-of-type(5):before { content: "[affiliate_orders-header-commissionamnt]"; }
+    .affiliateAppOrders td.no-display:nth-of-type(1):before { content: ""; }
+    /* Affiliate Denied Orders */
+	.affiliateDenOrders td:nth-of-type(1):before { content: "[affiliate_orders-header-date]"; }
+	.affiliateDenOrders td:nth-of-type(2):before { content: "[affiliate_orders-header-ordernum]"; }
+	.affiliateDenOrders td:nth-of-type(3):before { content: "[affiliate_orders-header-amount]"; }
+	.affiliateDenOrders td:nth-of-type(4):before { content: "[affiliate_orders-header-comments]"; }
+    .affiliateDenOrders td.no-display:nth-of-type(1):before { content: ""; }
+}
+</style>
+<section id="affiliate">
+  <h1 class="page_headers">[affiliate_details]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="affiliateHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER--> 
+  <!--START: affiliateStatistics-->
+  <div class="header">
+    <h3>[affiliate_details-summary]</h3>
+  </div>
+  <div class="affiliateStatistics">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="membersince">[affiliate_summary-header-membersince]</th>
+			<th class="orders">[affiliate_summary-header-orders]</th>
+			<th class="amount">[affiliate_summary-header-amount]</th>
+			<th class="commission">[affiliate_summary-header-commission]</th>
+			<th class="paid">[affiliate_summary-header-paid]</th>
+			<th class="balance">[affiliate_summary-header-balance]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: affiliateStatisticsNoOrders-->
+		<tr class="row">
+            <td colspan="5" class="no-history">[affiliate_no-history-to-display]</td>
+        </tr>
+		<!--END: affiliateStatisticsNoOrders-->
+		<!--START: affiliateStatisticsDetail-->
+		<tr class="row">
+			<td class="membersince">[memberSince]</td>
+			<td class="orders">[orders]</td>
+			<td class="amount">[amount]</td>
+			<td class="commission">[totalCommission]</td>
+			<td class="paid">[paid]</td>
+			<td class="balance">[balance]</td>
+		</tr>
+		<!--END: affiliateStatisticsDetail-->
+		</tbody>
+	</table>
+  </div>
+  <!--END: affiliateStatistics--> 
+  <!--START: affiliatePayments-->
+  <div class="header">
+    <h3>[affiliate_details-payments] <span>(last [lastDays] days)</span></h3>
+  </div>
+  <div class="affiliatePayments">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="date">[affiliate_payments-header-date]</th>
+			<th class="amount">[affiliate_payments-header-amount]</th>
+			<th class="check">[affiliate_payments-header-check]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: affiliateNoPayments-->
+		<tr class="row">
+            <td colspan="5" class="no-display" alt="affiliatePayments">[affiliate_no-history-to-display]</td>
+        </tr>
+		<!--END: affiliateNoPayments-->
+		<!--START: affiliatePaymentsDetail-->
+		<tr class="row">
+			<td class="date">[date]</td>
+			<td class="amount">[amount]</td>
+			<td class="check">[check]</td>
+		</tr>
+		<!--END: affiliatePaymentsDetail-->
+		</tbody>
+	</table>
+  </div>
+  <!--END: affiliatePayments--> 
+  <!--START: affiliateAppOrders-->
+  <div class="header">
+    <h3>[affiliate_details-approvedorders] <span>(last [lastDays] days)</span></h3>
+  </div>
+  <div class="affiliateAppOrders">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="date">[affiliate_orders-header-date]</th>
+			<th class="ordernum">[affiliate_orders-header-ordernum]</th>
+			<th class="amount">[affiliate_orders-header-amount]</th>
+			<th class="commissionperc">[affiliate_orders-header-commissionperc]</th>
+			<th class="commissionamnt">[affiliate_orders-header-commissionamnt]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: affiliateNoAppOrders-->
+		<tr class="row">
+            <td colspan="5" class="no-display" alt="affiliateAppOrders">[affiliate_no-history-to-display]</td>
+        </tr>
+		<!--END: affiliateNoAppOrders-->
+		<!--START: affiliateAppOrdersDetail-->
+		<tr class="row">
+			<td class="date">[date]</td>
+			<td class="ordernum">[orderNumber]</td>
+			<td class="amount">[amount]</td>
+			<td class="commissionperc">[percentCommission]</td>
+			<td class="commissionamnt">[amountCommission]</td>
+		</tr>
+		<!--END: affiliateAppOrdersDetail-->
+		</tbody>
+	</table>
+  </div>
+  <!--END: affiliateAppOrders--> 
+  <!--START: affiliateDenOrders-->
+  <div class="header">
+    <h3>[affiliate_details-deniedorders] <span>(last [lastDays] days)</span></h3>
+  </div>
+  <div class="affiliateDenOrders">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="date">[affiliate_orders-header-date]</th>
+			<th class="ordernum">[affiliate_orders-header-ordernum]</th>
+			<th class="amount">[affiliate_orders-header-amount]</th>
+			<th class="comments">[affiliate_orders-header-comments]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: affiliateNoDenOrders-->
+		<tr class="row">
+            <td colspan="5" class="no-display" alt="affiliateDenOrders">[affiliate_no-history-to-display]</td>
+        </tr>
+		<!--END: affiliateNoDenOrders-->
+		<!--START: affiliateDenOrdersDetail-->
+		<tr class="row">
+			<td class="date">[date]</td>
+			<td class="ordernum">[orderNumber]</td>
+			<td class="amount">[amount]</td>
+			<td class="comments">[comments]</td>
+		</tr>
+		<!--END: affiliateDenOrdersDetail-->
+		</tbody>
+	</table>
+  </div>
+  <!--END: affiliateDenOrders--> 
+  <!--START: affiliateLinks-->
+  <div class="header">
+    <h3>[affiliate_details-links]</h3>
+  </div>
+  <div class="affiliateLinks">
+    <form name="frmLinks" id="frmLinks" action="">
+      <div class="link-instructions">[affiliate_details-link-instructions]</div>
+      <div class="affiliateBannersLink pad10 boxShadow">
+        <p><a href="[store_url]/?AffId=[affId]">General link - [affiliate_details-link-text]</a></p>
+        <div class="button"><a href="javascript:HighlightAll('frmLinks.select0')" class="icon-btn icon-btn-next">Click here to "Select All Code"</a></div>
+        <textarea name="select0" rows="5" cols="80" wrap="VIRTUAL" class="txtareaStyle">&lt;a href=&quot;[store_url]/?AffId=[affId]&quot;&gt;[affiliate_details-link-text]&lt;/a&gt;</textarea>
+        <div class="clear"></div>
+      </div>
+      <!--START: affiliateLinksDetails-->
+      <div class="affiliateBannersLink pad10 boxShadow">
+        <p><a href="[store_url]/?AffId=[affId]"><img src="[affBannersFolder]affiliateBanner[intBannerCount].jpg" border="0" alt="" /></a></p>
+        <div class="button"><a href="javascript:HighlightAll('frmLinks.select[intBannerCount]')" class="icon-btn icon-btn-next">Click here to &quot;Select All Code&quot;</a></div>
+      <textarea name="select[intBannerCount]" rows="5" cols="80" wrap="VIRTUAL" class="txtareaStyle">&lt;a href=&quot;[store_url]/?AffId=[affId]&quot;&gt;&lt;img border="0" src=&quot;[store_url][affBannersFolder]affiliateBanner[intBannerCount].jpg&quot;&gt;&lt;/a&gt;</textarea>
+        <div class="clear"></div>
+      </div>
+      <!--END: affiliateLinksDetails-->
+    </form>
+  </div>
+  <!--END: affiliateLinks-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="affiliateFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+function HighlightAll(theField) {
+	var tempval=eval("document."+theField);
+	tempval.focus();
+	tempval.select();
+	if (document.all)
+	{
+		therange=tempval.createTextRange();
+		therange.execCommand("Copy");
+		window.status="Contents highlighted and copied to clipboard!";
+		setTimeout("window.status=''",1800);
+	}
+}
+</script>

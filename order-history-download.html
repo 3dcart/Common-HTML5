@@ -1,0 +1,27 @@
+<section id="orderHistoryDownload">
+  <h1 class="page_headers">Download Page <span>(Order  [invoicenum_prefix][invoicenum])</span></h1>
+  <div class="header">
+    <h3>This links will expire on [expiration_date]</h3>
+  </div>
+  <!--START: items-->
+  <div class="productDownload pad10 boxShadow"> 
+    <!--START: itemid-->
+    <div class="left-col">[itemid]</div>
+    <!--END: itemid-->
+    <div class="right-col">
+      <p>[itemname]</p>
+      <p><strong>[eproduct_file]</strong></p>
+      <div class="button left"><a href="edownload.asp?eid1=[catalogid]&eid2=[orderkey]&file=[file_count]" class="icon-btn icon-btn-download" target="_blank">Click here to download</a></div>
+      <div class="clear"></div>
+      <!--START: serial-->
+      <p>Serial: [serial]</p>
+      <!--END: serial-->
+      <!--START: eproduct_instructions-->
+      <p>[eproduct_instructions]</p>
+      <!--END: eproduct_instructions-->
+    </div>
+    <div class="clear"></div>
+  </div>
+  <!--END: items-->
+  <div class="clear"></div>
+</section>

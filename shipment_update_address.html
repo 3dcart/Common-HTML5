@@ -1,0 +1,218 @@
+<script type="text/javascript" src="state_countryjs.asp"></script>
+
+<section id="shipmentUpdateAddress">
+  <h1 class="page_headers">Shipping Info</h1>
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="checkoutStep1Header">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="edit_shipment.asp?action=updateaddress" method="post" name="checkoutform">
+  <input type="hidden" name="id" value="[id]" />
+  <input type="hidden" name="update" value="1" />
+    <div class="rightCol">
+      <div class="header">
+        <h3>Ship To [oshipalias]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="chkShoppingCart pad10 boxShadow"> 
+        <!--START: SHOPPING_CART_ITEM-->
+        <div class="row">
+          <div class="product-image">
+			<!--START: itemthumbnail--><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" border="0" height="40" width="40" id="tl" /></a><!--END: itemthumbnail-->
+			<!--START: thumbnailnolink--><img src="thumbnail.asp?file=[THUMBNAIL]" border="0" height="40" width="40" id="tnl" /><!--END: thumbnailnolink-->
+            <!--START: itemnamelink--><span><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a></span><!--END: itemnamelink--> 
+			<!--START: itemnamenolink--><span id="spnItemName">[ITEM_NAME]</span><!--END: itemnamenolink-->
+            <div class="clear"></div>
+          </div>
+          <div class="product-info">[ITEM_PRICE] X [ITEM_QUANTITY]<span>[ITEM_SUBTOTAL]</span></div>
+          <div class="clear"></div>
+        </div>
+        <!--END: SHOPPING_CART_ITEM-->
+        <div class="total_cart-total">[shoppingcart_subtotal]</div>
+        <div class="total_total price">[CARTSUBTOTAL]</div>
+        <div class="clear"></div>
+        <!--START: GIFTCERTS-->
+        <div class="button right"><a href="view_cart.asp" class="icon-btn icon-btn-incart">Update Cart</a></div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="leftCol"> 
+      <!--START: account_login-->
+      <div class="account_login pad10 boxShadow">
+        <div class="loginmessage">[checkout2_Header-shippinginfo-login]</div>
+        <div class="loginmessage2">[checkout2_Header-shippinginfo-loginmessage]</div>
+        <div class="login1-button">
+          <input type="button" value="[checkout2_Header-shippinginfo-login]" onclick="javascript:location.href='edit_shipment.asp?shipmentid=[id]&action=log-in';" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: account_login-->
+      <div class="header">
+        <h3>[checkout1_Header-shippinginformation]</h3>
+        <div class="clear"></div>
+      </div>
+      <div id="shipping_info" class="pad10 boxShadow">
+      <p><a href="myaccount.asp?action=addresses&reqPage=edit_shipment&shipmentid=[id]">Click here</a> to copy an address from your Address Book.</p>
+        <div class="chkField">
+          <label for="oshipalias">[account_Address-Alias]</label>
+          <input name="oshipalias" type="text" id="oshipalias" value="[oshipalias]" size="15" tabindex="1" class="txtBoxStyle" />
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipfirstname">[CustomerInfo_firstname]</label>
+          <input name="oshipfirstname" type="text" id="oshipfirstname" value="[oshipfirstname]" size="15" tabindex="2" class="txtBoxStyle" />
+          <!--START: req_oshipfirstname--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_oshipfirstname-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshiplastname">[CustomerInfo_lastname]</label>
+          <input name="oshiplastname" type="text" id="oshiplastname" value="[oshiplastname]" size="15" tabindex="3" class="txtBoxStyle" />
+          <!--START: req_oshiplastname--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_oshiplastname-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipcompany">[CustomerInfo_company]</label>
+          <input name="oshipcompany" type="text" id="oshipcompany" value="[oshipcompany]" size="25" tabindex="4" class="txtBoxStyle" />
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipphone">[CustomerInfo_phone]</label>
+          <input name="oshipphone" type="text" id="oshipphone" value="[oshipphone]" size="25" tabindex="5" class="txtBoxStyle" />
+          <!--START: req_oshipphone--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="phone required" />
+          <!--END: req_oshipphone-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipaddress">[CustomerInfo_address]</label>
+          <input name="oshipaddress" type="text" id="oshipaddress" value="[oshipaddress]" size="25" tabindex="6" class="txtBoxStyle" />
+          <!--START: req_oshipaddress--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_oshipaddress-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipaddress2">[CustomerInfo_address2]</label>
+          <input name="oshipaddress2" maxlength="50" type="text" id="oshipaddress2" value="[oshipaddress2]" size="25" tabindex="7" class="txtBoxStyle" />
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipcity">[CustomerInfo_city]</label>
+          <input name="oshipcity" type="text" id="oshipcity" value="[oshipcity]" size="25" tabindex="8" class="txtBoxStyle" />
+          <!--START: req_oshipcity--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_oshipcity-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_country">[CustomerInfo_country]</label>
+          <select id='oshipcountry' name='oshipcountry' onChange="populateState('oshipstate','oshipcountry')" tabindex="9" class="txtBoxStyle" /></select>
+          <!--START: req_oshipcountry--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_oshipcountry-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipstate">[CustomerInfo_state]</label>
+          <select id="oshipstate" name="oshipstate" tabindex="10" class="txtBoxStyle" /></select>
+          <!--START: req_oshipstate--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_oshipstate-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="oshipzip">[CustomerInfo_zip]</label>
+          <input name="oshipzip" type="text" id="oshipzip" value="[oshipzip]" size="10" tabindex="11" class="txtBoxStyle" />
+          <!--START: req_shipping_zip--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_zip-->
+          <div class="clear"></div>
+        </div>
+        <!--START: addressType-->
+        <div class="chkField">
+          <label for="shipping_addresstype">[CustomerInfo_address_type]</label>
+          <select name="shipping_addresstype" id="shipping_addresstype" onchange="check_address('addresstype');" tabindex="12" class="txtBoxStyle">
+            [addressTypeDropDown]
+          </select>
+          <div class="clear"></div>
+        </div>
+        <!--END: addressType-->
+        <!--START: ADD_ADDRESSBOOK-->
+        <div class="chkField">
+            <div class="checkbox-format">
+              <input type="checkbox" name="addressbook" value="0" />
+              <label for="addressbook">Add to Address Book</label>
+              <div class="clear"></div>
+            </div>
+        </div>
+        <!--END: ADD_ADDRESSBOOK-->
+        <!--START: UPD_ADDRESSBOOK-->
+        <div class="chkField">
+            <div class="checkbox-format">
+              <input type="checkbox" name="addressbook" value="[address_id]" />
+              <label for="addressbook">Update Address Book</label>
+              <div class="clear"></div>
+            </div>
+        </div>
+        <!--END: UPD_ADDRESSBOOK-->
+        <div class="clear"></div>
+      </div>
+      <div class="required error"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> = Required</div>
+      <div id="divCheckoutButton">
+        <input type="submit" name="Submit" value="[account_Update-Address]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <div class="clear"></div>
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="checkoutStep1Footer">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+	initCountry('[oshipcountry]','[oshipstate]','oshipstate','oshipcountry');
+</script>
+<script type="text/javascript">
+//You should create the validator only after the definition of the HTML form
+  var frmvalidator  = new Validator("checkoutform");
+
+  frmvalidator.setAddnlValidationFunction("submitForm");
+
+
+  frmvalidator.addValidation("oshipfirstname","req","Please enter your First Name");
+  frmvalidator.addValidation("oshipfirstname","maxlen=20","Max length for First Name is 20");
+
+
+  frmvalidator.addValidation("oshiplastname","req","Please enter your Last Name");
+  frmvalidator.addValidation("oshiplastname","maxlen=20","Max length for Last Name is 20");
+
+  frmvalidator.addValidation("oshipaddress","maxlen=50");
+  frmvalidator.addValidation("oshipaddress","req","Please enter your address");
+
+  frmvalidator.addValidation("oshipcity","maxlen=50");
+  frmvalidator.addValidation("oshipcity","req","Please enter your City");
+
+
+
+  frmvalidator.addValidation("oshipcountry","maxlen=50");
+  frmvalidator.addValidation("oshipcountry","req",0);
+
+  frmvalidator.addValidation("oshipstate","maxlen=50");
+  frmvalidator.addValidation("oshipstate","req",0);
+
+
+
+  frmvalidator.addValidation("oshipzip","maxlen=20");
+  frmvalidator.addValidation("oshipzip","req","Please enter your zip code");
+                   
+  frmvalidator.addValidation("oshipphone", "maxlen=18", "Max length for Phone is 18");
+  //<!--START: val_shipphone-->
+  frmvalidator.addValidation("oshipphone", "phone", "Invalid phone number");
+  frmvalidator.addValidation("oshipphone", "req", "Please enter your phone");
+  //<!--END: val_shipphone-->
+
+</script>

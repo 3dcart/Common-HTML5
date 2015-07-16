@@ -1,0 +1,66 @@
+<section id="feedPage0"> 
+  <!--START: BODY_HEADER-->
+  <div class="breadcrumbs">[PAGE_FULLLINE]</div>
+  <div class="page_headers">[htmlpage]</div>
+  <!--END: BODY_HEADER--> 
+  <!--START: SUB_PAGES-->
+  <div class="sub_pages">
+      <ul class="sub_pages_format">
+        <!--START: SUB_PAGES_FORMAT-->
+        <li><i class="icon-angle-right"></i><a href="infopage.asp?page=[id]&extra=[extra]">[sub_pages_title]</a></li>
+        <!--END: SUB_PAGES_FORMAT-->
+      </ul>
+      <div class="clear"></div>
+  </div>
+  <!--END: SUB_PAGES-->
+  <!--START: feeds_index-->
+  <div class="feeds_index">
+      <ul class="feeds_pages">
+          <!--START: feeds_index_link-->
+          <li><i class="icon-angle-right"></i><a href="#[id]">[feed_title]</a></li>
+          <!--END: feeds_index_link-->
+      </ul>
+      <div class="clear"></div>
+  </div>
+  <!--END: feeds_index-->
+  <!--START: feedblock-->
+  <div class="header">
+    <h3><a id="[id]"></a>[feed_title]</h3>
+    <span>[feed_created]<!--START: feed_author-->&nbsp;by&nbsp;[feed_author]<!--END: feed_author--></span>
+    <div class="clear"></div>
+  </div>
+  <div class="feedShortDescription pad10 boxShadow">[feed_shortdescription] 
+    <!--START: feed_description-->
+    <div class="clear"></div>
+    <div class="button right"><a href="[feedlink]" class="icon-btn icon-btn-down">[feeds_morelink]</a></div>
+    <!--START: feed_description-->
+    <div class="clear"></div>
+  </div>
+  <!--END: feedblock-->
+  <div class="paging"> 
+    <!--START: PAGING--> 
+    [category_moreresults] 
+    <!--START: PREV--> 
+    <a href="infopage.asp?page=[id]&extra=[extra]&pagenum=[prev]">[category_previouspage]</a> 
+    <!--END: PREV--> 
+    <!--START: PAGES--> 
+    <!--START: FIRST_PAGE--> 
+    <a href="infopage.asp?page=[id]&extra=[extra]&pagenum=PAGE"><strong>PAGE</strong></a>... 
+    <!--END: FIRST_PAGE--> 
+    <!--START: PAGES_SELECTED--> 
+    <strong>PAGE</strong> 
+    <!--END: PAGES_SELECTED--> 
+    <!--START: PAGES_NOTSELECTED--> 
+    <a href="infopage.asp?page=[id]&extra=[extra]&pagenum=PAGE">PAGE</a> 
+    <!--END: PAGES_NOTSELECTED--> 
+    <!--START: LAST_PAGE--> 
+    ...<a href="view_category.asp?cat=[cat]&amp;sortby=[sortby]&amp;page=PAGE"><strong>PAGE</strong></a> 
+    <!--END: LAST_PAGE--> 
+    <!--END: PAGES--> 
+    <!--START: NEXT--> 
+    <a href="infopage.asp?page=[id]&extra=[extra]&pagenum=[next]">[category_nextpage]</a> 
+    <!--END: NEXT--> 
+    <!--END: PAGING-->
+  </div>
+  <div class="clear"></div>
+</section>

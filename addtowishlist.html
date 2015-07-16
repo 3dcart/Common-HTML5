@@ -1,0 +1,134 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>[store_name] | [notify_header]</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="assets/templates/common-html5/css/layout.css" type="text/css" media="all" />
+<link rel="stylesheet" href="assets/templates/common-html5/css/responsive.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/[template]/css/[stylesheet]" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/common-html5/css/fontello.css" />
+<!--[if IE 7]>
+<link rel="stylesheet" href="assets/templates/common-html5/css/fontello-ie7.css" />
+<![endif]-->
+<style type="text/css">
+html, body {
+	height: 100%;
+	width: 100%;
+}
+@media only screen and (max-width: 480px) {
+
+html, body {
+    width: auto !important;
+    max-width: 90% !important;
+    padding: 0px;
+    border: none;
+}
+
+}
+</style>
+<script type="text/javascript" src="assets/templates/common-html5/js/utilities.js"></script>
+<script type="text/javascript">
+function addToList(objForm) {
+	var strMsg = "";
+	var listType = "";
+	var drpLists = "";
+
+	if (objForm.optListType.length > 0)
+	{
+		//alert("enter on validate ONLY list block ");
+		for (var i = 0; i < objForm.optListType.length; i++) {
+			if (objForm.optListType[i].checked) {
+				listType = objForm.optListType[i].value.trim();
+				drpLists = objForm.drpLists.value;
+
+				if (objForm.optListType[i].value.trim() == "1" && objForm.drpLists.value == "")
+					strMsg += "[wishlist_multiple-addtolist-select-the-list]";
+
+				if (objForm.optListType[i].value.trim() == "2" && objForm.txtNewList.value == "")
+					strMsg += "[wishlist_multiple-addtolist-enter-the-name-list]";
+			}
+		}
+	}
+	else
+	{
+		if (objForm.txtNewList.value == "")
+			strMsg += "[wishlist_multiple-addtolist-enter-the-name-list]";
+	}
+
+
+	if (strMsg != "") {
+		alert(strMsg);
+		return false;
+	}
+
+    try {
+        window.opener.add_wishlistcustom(listType, drpLists, objForm.txtNewList.value);
+        window.close();
+    }
+    catch (ex) {
+        parent.add_wishlistcustom(listType, drpLists, objForm.txtNewList.value);
+        parent.closeModal();
+    }
+}
+String.prototype.trim = function () {
+	return this.replace(/^\s+|\s+$/g, "");
+}
+jQuery(function () {
+    jQuery('body').addClass('modal-bg');
+});
+</script>
+</head>
+<body>
+<section id="addtoWishlist">
+  <h1 class="page_headers">[wishlist_multiple-addtolist-title]</h1>
+  <p class="add-wishlist-prod-name">[name]</p>
+  <form method="post" action="" class="nomargin" name="frmRecomend" id="frmRecomend">
+  <input type="hidden" name="catalogid" value="[catalogid]" />
+  <input type="hidden" name="sitename" value="[sitename]" />
+  <input type="hidden" name="siteurl" value="[url]" />
+    <!--START: recomendBlock-->
+    <div class="recomendBlock pad10 boxShadow">
+      <!--START: thumbnail-->
+      <div class="thumbnail"><img src="thumbnail.asp?file=[thumbnail]&maxx=100&maxy=100" alt="[name]" /></div>
+      <!--END: thumbnail-->
+      <!--START: wishListCustom-->
+      <div class="wishlistField">
+        <input type="radio" name="optListType" id="optListType" value="1" checked />
+        <label for="name">Existing list:</label>
+        <select name="drpLists" id="drpLists" class="txtBoxStyle" tabindex="1">
+            <option value="">Select a List</option>
+            <!--START: wishListCustomDetails-->
+            <option value="[wishListId]">[wishListName]</option>
+            <!--END: wishListCustomDetails-->
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--END: wishListCustom-->
+      <div class="wishlistField">
+        <input type="radio" name="optListType" id="optListType" value="2" [varOptListTypeChecked] />
+        <label for="phone">New list:</label>
+        <input name="txtNewList" id="txtNewList" value="" type="text" size="25" tabindex="2" class="txtBoxStyle" maxlength="50">
+        <div class="clear"></div>
+      </div>
+      <div class="addwishlist-submit-button">
+        <button name="cmdRecommend" type="button" onclick="javascript: addToList(this.form);" class="btn"><i class="icon-pencil"></i> [wishlist_multiple-addtolist-button]</button>
+      </div>
+    </div>
+    <!--END: recomendBlock-->
+    <!--START: errorMsg-->
+    <div class="errorMsg pad10 boxShadow">[errorMsg]
+      <div class="notify-close-button">
+        <input type="button" value="Click here to continue" class="btn" onclick="history.back(1);" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: errorMsg-->
+  </form>
+</section>
+</body>
+</html>

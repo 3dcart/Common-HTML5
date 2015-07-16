@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<title>[OPTION_NAME]</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="assets/templates/common-html5/css/layout.css" type="text/css" media="all" />
+<link rel="StyleSheet" href="assets/templates/common-html5/css/responsive.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/[template]/css/default.css" type="text/css" media="screen" />
+<style type="text/css">
+    body {
+        background: none;
+    }
+</style>
+</head>
+<body>
+<!--START: LINKPART-->
+<script type="text/javascript">
+a=window.open('[URL]','popup');
+self.close();
+</script>
+<!--END: LINKPART-->
+<!--START: INFOPART-->
+<section id="helppopup">
+<div class="header">
+	<h3>[OPTION_NAME]</h3>
+    <!--<input type="image" src="assets/templates/common/images/close-x.png" onclick="self.close();" name="Submit" value="Close" />-->
+    <div class="clear"></div>
+</div>
+<div class="helpbox">[HELPINFO]</div>
+<div class="clear"></div>
+</section>
+<!--END: INFOPART-->
+</body>
+</html>

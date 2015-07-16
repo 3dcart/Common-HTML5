@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<title>[recommendafriend_header] | [name]</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="assets/templates/common-html5/css/layout.css" type="text/css" media="all" />
+<link rel="StyleSheet" href="assets/templates/common-html5/css/responsive.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/[template]/css/[stylesheet]" type="text/css" media="screen" />
+<script type="text/javascript" src="assets/templates/common-html5/js/utilities.js"></script>
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write("<script type=\"text/javascript\" src=\"/assets/templates/common-html5/js/jquery.min.js\"></" + "script>");
+    }
+</script>
+<style type="text/css">
+
+@media only screen and (max-width: 480px) {
+
+html, body {
+    max-width: 90% !important;
+}
+section {
+    padding: 15px 15px 0;
+}
+
+}
+</style>
+<script type="text/javascript">
+function sendEmailFriend(objForm)
+{
+	var strMsg = "";
+	
+	if (objForm.visitorname.value.trim() == "")
+		strMsg += " - Please enter your [recommendafriend_visitorname].\n";
+		
+	if (objForm.visitormail.value.trim() == "")
+		strMsg += " - Please enter your [recommendafriend_visitoremail].\n";
+	else
+		if (!validateEmail(objForm.visitormail.value.trim()))
+			strMsg += " - [recommendafriend_visitoremail]: enter a valid email address.\n";
+
+	if (objForm.friendname.value.trim() == "")
+		strMsg += " - Please enter your [recommendafriend_friendname].\n";
+		
+	if (objForm.friendmail.value.trim() == "")
+		strMsg += " - Please enter your [recommendafriend_friendemail].\n";
+	else
+		if (!validateEmail(objForm.friendmail.value.trim()))
+			strMsg += " - [recommendafriend_friendemail]: enter a valid email address.\n";
+	
+	if (objForm.message.value.trim() == "")
+		strMsg += " - Please enter your [recommendafriend_note].\n";
+	if (eval(objForm.message.value.length) > 500)
+	    strMsg += " - Max length for [recommendafriend_note] is 500.\n";
+
+	<!--START: captchascript-->
+	if (objForm.ramdomWord.value.trim() == "")
+	strMsg += " - Please enter the verification word.\n";
+	if (eval(objForm.ramdomWord.value.length) > 20)
+	    strMsg += " - Max length for the verification word is 20.\n";
+	<!--END: captchascript-->
+			
+	if (strMsg != ""){
+		alert(strMsg);
+		return false;
+	}
+	else
+	    objForm.submit();
+}	
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+jQuery(function () {
+    jQuery('body').addClass('modal-bg');
+});
+</script>
+</head>
+<body>
+<section id="recommendAFriend">
+  <h1 class="page_headers">[recommendafriend_header]</h1>
+  <form method="post" action="recommendafriend.asp?action=send" name="frmRecomend" id="frmRecomend">
+    <input type="hidden" name="catalogid" value="[catalogid]" />
+    <input type="hidden" name="sitename" value="[sitename]" />
+    <input type="hidden" name="siteurl" value="[url]" />
+    <!--START: recomendBlock-->
+    <p>[recommendafriend_message]</p>
+    <div class="clear"></div>
+    <div class="recommendBlock boxShadow">
+      <!--START: thumbnail-->
+      <div class="thumbnail"><img src="thumbnail.asp?file=[thumbnail]&maxx=100&maxy=100" alt="[name]" /><span>[name]</span></div>
+      <!--END: thumbnail-->
+      <div class="recomField left">
+        <label for="visitorname">[recommendafriend_visitorname]</label>
+        <input name="visitorname" value="[firstname]" type="text" size="25" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="recomField left">
+        <label for="visitormail">[recommendafriend_visitoremail]</label>
+        <input name="visitormail" value="[email]" type="text" size="25" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="recomField left">
+        <label for="friendname">[recommendafriend_friendname]</label>
+        <input name="friendname" type="text" size="25" tabindex="3" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="recomField left">
+        <label for="friendmail">[recommendafriend_friendemail]</label>
+        <input name="friendmail" type="text" size="25" tabindex="4" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="recomField">
+        <label for="message">[recommendafriend_note]</label>
+        <textarea name="message" rows="3" cols="32" tabindex="5" class="txtareaStyle"></textarea>
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="recomField">
+        <label for="ramdomWord">Verification:</label>
+        <div class="captcha"><img src="admin/image_pw.asp" width="148" />
+          <div class="captcha-text">Type the word above...</div>
+          <input type="text" name="ramdomWord" id="ramdomWord" value="" size="25" maxlength="30" tabindex="6" class="txtBoxStyle" />
+          <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="recomField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="recommend-submit-button">
+        <input type="button" name="cmdRecommend" onclick="javascript: sendEmailFriend(this.form);" value="[recommendafriend_button]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: recomendBlock--> 
+    <!--START: errorMsg-->
+    <div class="errorMsg pad10 boxShadow">[errorMsg]
+      <div class="recommend-close-button">
+        <input type="button" value="Click here to continue" class="btn" onclick="history.back(1);" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: errorMsg-->
+    <!--START: thankyouMsg-->
+    <div class="errorMsg pad10 boxShadow">[recommendafriend_thankyou]
+      <div class="recommend-close-button">
+        <input type="button" value="Close" class="btn" onclick="javascript:parent.closeModal();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: thankyouMsg-->
+  </form>
+</section>
+</body>
+</html>

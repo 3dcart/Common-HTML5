@@ -1,0 +1,54 @@
+<section id="addresses">
+  <h1 class="page_headers">Address Book</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="addressesHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="header">
+    <h2>[account_addressbook]</h2>
+    <div class="button right"><a href="myaccount.asp?action=addaddresses&reqPage=[reqPage]&shipmentid=[shipmentid]" class="icon-btn icon-btn-add">Add New Address</a></div>
+    <div class="clear"></div>
+  </div>
+  <!--START: myGiftRegistry-->
+  <input type="button" class="btn" onclick="window.location='giftregistry_edit.asp?action=addresschoice';" value="Return to [account_giftRegistry]" />
+  <!--END: myGiftRegistry--> 
+  <!--START: editShipment-->
+  <input type="button" class="btn" onclick="window.location='edit_shipment.asp?action=editaddresses&shipmentid=[shipmentid]';" value="Return to [checkout2_Header-shippinginfo]"/>
+  <!--END: editShipment-->
+  <div class="clear"></div>
+  <!--START: address-->
+  <div class="viewAddress pad10 boxShadow">
+    <h3>[address_alias]</h3>
+    <p>[shipping_firstname] [shipping_lastname]</p>
+    <p>[shipping_address]. <!--START: shipping_address2--><span>[shipping_address2]</span><!--END: shipping_address2--></p>
+    <p>[shipping_city], [shipping_state] [shipping_zip] [shipping_country]</p>
+    <p>[shipping_phone]</p>
+    <!--START: addressType-->
+    <p>[addressTypeText]</p>
+    <!--END: addressType-->
+    <div class="changeRemove">
+      <button type="button" class="btn" onclick="window.location='myaccount.asp?action=editaddresses&id=[id]&reqPage=[reqPage]&shipmentid=[shipmentid]';"><i class="icon-pencil"></i> [account_Change-Address]</button>
+      <button type="button" class="btn" onclick="window.location='myaccount.asp?action=deleteaddress&id=[id]&reqPage=[reqPage]&shipmentid=[shipmentid]&tknio=[tknio]';"><i class="icon-cancel"></i> [account_Remove-Address]</button>
+      <div class="clear"></div>
+    </div>
+    <!--START: myGiftRegistry-->
+    <div class="myGiftRegistry">
+      <button type="button" class="btn" onclick="window.location='giftregistry_edit.asp?action=addresschoice&id=[id]';"><i class="icon-pencil"></i> [account_Choose-Address]</button>
+    </div>
+    <!--END: myGiftRegistry--> 
+    <!--START: editShipment-->
+    <div class="editShipment">
+      <button type="button" class="btn" onclick="window.location='edit_shipment.asp?action=editaddresses&shipmentid=[shipmentid]&addressid=[id]';"><i class="icon-pencil"></i> [account_Choose-Address]</button>
+    </div>
+    <!--END: editShipment-->
+    <div class="clear"></div>
+  </div>
+  <!--END: address-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="addressesFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

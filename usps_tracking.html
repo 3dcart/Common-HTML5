@@ -1,0 +1,64 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	#uspsTracking td:nth-of-type(1):before { content: "Date / Time"; }
+	#uspsTracking td:nth-of-type(2):before { content: "Description"; }
+	#uspsTracking td:nth-of-type(3):before { content: "Location"; }
+}
+</style>
+
+<section id="uspsTracking">
+  <div class="header">
+    <h3>USPS Tracking Tool</h3>
+    <div class="right logo"><img src="/admin/templates/images/usps_logo.gif" alt="USPS" /></div>
+    <div class="clear"></div>
+  </div>
+  <!--START: results-->
+  <div class="titles2">
+    <div class="detail-results">Detailed Results</div>
+  </div>
+  <div class="left-col">
+    <div class="label">Tracking Details</div>
+    <div class="text">[trackno]</div>
+    <div class="clear"></div>
+    <!--START: service_description-->
+    <div class="label">Service Description:</div>
+    <div class="text">[service_description]</div>
+    <div class="clear"></div>
+    <!--END: service_description--> 
+    <!--START: delivery_date-->
+    <div class="label">Delivery Date:</div>
+    <div class="text">[delivery_date]</div>
+    <div class="clear"></div>
+    <!--END: delivery_date--> 
+  </div>
+  <div class="right-col">
+  <!--START: shipto_address-->
+    <div class="label">Ship-To Address</div>
+    <div class="text">[shipto_address]</div>
+    <div class="clear"></div>
+    <!--END: shipto_address-->
+  </div>
+  <div class="clear"></div>
+  <div class="trackingStatus pad10 boxShadow">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="loc">Location</th>
+			<th class="desc">Description</th>
+			<th class="date-time">Date / Time</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: activity-->
+		<tr class="row">
+			<td class="loc">[location]&nbsp;</td>
+			<td class="desc">[description]</td>
+			<td class="date-time">[date_time]</td>
+		</tr>
+		<!--END: activity-->
+		</tbody>
+	</table>
+  </div>
+  <!--END: results-->
+  <div class="clear"></div>
+</section>

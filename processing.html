@@ -1,0 +1,85 @@
+<!--START: PART1-->
+<style>
+.black_overlay {
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 1001;
+	-moz-opacity: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.white_content {
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -124px 0 0 -40px;
+	border: 0px solid;
+	z-index: 1002;
+	overflow: none;
+}
+</style>
+<script type="text/javascript">
+function opacity(id, opacStart, opacEnd, millisec) { 
+    //speed for each frame 
+    var speed = Math.round(millisec / 100); 
+    var timer = 0; 
+
+    //determine the direction for the blending, if start and end are the same nothing happens 
+    if(opacStart > opacEnd) { 
+        for(i = opacStart; i >= opacEnd; i--) { 
+            setTimeout("changeOpac(" + i + ",'" + id + "')",(timer * speed)); 
+            timer++; 
+        } 
+    } else if(opacStart < opacEnd) { 
+        for(i = opacStart; i <= opacEnd; i++) 
+            { 
+            setTimeout("changeOpac(" + i + ",'" + id + "')",(timer * speed)); 
+            timer++; 
+        } 
+    } 
+
+if (opacEnd==0)
+{
+document.getElementById('fade').style.display='none';
+} 
+
+} 
+
+//change the opacity for different browsers 
+function changeOpac(opacity, id) { 
+    var object = document.getElementById(id).style; 
+    object.opacity = (opacity / 100); 
+    object.MozOpacity = (opacity / 100); 
+    object.KhtmlOpacity = (opacity / 100); 
+    object.filter = "alpha(opacity=" + opacity + ")"; 
+}
+</script>
+<div id="light" class="white_content">
+  <center>
+    <img src='assets/templates/common-html5/images/ajax-loader.gif' alt="Processing..." /><br />
+    [message]
+  </center>
+</div>
+<div id="fade" class="black_overlay"></div>
+<script type="text/javascript">
+	document.getElementById('light').style.display='block'; 
+	document.getElementById('fade').style.display='block'
+	opacity('fade', 0, 80, 250);
+</script>
+<!--END: PART1--> 
+
+<!--START: PART2-->
+<script type="text/javascript">
+	document.getElementById('light').style.display='none'; 
+	opacity('fade', 80, 0, 250); 
+</script>
+<!--END: PART2-->

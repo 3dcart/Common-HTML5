@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<title>Deal of the Day</title>
+<link rel="stylesheet" href="assets/templates/common-html5/css/layout.css" type="text/css" media="all" />
+</head>
+<body>
+<script type="text/javascript">
+function SelectAll(id) {
+	document.getElementById(id).focus();
+	document.getElementById(id).select();
+}
+</script>
+
+<section id="ddWidget1"> 
+  <!--START: dailydeal-->
+  <h1>DEAL OF THE DAY</h1>
+  <h2>a new offer every day!</h2>
+  <div class="product-img"> 
+    <!--START: savings_percentage-->
+    <div class="savings-percentage">[savings_percentage]% OFF</div>
+    <!--END: savings_percentage--> 
+    <a href="product.asp?itemid=[catalogid]" target="_parent"><img src="thumbnail.asp?file=[image1]&amp;maxx=125&amp;maxy=125" alt="[name]" /></a></div>
+  <div class="product-name">[name]</div>
+  <div class="product-price"> 
+    <!--START: ITEMPRICE--><span>Price:</span>[price]<!--END: ITEMPRICE--> 
+    <!--START: SALEPRICE--><span>Price:</span>[saleprice]<!--END: SALEPRICE--> 
+  </div>
+  <div class="buy-now-button"><a href="product.asp?itemid=[catalogid]" target="_parent">Buy Now</a></div>
+  <div class="clear"></div>
+  <div class="share-buttons">
+    <div class="addthis_toolbox addthis_default_style "> <a class="addthis_button_twitter at300b"></a> <a class="addthis_button_facebook at300b"></a> <a class="addthis_button_mailto at300b"></a> <a class="addthis_button_print at300b"></a> </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4e1b0cf42ddc7e71"></script></div>
+  <div class="widgetCountdown">
+    <div class="countdown-text">Hurry! deal ends in:</div>
+    <div class="dd-timer"> 
+      <script type="text/javascript">
+		TargetDate_dd = "[dd_expires]";
+		targetsecs	= "[dd_secs]";
+		BackColor = "transparent";
+		ForeColor = "#FFFFFF";
+		CountActive = true;
+		CountStepper = -1;
+		LeadingZero = true;
+		DisplayFormat = "%%D%%d: %%H%%h: %%M%%m: %%S%%s";
+		FinishMessage = "The deal is over!";
+		</script> 
+      <script type="text/javascript" src="assets/templates/common/js/countdown.js"></script> 
+    </div>
+    <div class="clear"></div>
+  </div>
+  <!--END: dailydeal--> 
+  <!--START: nodeal-->
+  <h1>DEAL OF THE DAY</h1>
+  <div class="no-deal">No Deals Available<span>at this Moment</span></div>
+  <div class="widgetCountdown">
+    <div class="countdown-text"><span>Check back for Great Deals!</span></div>
+  </div>
+  <!--END: nodeal-->
+  <div class="clear"></div>
+</section>
+</body>
+</html>

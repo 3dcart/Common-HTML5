@@ -1,0 +1,100 @@
+
+<div align="center">
+	<table border="0" width="98%" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="324" align="left" valign="bottom" class="checkout-headers"> StarTrack - Track Shipments</td>
+			<td class="checkout-headers" align="right"><img src="/admin/templates/images/startrack_logo_small.jpg" width="150"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><table border="0" width="100%" cellspacing="0" cellpadding="0">
+					<!--START: results-->
+					<tr>
+						<td class="titles2"> Detailed Results</td>
+						<td class="titles2" align="right"><A href="[StarTrackURL]" target="_blank"> Track on startrack.com.au</a></td>
+					</tr>
+					<tr>
+						<td width="50%"><table width="100%" cellpadding="0" cellspacing="2">
+								<!--START: trackno-->
+								<tr>
+									<td class="item"><strong>Tracking Number:</strong> [trackno]</td>
+								</tr>
+								<!--END: trackno-->
+								<!--START: ShipDate-->
+								<tr>
+									<td class="item"><strong>Ship Date: </strong> [ShipDate]</td>
+								</tr>
+								<!--END: ShipDate-->
+								<!--START: EstimatedDeliveryDate-->
+								<tr>
+									<td class="item"vAlign="top" ><strong>Estimated Delivery: </strong> [EstimatedDeliveryDate] </td>
+								</tr>
+								<!--END: EstimatedDeliveryDate-->
+								<!--START: ShipStatus-->
+								<tr>
+									<td class="item"vAlign="top" ><strong>Status: </strong> [ShipStatus] </td>
+								</tr>
+								<!--END: ShipStatus-->
+								<!--START: service_description-->
+								<tr>
+									<td class="item"><strong>Service type</strong>: [service_description] </td>
+								</tr>
+								<!--END: service_description-->
+								<!--START: package_count-->
+								<tr>
+									<td class="item"vAlign="top"><strong>Pieces</strong>: [package_count]</td>
+								</tr>
+								<!--END: package_count-->
+								<!--START: Weight-->
+								<tr>
+									<td class="item"vAlign="top" width="37%" ><strong>Weight</strong>: [Weight] </td>
+								</tr>
+								<!--END: Weight-->
+							</table></td>
+						<td align="right" valign="top" width="50%"><table width="100%" cellpadding="2" cellspacing="2">
+								<!--START: shipto_address-->
+								<tr>
+									<td class="item"width="37%"><strong>Destination:</strong><br />
+										[shipto_address]</td>
+								</tr>
+								<!--END: shipto_address-->
+								<!--START: DispatchDepot-->
+								<tr>
+									<td class="item"vAlign="top" width="37%" ><strong>Dispatch Depot</strong>: [DispatchDepot] </td>
+								</tr>
+								<!--END: DispatchDepot-->
+								<!--START: DeliveryDepot-->
+								<tr>
+									<td class="item"vAlign="top" width="37%" ><strong>Delivery Depot</strong>: [DeliveryDepot] </td>
+								</tr>
+								<!--END: DeliveryDepot-->
+
+							</table></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="right" colspan="2"><div align="center">
+								<table cellSpacing="1" cellPadding="2" class="alternative" border="0" width="90%">
+									<tr>
+										<td class="titles2"><strong>Date&nbsp;/&nbsp;Time</strong></td>
+										<td class="titles2"><strong>Activity</strong></td>
+										<td class="titles2" width="122"><strong>Location</strong></td>
+									</tr>
+									<!--START: activity-->
+									<tr>
+										<td class="item">[date_time]</td>
+										<td class="item">[description]</td>
+										<td class="item">[location]</td>
+									</tr>
+									<!--END: activity-->
+								</table>
+							</div>
+							<br />
+						</td>
+					</tr>
+					<!--END: results-->
+				</table></td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,222 @@
+<script type="text/javascript">
+function do_act() {
+	return false;
+}
+</script>
+
+<section id="checkoutStep2">
+  <h1 class="page_headers">Checkout</h1>
+  <div class="steps right">[checkout1_step]<span class="steps_on">[checkout2_step] </span>[checkout3_step] [checkout4_step]</div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="checkoutStep2Header">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="checkout3.asp?step=3" name="pickship" method="post">
+    <div class="rightCol">
+      <div class="header">
+        <h3 class="checkout-headers">[checkout2_Header-shippinginfo]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="shippingInfo pad10 boxShadow">
+      	<p><strong>[checkout2_shippinginfomessage]</strong></p>
+        <p>[shipping_firstname] [shipping_lastname]</p>
+        <p>[shipping_company]</p>
+        <p>[shipping_address]</p>
+        <p>[shipping_address2]</p>
+        <p>[shipping_city], [shipping_state] [shipping_zip] [shipping_country]</p>
+        <div class="button left"><a href="checkout.asp?step=1" class="icon-btn icon-btn-geopin">[checkout2_shippinginfochange]</a></div>
+        <div class="clear"></div>
+      </div>
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_Header-shoppingcart]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="chkShoppingCart pad10 boxShadow">
+        <!--START: SHOPPING_CART_ITEM-->
+        <div class="row">
+          <div class="product-image">
+			<!--START: itemthumbnail--><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" border="0" height="40" width="40" id="tl" /></a><!--END: itemthumbnail-->
+			<!--START: thumbnailnolink--><img src="thumbnail.asp?file=[THUMBNAIL]" border="0" height="40" width="40" id="tnl" /><!--END: thumbnailnolink-->
+            <!--START: itemnamelink--><span><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a></span><!--END: itemnamelink--> 
+			<!--START: itemnamenolink--><span id="spnItemName">[ITEM_NAME]</span><!--END: itemnamenolink-->
+            <div class="clear"></div>
+          </div>
+          <div class="product-info">[ITEM_PRICE] X [ITEM_QUANTITY]<span>[ITEM_SUBTOTAL]</span></div>
+          <div class="clear"></div>
+        </div>
+        <!--END: SHOPPING_CART_ITEM--> 
+        <!--START: DISCOUNTS-->
+        <div class="total_discount-detail">[shoppingcart_subtotal]:</div>
+        <div class="total_discount">[CARTSUBTOTAL]</div>
+        <div class="total_discount-detail">[checkout1_discounts]:</div>
+        <div class="total_discount">[DISCOUNTS]</div>
+        <div class="clear"></div>
+        <!--END: DISCOUNTS--> 
+        <!--START: BUYSAFE-->
+        <div class="total_buysafe-logo"><img src="assets/templates/common/images/buysafe.gif" alt="" /></div>
+        <div class="total_buysafe">[buysafe_totalbondcost]</div>
+        <div class="clear"></div>
+        <!--END: BUYSAFE-->
+        <div class="total_cart-total">[shoppingcart_total]</div>
+        <div class="total_total price">[CARTTOTAL]</div>
+        <div class="clear"></div>
+        <!--START: GIFTCERTS-->
+        <div class="total_cart-giftcerts">[shoppingcart_giftcertificate]:</div>
+        <div class="total_giftcerts">[GIFTCERTS]</div>
+        <div class="clear"></div>
+        <!--END: GIFTCERTS-->
+        <div class="button right"><a href="view_cart.asp" class="icon-btn icon-btn-incart">Update Cart</a></div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="leftCol">
+      <div class="header">
+        <h3 class="checkout-headers">[checkout2_Header-shippingmethods]</h3>
+      </div>
+      <div class="shippingMethods pad10 boxShadow">
+      <p>[checkout2_shippingmethodsmessage]</p>
+        <!--START: CARRIER--> 
+        <!--START: displayblock-->
+        <div class="carrierDisplay">
+          <div class="option-shipper"><img src="/assets/templates/common/images/[OPTION-SHIPPER].gif" alt="" /></div>
+          <div class="display-rates button right"><a href="javascript:click_ship();" onclick="toggleoff();toggle('sh[OPTION-SHIPPER]');" class="icon-btn icon-btn-refresh">Display Rates</a></div>
+          <div class="clear"></div>
+        </div>
+        <!--END: displayblock-->
+        <div name="sh[OPTION-SHIPPER]" id="sh[OPTION-SHIPPER]" class="ship" style="display:none;">
+          <!--START: SHIPPING_OPTION-->
+          <div class="shippingOption">
+            <input type="radio" name="shipping" value="[ID]" [SELECTED] id="radio_ship" onClick="select_shipping([ID]);" />
+            <div class="shipper-option-desc"><!--[OPTION-SHIPPER]-->[OPTION-DESCRIPTION]</div>
+            <div class="shipper-option-price2">[OPTION-PRICE2]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: SHIPPING_OPTION--> 
+        </div>
+        <!--END: CARRIER-->
+        <div class="clear"></div>
+      </div>
+      <!--START: INSURANCE-->
+      <div class="header">
+      	<h3 class="checkout-headers">[checkout2_insurance]</h3>
+      </div>
+      <div class="insuranceMethods pad10 boxShadow">
+      	<input type="radio" name="insurance" value="yes" checked /> (+[insurance_cost]) [checkout2_insurance-selected]
+        <div class="clear"></div>
+        <!--START: optional-->
+        <input type="radio" name="insurance" value="no" checked /> [checkout2_insurance-not-selected]
+        <!--END: optional-->
+        <div class="clear"></div>
+      </div>
+      <!--END: INSURANCE-->
+      <!--START: checkout_questions-->
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_checkoutquestions]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="chkQuestions"> 
+        <!--START: questions-->[questions]<!--END: questions-->
+        <div class="clear"></div>
+      </div>
+      <!--END: checkout_questions-->
+      <div id="divCheckoutButton">
+        <button type="submit" class="btn"><i class="icon-basket"></i> [checkout2_submitbutton]</button>
+      </div>
+    </div>
+    <div class="clear"></div>
+
+  <!--START: checkout_questions_templates-->
+  <div class="chkQuestionsTemplates">
+  <!--START: textarea-format-->
+    <div class="chk-questions-section">
+      <div class="textarea-format">
+          <!--START: req[id]--> 
+          <div class="required"> 
+            <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          </div>
+          <!--END: req[id]-->
+          <label for="cq[id]">[question]</label>
+          <textarea cols="30" rows="5" name="cq[id]" class="txtBoxStyle">[answer]</textarea>
+          <div class="clear"></div>
+      </div>
+    </div>
+  <!--END: textarea-format--> 
+  <!--START: text-format-->
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+      <input type="text" size="30" name="cq[id]" value="[answer]" class="txtBoxStyle" />
+      <div class="clear"></div>
+    </div>
+  <!--END: text-format--> 
+  <!--START: checkbox-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+        <label class="checkbox">
+            <input type="checkbox" name="cq[id]" class="txtBoxStyle" value="[answer]" [selected] />
+            [question]
+        </label>
+      <div class="clear"></div>
+    </div>
+  <!--END: checkbox-format--> 
+  <!--START: radio-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+      <!--START: option-->
+        <label class="radio">
+        <input type="radio" name="cq[id]" value="[option]" class="txtBoxStyle" [selected] />
+        [option]</label>
+      <!--END: option-->
+      <div class="clear"></div>
+    </div>
+  <!--END: radio-format--> 
+  <!--START: dropdown-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+        <label class="select">
+            <select name="cq[id]">
+            <!--START: option-->
+            <option value="[option]" [selected]>[option]</option>
+            <!--END: option-->
+            </select>
+        </label>
+      <div class="clear"></div>
+    </div>
+  <!--END: dropdown-format-->
+  <div class="clear"></div>
+  </div>
+  <!--END: checkout_questions_templates-->
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="checkoutStep2Footer">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+	//You should create the validator only after the definition of the HTML form
+	var frmvalidator = new Validator("pickship");
+	
+	frmvalidator.setAddnlValidationFunction("submitForm");
+	
+	frmvalidator.addValidation("shipping","req");
+	var ccNumerNotAllowedMessage = '[ccNumerNotAllowedMessage]';
+	frmvalidator.setAddnlValidationFunction("checkreq_questions2");
+</script> 

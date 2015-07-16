@@ -1,0 +1,484 @@
+<style type="text/css">
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+.left {
+	float: left;
+}
+.center {
+	text-align: center;
+}
+.right {
+	float: right;
+}
+.clear:before,
+.clear:after {
+    content: " ";
+    display: table;
+}
+.clear:after {
+    clear: both;
+}
+.clear {
+    *zoom: 1;
+}
+#listingEbay {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+	text-align: left;
+    padding: 10px;
+}
+#listingEbay .primary {
+    float: left;
+	margin-bottom: 15px;
+    width: 40%;
+}
+#listingEbay .secondary {
+    float: right;
+	margin-bottom: 15px;
+    width: 55%;
+}
+#listingEbay h1 {
+    font-size: 28px;
+	margin-bottom: 10px;
+}
+#listingEbay h2 {
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+#listingEbay h3 {
+	float: left;
+	font-size: 130%;
+	line-height: 1.8em;
+    margin: 0;
+    padding: 0;
+}
+#listingEbay h4 {
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+#listingEbay .header {
+	border-bottom: 1px solid #d2d2d2;
+	margin: 0 0 10px;
+}
+#listingEbay .button {
+	padding: 0 0 0 10px;
+}
+#listingEbay .main-image {
+	text-align: center;
+	height: auto;
+	margin-bottom: 5px;
+}
+#listingEbay .main-image img,
+#listingEbay .main-image a {
+    max-width: 300px;
+}
+#listingEbay .addl-images {
+    padding: 0 20px;
+    position: relative;
+}
+#listingEbay ul.addl-images {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#listingEbay ul.addl-images li {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+#listingEbay ul.addl-images img {
+    cursor: pointer;
+    max-width: 50px;
+}
+#listingEbay .product-id {
+	margin-bottom: 10px;
+}
+#listingEbay .product-id span {
+	padding-left: 5px;
+}
+/* Product Features */
+#listingEbay .productFeaturesBlock {
+	margin-bottom: 15px;
+}
+#listingEbay .productFeaturesBlock ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#listingEbay .productFeaturesBlock li {
+    line-height: 1.8em;
+}
+#listingEbay .productFeaturesBlock .feat-title {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+}
+#listingEbay .productFeaturesBlock .feat-name {
+    display: inline-block;
+}
+.review_average {
+	display: none;
+}
+#listingEbay .extended_descriptionBlock {
+	margin-bottom: 15px;
+}
+#listingEbay .extrafieldsBlock {
+	margin-bottom: 15px;
+}
+#listingEbay .extra_field {
+	margin: 0 0 10px;
+}
+#listingEbay .extra_field h4 {
+	float: left;
+	margin: 0 5px 0 0;
+}
+#listingEbay .extra_field .info {
+	float: left;
+    width: 80%;
+}
+#mediaContainer {
+	position: relative;
+	min-height: 300px;
+	padding-bottom: 15px;
+	text-align: center;
+}
+#mediaBlock {
+    display: block;
+}
+/* Customer Reviews */
+.reviewsBlock {
+	margin-bottom: 15px;
+}
+.reviewsBlock .user_reviews {
+	padding: 5px;
+}
+.reviewsBlock .user_reviews:nth-child(2n) {
+	background: #EAE9E9;
+	background: rgba(234, 233, 233, 0.3);
+	background-color: #EAE9E9;
+	background-color: rgba(234, 233, 233, 0.3);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99EAE9E9, endColorstr=#99EAE9E9);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99EAE9E9, endColorstr=#99EAE9E9)";
+}
+.star-rating {
+	float: left;
+	width: 100px;
+}
+.review-info {
+	float: left;
+	width: 85%;
+	margin-bottom: 10px;
+}
+.review-shortDesc {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.review-longDesc {
+    margin-bottom: 10px;
+}
+.reviewed-by {
+    margin-top: 5px;
+    display: block;
+}
+/* Questions & Answers */
+.qaBlock {
+	margin-bottom: 15px;
+}
+.qa_answers {
+	margin: 5px 0 15px 2em;
+}
+.qa_answers em {
+    display: block;
+}
+.qa_noanswers {
+    text-align: center;
+    background: #FFF;
+	margin: 1em 0;
+    padding: 1em;
+}
+.qa_list .q {
+	font-size: 2em;
+}
+.qa_list .a {
+	font-size: 2em;
+}
+.qaBlock .qa_list {
+    border-bottom: 1px solid #d2d2d2;
+    margin-bottom: 15px;
+	padding: 0 0 15px;
+}
+.qaBlock .qa_list:nth-child(2n) {
+	background: #EAE9E9;
+	background: rgba(234, 233, 233, 0.3);
+	background-color: #EAE9E9;
+	background-color: rgba(234, 233, 233, 0.3);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99EAE9E9, endColorstr=#99EAE9E9);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99EAE9E9, endColorstr=#99EAE9E9)";
+}
+.qaBlock .q-author {
+    margin-top: 15px;
+} 
+</style>
+
+<section id="listingEbay" itemscope itemtype="http://schema.org/Product">
+    [eBayHeader]
+    <h1 itemprop="name">[name]</h1>
+    <div class="clear"></div>
+    <div class="primary">
+      <div id="mediaContainer">
+        <div id="mediaBlock"> 
+          <!--START: image1-->
+          <div class="main-image">
+              <img itemprop="image" name="imageSwap" src="[store_url]/thumbnail.asp?file=[image1]&amp;maxx=[image_medium_w]&amp;maxy=0" />
+          </div>
+          <!--END: image1--> 
+            <ul class="addl-images">
+                <!--START: image2-->
+                <li class="prod-thumb image1"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image1]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image1]';" /></li>
+                <li class="prod-thumb image2"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image2]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image2]';" /></li>
+                <!--END: image2-->
+                <!--START: image3-->
+                <li class="prod-thumb image3"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image3]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image3]';" /></li>
+                <!--END: image3--> 
+                <!--START: image4-->
+                <li class="prod-thumb image4"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image4]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image4]';" /></li>
+                <!--END: image4-->
+                <!--START: image5-->
+                <li class="prod-thumb image5"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image5]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image5]';" /></li>
+                <!--END: image5--> 
+                <!--START: image6-->
+                <li class="prod-thumb image6"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image6]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image6]';" /></li>
+                <!--END: image6--> 
+                <!--START: image7-->
+                <li class="prod-thumb image7"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image7]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image7]';" /></li>
+                <!--END: image7-->
+                <!--START: image8-->
+                <li class="prod-thumb image8"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image8]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image8]';" /></li>
+                <!--END: image8-->
+                <!--START: image9-->
+                <li class="prod-thumb image9"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image9]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image9]';" /></li>
+                <!--END: image9-->
+                <!--START: image10-->
+                <li class="prod-thumb image10"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image10]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image10]';" /></li>
+                <!--END: image10-->
+                <!--START: image11-->
+                <li class="prod-thumb image11"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image11]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image11]';" /></li>
+                <!--END: image11-->
+                <!--START: image12-->
+                <li class="prod-thumb image12"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image12]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image12]';" /></li>
+                <!--END: image12-->
+                <!--START: image13-->
+                <li class="prod-thumb image13"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image13]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image13]';" /></li>
+                <!--END: image13-->
+                <!--START: image14-->
+                <li class="prod-thumb image14"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image14]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image14]';" /></li>
+                <!--END: image14-->
+                <!--START: image15-->
+                <li class="prod-thumb image15"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image15]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image15]';" /></li>
+                <!--END: image15-->
+                <!--START: image16-->
+                <li class="prod-thumb image16"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image16]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image16]';" /></li>
+                <!--END: image16-->
+                <!--START: image17-->
+                <li class="prod-thumb image17"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image17]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image17]';" /></li>
+                <!--END: image17-->
+                <!--START: image18-->
+                <li class="prod-thumb image18"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image18]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image18]';" /></li>
+                <!--END: image18-->
+                <!--START: image19-->
+                <li class="prod-thumb image19"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image19]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image19]';" /></li>
+                <!--END: image19-->
+                <!--START: image20-->
+                <li class="prod-thumb image20"><img itemprop="image" src="[store_url]/thumbnail.asp?file=[image20]&amp;maxx=[image_medium_w]&amp;maxy=0" onclick="document.imageSwap.src='[store_url]/[image20]';" /></li>
+                <!--END: image20-->
+            </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="secondary">
+      <!--START: id-->
+        <div class="product-id"><strong>[product_id]:</strong><span id="product_id">[id]</span></div>
+        <div class="clear"></div>
+      <!--END: id-->
+      <!--START: PRODUCT_FEATURES_BLOCK-->
+      <div class="productFeaturesBlock"> 
+        <ul>
+            <!--START: PRODUCT_FEATURES-->
+            <li>
+                <!--START: product_feature_title--><span class="feat-title">[product_feature_title]:</span><!--END: product_feature_title--><span class="feat-name">[product_feature_name]</span>
+            </li>
+            <!--END: PRODUCT_FEATURES-->
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <!--END: PRODUCT_FEATURES_BLOCK-->
+      <!--START: extrafields-->
+        <div class="extrafieldsBlock"> 
+          <!--START: extra_field_1-->
+          <div class="extra_field">
+            <h4>[product_extrafield1]</h4>
+            <div class="info">[extra_field_1]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_1--> 
+          <!--START: extra_field_2-->
+          <div class="extra_field">
+            <h4>[product_extrafield2]</h4>
+            <div class="info">[extra_field_2]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_2--> 
+          <!--START: extra_field_3-->
+          <div class="extra_field">
+            <h4>[product_extrafield3]</h4>
+            <div class="info">[extra_field_3]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_3--> 
+          <!--START: extra_field_4-->
+          <div class="extra_field">
+            <h4>[product_extrafield4]</h4>
+            <div class="info">[extra_field_4]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_4--> 
+          <!--START: extra_field_5-->
+          <div class="extra_field">
+            <h4>[product_extrafield5]</h4>
+            <div class="info">[extra_field_5]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_5-->
+          <!--START: extra_field_6-->
+          <div class="extra_field">
+            <h4>[product_extrafield6]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_6]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_6--> 
+          <!--START: extra_field_7-->
+          <div class="extra_field">
+            <h4>[product_extrafield7]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_7]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_7--> 
+          <!--START: extra_field_8-->
+          <div class="extra_field">
+            <h4>[product_extrafield8]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_8]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_8--> 
+          <!--START: extra_field_9-->
+          <div class="extra_field">
+            <h4>[product_extrafield9]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_9]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_9--> 
+          <!--START: extra_field_10-->
+          <div class="extra_field">
+            <h4>[product_extrafield10]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_10]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_10-->
+          <!--START: extra_field_11-->
+          <div class="extra_field">
+            <h4>[product_extrafield11]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_11]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_11--> 
+          <!--START: extra_field_12-->
+          <div class="extra_field">
+            <h4>[product_extrafield12]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_12]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_12--> 
+          <!--START: extra_field_13-->
+          <div class="extra_field">
+            <h4>[product_extrafield13]</h4>
+            <div class="clear"></div>
+            <div class="info">[extra_field_13]</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: extra_field_13-->
+        </div>
+      <!--END: extrafields--> 
+    </div>
+    <div class="clear"></div>
+    <!--START: extended_description-->
+    <div class="header">
+        <h3>[product_Header-description]</h3>
+        <div class="clear"></div>
+    </div>
+    <div class="extended_descriptionBlock"> 
+    <div class="item" itemprop="description">[extended_description]</div>
+    </div>
+    <!--END: extended_description-->
+    <!--START: reviews-->
+    <div class="header">
+        <h3>[reviews_header]</h3>
+        <div class="clear"></div>
+    </div>
+    <div class="reviewsBlock" itemprop="review" itemscope itemtype="http://schema.org/Review"> 
+    <!--START: user_reviews-->
+    <div class="user_reviews">
+        <div class="star-rating"><img src="[store_url]/assets/templates/common-html5/images/star[rating].png" alt="[rating] Stars" /></div>
+        <div class="review-info">
+        <div class="review-shortDesc" itemprop="name">[short_review]</div>
+        <div class="review-longDesc" itemprop="description">[long_review]</div>
+        <div class="clear"></div>
+        <em class="reviewed-by">Reviewed by:&nbsp;<!--START: review_verified--><span class="verified-buyer">[reviews_verified-buyer]</span>&nbsp;<!--END: review_verified--><span itemprop="author">[user_name]</span> from [user_city]. 
+        <!--START: user_email--> 
+        <a href="mailto:[user_email]">[user_email]</a> 
+        <!--END: user_email--> 
+        on [review_date]</em>
+        <div style="display: none;" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating"> <span itemprop="ratingValue">[rating]</span>/<span itemprop="bestRating">5</span> </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!--END: user_reviews--> 
+    </div>
+    <!--END: reviews-->
+    <!--START: qa-->
+    <div class="header">
+        <h3>[productqa_header]</h3>
+        <div class="clear"></div>
+    </div>
+    <div class="qaBlock" itemprop="qa" itemscope itemtype="http://schema.org/QA">
+    <!--START: qa_list-->
+    <div class="qa_list"> <span class="q">[productqa_q]</span>&nbsp;<strong itemprop="name">[question]</strong>
+    <div class="q-author"> <em>[productqa_question-submit-by]:&nbsp;<span itemprop="author">[q_user_name]</span> 
+        <!--START: q_user_email--> 
+        <a href="mailto:[q_user_email]">[q_user_email]</a> 
+        <!--END: q_user_email--> 
+        - [q_date_added]</em> 
+        <!--START: qa_answers-->
+        <div class="qa_answers"> <span class="a">[productqa_a]</span>&nbsp;[answer] 
+        <em>[productqa_answer-submit-by]: &nbsp;<span itemprop="author">[a_user_name] ([a_date_added])</span></em> </div>
+        <!--END: qa_answers--> 
+        <!--START: qa_noanswers-->
+        <div class="qa_noanswers">[productqa_no-answers]</div>
+        <!--END: qa_noanswers-->
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: qa_list--> 
+    </div>
+    <!--END: qa-->
+    [eBayFooter]
+</section>

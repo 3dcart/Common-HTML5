@@ -1,0 +1,56 @@
+<style type="text/css">
+html, body {
+	width: 100%;
+	height: 100% !important;
+    padding: 0;
+}
+</style>
+<script type="text/javascript">
+function closeWindow() {
+	try {
+		window.parent.hs.close();
+	}
+	catch(err) {
+		window.close();
+	}
+}
+$(document).ready(function() {
+   $('#productReviewList .button a').addClass('icon-btn icon-btn-prev'); 
+});
+</script>
+
+<section id="productReviewList">
+<h1 class="page_headers">[name]</h1>
+  <div class="header">
+    <h3>[reviews_header]</h3>
+    <div class="button right">[review_link]</div>
+    <div class="clear"></div>
+  </div>
+  <div class="reviewsBlock pad10 boxShadow"> 
+    <!--START: user_reviews-->
+    <div class="user_reviews">
+      <div class="star-rating"><img src="assets/templates/common/images/star[rating].png" alt="[rating] Stars" /></div>
+      <div class="review-info">
+        <div class="review-shortDesc" itemprop="name">[short_review]</div>
+        <div class="review-longDesc" itemprop="description">[long_review]</div>
+        <div class="clear"></div>
+        <em class="reviewed-by">Reviewed by:&nbsp;<!--START: review_verified--><span class="verified-buyer">[reviews_verified-buyer]</span>&nbsp;<!--END: review_verified--><span itemprop="author">[user_name]</span> from [user_city].  
+        <!--START: user_email--> 
+        <a href="mailto:[user_email]">[user_email]</a> 
+        <!--END: user_email--> 
+        on [review_date]</em> </div>
+      <div class="clear"></div>
+    </div>
+    <!--END: user_reviews-->
+    <div class="clear"></div>
+  </div>
+  <!--START: errorMsg-->
+  <div class="errorMsg pad10 boxShadow">[errorMsg]
+    <div class="review-close-button">
+      <input type="button" value='Click here to continue' class="btn" onclick="history.back(1);" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+  </div>
+  <!--END: errorMsg--> 
+</section>
+</body>
+</html>

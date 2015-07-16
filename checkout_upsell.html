@@ -1,0 +1,70 @@
+<section id="checkoutUpsell">
+  <h1 class="page_headers">[checkout4_upsell-checkadditionalitems]</h1>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="checkoutUpsellHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="checkout_upsell.asp?k=[k]" method="post" name="frmsortby" id="frmsortby">
+    <!--START: ITEMS-->
+    <ul>
+      <!--START: CATEGORY_ITEMS--> 
+      <!--START: ITEM_TEMPLATE_1--> 
+      <!--START: productblockcontainer--> 
+      <!--END: productblockcontainer--> 
+      <!--START: productcontainer--> 
+      <!--END: productcontainer-->
+      <li>
+        <div class="product-item alternative">
+          <div class="img"><a href="product.asp?itemid=[catalogid]"><img src="[THUMBNAIL]" alt="[name]" /></a></div>
+          <div class="name"><a href="product.asp?itemid=[catalogid]">[name]</a></div>
+          <!--START: product_review--> 
+          <!--START: product_review_average-->
+          <div class="stars"><img src="assets/templates/common-html5/images/star[review_average].png" alt="Average Rating" /></div>
+          <!--END: product_review_average--> 
+          <!--END: product_review-->
+          <div class="price"><!--START: ITEMPRICE--> 
+            [product_yourprice]&nbsp;[ITEMPRICE] 
+            <!--END: ITEMPRICE--> 
+            <!--START: SALEPRICE--> 
+            [product_onsale]&nbsp;[ITEMSALEPRICE]
+            <div class="on-sale">[product_sale]</div>
+            <!--END: SALEPRICE--></div>
+          <!--START: addtocart-->
+          <div class="add-chkupsell">
+            <input type="checkbox" name="chkAddUpsell" id="chkAddUpsell" value="[encrypted_catalogid]" />
+            <span>[checkout4_upsell-additem]</span> </div>
+          <!--END: addtocart-->
+          <div class="clear"></div>
+        </div>
+      </li>
+      <!--START: productcontainer_close--> 
+      <!--END: productcontainer_close--> 
+      <!--START: productblockcontainer_close--> 
+      <!--END: productblockcontainer_close--> 
+      <!--END: ITEM_TEMPLATE_1-->
+    </ul>
+    <!--END: CATEGORY_ITEMS-->
+    <div class="clear"></div>
+    <div class="chkupsell-actions center">
+      <input type="button" onclick="addToOrder(this.form);" name="Add" value="[checkout4_upsell-addtoorder]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      <input type="button" onclick="location.href='checkout_thankyou.asp?k=[k]';" name="Add" value="[checkout4_upsell-nothanks]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+    <!--END: ITEMS-->
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="checkoutUpsellFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+function addToOrder(objForm) {
+	if (document.getElementsByName("chkAddUpsell")) {
+		for (var i = 0; i < document.getElementsByName("chkAddUpsell").length; i++) {
+			if (document.getElementsByName("chkAddUpsell").item(i).checked) {
+				objForm.submit();
+				return;
+			}
+		}
+	}
+	alert("Please, select at least one product.");
+}
+</script>

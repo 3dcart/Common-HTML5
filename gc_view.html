@@ -1,0 +1,64 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	.gcViewBlock td:nth-of-type(1):before { content: "[giftcertificate_details-header-date]"; }
+	.gcViewBlock td:nth-of-type(2):before { content: "[giftcertificate_details-header-code]"; }
+	.gcViewBlock td:nth-of-type(3):before { content: "[giftcertificate_details-header-amount]"; }
+	.gcViewBlock td:nth-of-type(4):before { content: "[giftcertificate_details-header-balance]"; }
+	.gcViewBlock td:nth-of-type(5):before { content: "[giftcertificate_details-header-to]"; }
+	.gcViewBlock td:nth-of-type(6):before { content: "[giftcertificate_details-header-message]"; }
+}
+</style>
+
+<section id="gcView">
+  <h1 class="page_headers">[giftcertificate_details-detail]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="gc_viewHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <!--START: gc-->
+  <div class="gcViewBlock">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="gc-date">[giftcertificate_details-header-date]</th>
+			<th class="gc-code">[giftcertificate_details-header-code]</th>
+			<th class="gc-amount">[giftcertificate_details-header-amount]</th>
+			<th class="gc-balance">[giftcertificate_details-header-balance]</th>
+			<th class="gc-to">[giftcertificate_details-header-to]</th>
+			<th class="gc-message">[giftcertificate_details-header-message]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: gcNoDetails-->
+		<tr class="row">
+            <td colspan="5" class="no-details">[giftcertificate_details-nodetails]</td>
+        </tr>
+		<!--END: gcNoDetails-->
+		<!--START: gcDetails-->
+		<tr class="row">
+			<td class="gc-date">[certificate_date]</td>
+			<td class="gc-code">[certificate_name]</td>
+			<td class="gc-amount">[certificate_amount]</td>
+			<td class="gc-balance">[certificate_balance]</td>
+			<td class="gc-to">
+                <div>[gc_toname]</div>
+                <div>[gc_toemail]</div>&nbsp;
+			</td>
+			<td class="gc-message">[gc_tomessage]&nbsp;</td>
+		</tr>
+		<!--END: gcDetails-->
+		</tbody>
+	</table> 
+    <!--START: gcTotal-->
+    <div class="gc-total titles2">[account_gift-certificate-total-purchased]:&nbsp;&nbsp;[total_gc], [account_gift-certificate-total-amount]:&nbsp;&nbsp;[total_gcamount]</div>
+    <!--END: gcTotal--> 
+  </div>
+  <!--END: gc-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="gc_viewFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

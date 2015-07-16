@@ -1,0 +1,173 @@
+<script type="text/javascript">
+	var addReplyClick = 0;
+	
+	function submitFormContactUs(strAction) {	
+		document.frmForm.action.value = strAction;
+		document.frmForm.submit();
+	}
+	function addNew() {
+		var strMsg = "";
+		if (document.frmForm.customer.value.trim() == "")
+			strMsg += " - [crm_name] cannot be blank.\n";
+		if (document.frmForm.custemail.value.trim() == "" || !isValidEmail(document.frmForm.custemail.value))
+			strMsg += " - [crm_email] cannot be blank and must be a valid email address.\n";
+		if (document.frmForm.subject.value.trim() == "")
+			strMsg += " - [crm_subject] cannot be blank.\n";
+		if (document.frmForm.reply.value.trim() == "")
+			strMsg += " - [crm_message] cannot be blank.\n";
+		<!--START: captchascript-->
+		if (document.frmForm.ramdomWord.value.trim() == "")
+			strMsg += " - Verification word cannot be blank.\n";			
+			<!--END: captchascript-->
+            
+		if (ExistsCreditCard(jQuery('#reply').val()))
+		strMsg += "[ccNumerNotAllowedMessage]";
+		
+		if (strMsg != "") {
+			alert(strMsg);
+			return false;
+		}
+		if (addReplyClick == 0) {
+			addReplyClick = 1;
+			submitFormContactUs('addnew');
+		}
+	
+	}
+	String.prototype.trim = function() {
+		return this.replace(/^\s+|\s+$/g,"");
+	}
+	function isValidEmail(str) {
+	
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		
+		if (str.indexOf(at)==-1)
+		return false
+	
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr)
+		return false
+	
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr)
+			return false
+	
+		if (str.indexOf(at,(lat+1))!=-1)
+			return false
+	
+		if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot)
+			return false
+	
+		if (str.indexOf(dot,(lat+2))==-1)
+			return false
+		
+		if (str.indexOf(" ")!=-1)
+			return false
+	
+		return true					
+	}
+</script>
+
+<section id="contactUs"> 
+  <!--START: BODY_HEADER-->
+  <div class="breadcrumbs"><a href="">[frame_breadcrumb-home]</a> > <a href="crm.asp?action=contactus">[account_contact-us]</a></div>
+  <!--END: BODY_HEADER-->
+  <h1 class="page_headers">[account_contact-us]</h1>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="contactUsHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="storeInfo pad10 boxShadow">
+    <div class="header">
+    	<h3>[store_name]</h3>
+    </div>
+    <div class="store-address1 item">[store_address1]</div>
+    <div class="store-address2 item">[store_address2]</div>
+    <div class="store-city item">[store_city], [store_state]. [store_zip]</div>
+    <div class="store-country item">[store_country]</div>
+    <div class="item"><strong>Phone:</strong> [store_phone]</div>
+    <div class="button store-loc"><a href="http://maps.google.com/maps?oi=map&q=[store_address1]+[store_city]+[store_state]+[store_zip]" target="_self" class="icon-btn icon-btn-geopin">Get Directions</a></div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <div class="crmForm pad10 boxShadow">
+    <form method="post" action="crm.asp" id="frmForm" name="frmForm">
+      <input type="hidden" name="action" id="action" value="" />
+      <input type="hidden" name="custid" value="[custid]" />
+      <input type="hidden" name="orderid" value="[orderid]" />
+      <input type="hidden" name="productid" value="[productid]" />
+      <div class="header">
+		<h3>[account_contact-us-form]</h3>
+      </div>
+      <div class="crmField">
+        <label for="departmentid">[crm_department]:</label>
+        <select name="departmentid" id="departmentid" tabindex="1" class="txtBoxStyle">
+          [deptdropdown]
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="crmField">
+        <label for="customer">[crm_name]:</label>
+        <input type="text" name="customer" value="[name]" size="40" maxlength="50" tabindex="2" class="txtBoxStyle" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="Error" /></div>
+        <div class="clear"></div>
+      </div>
+      <div class="crmField">
+        <label for="phone">[crm_phone]:</label>
+        <input type="text" name="phone" value="[phone]" size="40" maxlength="50" tabindex="3" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="crmField">
+        <label for="custemail">[crm_email]:</label>
+        <input type="email" name="custemail" value="[email]" size="40" maxlength="50" tabindex="4" class="txtBoxStyle" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="Error" /></div>
+        <div class="clear"></div>
+      </div>
+      <div class="crmField">
+        <label for="subject">[crm_subject]:</label>
+        <input name="subject" type="text" id="subject" value="" size="40" maxlength="150" tabindex="5" class="txtBoxStyle" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="Error" /></div>
+        <div class="clear"></div>
+      </div>
+      <div class="crmField">
+        <label for="reply">[crm_message]:</label>
+        <textarea name="reply" id="reply" tabindex="6" class="txtBoxStyle"></textarea>
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="Error" /></div>
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="crmField">
+        <label for="ramdomWord">Verification:</label>
+        <div class="captcha">
+        <img src="admin/image_pw.asp" width="148" alt="" />
+        <div class="captcha-text">Type the word above...</div>
+        <input type="text" name="ramdomWord" id="ramdomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="7" class="txtBoxStyle" />
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="crmField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div id="divSubmitButton">
+        <button type="button" onclick="javascript:addNew();" class="btn"><i class="icon-pencil"></i> [crm_button-add-ticket]</button>
+      </div>
+    </form>
+  </div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+  <div class="category-footer" id="contactUsFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

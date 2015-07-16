@@ -1,0 +1,58 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	.rewardsDetail td:nth-of-type(1):before { content: "[rewards_details-header-date]"; }
+	.rewardsDetail td:nth-of-type(2):before { content: "[rewards_details-header-points]"; }
+	.rewardsDetail td:nth-of-type(3):before { content: "[rewards_details-header-reference]"; }
+}
+</style>
+
+<section id="rewardDetail">
+    <h1 class="page_headers">[rewards_details-detail]</h1>
+    <!--START: myAccount-->
+    <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+    <!--END: myAccount-->
+    <div class="clear"></div>
+    <!--START: CATEGORY_HEADER-->
+    <div class="category-header" id="reward_detailHeader">[CONTENT]</div>
+    <!--END: CATEGORY_HEADER-->
+    <!--START: rewards-->
+    <div class="rewardsDetail">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="date">[rewards_details-header-date]</th>
+			<th class="points">[rewards_details-header-points]</th>
+			<th class="reference">[rewards_details-header-reference]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: rewardsNoDetail-->
+		<tr class="row">
+            <td colspan="5" class="nohistory">[rewards_details-nohistory]</td>
+        </tr>
+		<!--END: rewardsNoDetail-->
+		<!--START: rewardsDetail-->
+		<tr class="row">
+			<td class="date">[rwdDate]</td>
+			<td class="points">[rwdPoints]</td>
+			<td class="reference"><!--START: orderLink--><a href="ordertracking.asp?action=view&id=[orderid]"><!--END: orderLink-->[rwdReference]</a>&nbsp;</td>
+		</tr>
+		<!--END: rewardsDetail-->
+		</tbody>
+	</table>
+    <div class="clear"></div>
+    <!--START: rewardsTotal-->
+    <div class="titles2">
+    	<div class="pointsAvailable">[rewards_details-header-pointsAvailable]</div>
+        <div class="totalPoints">[rwdTotalPoints]</div>
+        <div class="clear"></div>
+    </div>
+    <!--END: rewardsTotal-->
+    </div>
+    <div class="redeem-btn"><input type="button" class="btn" onclick="window.location='redeem.asp';" value="[account_rewards-header-redeem]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /></div>
+    <!--END: rewards-->
+    <div class="clear"></div>
+    <!--START: CATEGORY_FOOTER-->
+    <div class="category-footer" id="reward_detailFooter">[CONTENT]</div>
+    <!--END: CATEGORY_FOOTER-->
+</section>

@@ -1,0 +1,85 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	.gcBalance td:nth-of-type(1):before { content: "[giftcertificate_details-header-date]"; }
+	.gcBalance td:nth-of-type(2):before { content: "[giftcertificate_details-header-code]"; }
+	.gcBalance td:nth-of-type(3):before { content: "[giftcertificate_details-header-amount]"; }
+	.gcBalance td:nth-of-type(4):before { content: "[giftcertificate_details-header-balance]"; }
+}
+</style>
+
+<section id="gcBalance">
+  <h1 class="page_headers">[giftcertificate_balance-balance]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+  <div class="category-header" id="gcBalanceHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER--> 
+  <!--START: gc-->
+  <div class="gcBalance">
+    <table>
+      <thead>
+        <tr class="titles2">
+          <th class="gc-date">[giftcertificate_details-header-date]</th>
+          <th class="gc-code">[giftcertificate_details-header-code]</th>
+          <th class="gc-amount">[giftcertificate_details-header-amount]</th>
+          <th class="gc-balance">[giftcertificate_details-header-balance]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--START: gcDetails-->
+        <tr class="row">
+          <td class="gc-date">[certificate_date]</td>
+          <td class="gc-code">[certificate_name]</td>
+          <td class="gc-amount">[certificate_amount]</td>
+          <td class="gc-balance">[certificate_balance]</td>
+        </tr>
+        <!--END: gcDetails-->
+      </tbody>
+    </table>
+  </div>
+  <div class="gcCheckBalance pad10 boxShadow">
+    <form action="gc_balance.asp" method="post" name="frmGC" id="frmGC">
+      <div class="gcField">
+        <label for="gc">[account_gift-certificate-check-balance]:</label>
+        <input type="text" size="20" name="gc" value="" maxlength="30" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="gcField">
+        <label for="randomWord">[registration_verification]:</label>
+        <div class="captcha"><img src="admin/image_pw.asp?cache=[now]" width="148" />
+          <div class="captcha-text">[registration_verification_message]</div>
+          <input type="text" name="randomWord" id="randomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="3" class="txtBoxStyle" />
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha--> 
+      <!--START: recaptcha-->
+      <div class="gcField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha"> 
+          <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script> 
+          <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+          <noscript>
+          <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe>
+          <br>
+          <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+          <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+          </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="check-balance-button">
+        <input name="logout" type="button" class="btn" onclick="this.form.submit();" value="[account_gift-certificate-check-balance-go]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </form>
+  </div>
+  <!--END: gc-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+  <div class="category-footer" id="gcBalanceFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

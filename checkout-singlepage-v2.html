@@ -1,0 +1,1834 @@
+<script type="text/javascript" src="state_countryjs.asp"></script>
+<style type="text/css">
+.overlay {
+	background-color: #FFF;
+    bottom: 0;
+	filter: alpha(opacity=80);
+    left: 0;
+	opacity: 0.8;
+}
+#overlay {
+	background-image: url(assets/templates/common/images/transparent.png);
+}
+* html #overlay {
+	background-image: url(assets/templates/common/images/pixel_trans.gif);
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="assets/templates/common/images/transparent.png", sizingMethod="scale");
+}
+#simplemodal-overlay {
+	background-color: #000;
+}
+</style>
+<script type="text/javascript" src="assets/templates/common/js/checkoutValidate.js" ></script>
+<script type="text/javascript">
+    useAddressValidator = "[useAddressValidator]";
+    ccNumerNotAllowedMessage = '[ccNumerNotAllowedMessage]';
+    sfname = "[shipping_firstname]";
+    addLoadEvent(initpage);
+</script>
+
+<section id="checkoutSinglePagev2">
+<h1 class="page_headers">One Page Checkout</h1>
+<!--START: CATEGORY_HEADER-->
+<div class="category-header" id="checkoutSinglePageHeader">[CONTENT]</div>
+<!--END: CATEGORY_HEADER-->
+<form action="checkout_one.asp" method="post" name="billing" id="billing">
+<input type="hidden" name="tknio" value="[tknio]">
+<div id="billing_div">
+<div class="alpha-col">
+  <div id="divCart" class="chkShoppingCart">
+    <div class="header">
+      <h3 class="checkout-headers">[checkout1_Header-shoppingcart]</h3>
+      <div class="clear"></div>
+    </div>
+    <div class="chkcart-container"> 
+      <!--START: SHOPPING_CART_TEMP--> 
+      <!--START: SHOPPING_CART_ITEM-->
+      <div class="row">
+        <div class="product-image"> 
+          <!--START: itemthumbnail--><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" height="40" width="40" id="tl" /></a><!--END: itemthumbnail--> 
+          <!--START: thumbnailnolink--><img src="thumbnail.asp?file=[THUMBNAIL]" height="40" width="40" id="tnl" /><!--END: thumbnailnolink-->
+          <div class="clear"></div>
+        </div>
+        <div class="product-info"> 
+          <!--START: itemnamelink--><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a><!--END: itemnamelink--> 
+          <!--START: itemnamenolink--><span id="spnItemName">[ITEM_NAME]</span><!--END: itemnamenolink--> 
+          <span>[ITEM_QUANTITY] X [ITEM_PRICE]</span> </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: SHOPPING_CART_ITEM--> 
+      <!--END: SHOPPING_CART_TEMP--> 
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="divOrderTotal">
+    <div id="total_div" name="total_div"> 
+      <!--START: total_template_noshipping-->
+      <div class="totalinstructions ">[checkout3_totalinstructions]</div>
+      <!--END: total_template_noshipping--> 
+      <!--START: total_template-->
+      <div class="total_items">[itemCount] Item(s)</div>
+      <div class="total_subtotal">[SUBTOTAL]</div>
+      <div class="clear"></div>
+      <!--START: DISCOUNTS-->
+      <div class="total_discount-detail">[shoppingcart_discount]: <a href="javascript:showDiscountDetails();">(details)</a></div>
+      <div class="total_discount">- [DISCOUNT]</div>
+      <div class="clear"></div>
+      <!--START: PROMOTIONS-->
+      <div id="divDiscountDetails" name="divDiscountDetails" style="display:none;">
+        <div class="total_promotion">Promotion Name</div>
+        <div class="clear"></div>
+        <!--START: DISPLAY_PROMOS-->
+        <div class="display-promos">
+            <div class="total_promotion-name">[promotion_name]</div>
+            <div class="right"><!--START: REMOVE_PROMO--><a href="javascript:removeCoupon('[id]');"><i class="icon-cancel"></i> Remove</a><!--END: REMOVE_PROMO--></div>
+            <div class="clear"></div>
+        </div>
+        <!--END: DISPLAY_PROMOS-->
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <!--END: PROMOTIONS--> 
+      <!--END: DISCOUNTS--> 
+      <!--START: BUYSAFE-->
+      <div class="total_buysafe-logo"><img src="assets/templates/common/images/buysafe.gif" alt="" /></div>
+      <div class="total_buysafe">[buysafe_totalbondcost]</div>
+      <div class="clear"></div>
+      <!--END: BUYSAFE--> 
+      <!--START: HANDLING-->
+      <div class="total_handling-item">[handling_itemname]</div>
+      <div class="total_handling-price">[handling_price]</div>
+      <div class="clear"></div>
+      <!--END: HANDLING-->
+      <div class="total_cart-shipping">[shoppingcart_shipping]</div>
+      <div class="total_shipping">[SHIPPING]</div>
+      <div class="clear"></div>
+      <div class="total_cart-taxes">[shoppingcart_taxes]</div>
+      <div class="total_taxes">[TAX]</div>
+      <div class="clear"></div>
+      <div class="total_cart-total">[shoppingcart_total]</div>
+      <div class="total_total">[TOTAL]</div>
+      <div class="clear"></div>
+      <!--START: GIFTCERTS-->
+      <div class="total_cart-giftcerts">[shoppingcart_giftcertificate]: <a href="javascript:showGiftCertDetails();">(details)</a></div>
+      <div class="total_giftcerts">-[GIFTCERTS]</div>
+      <div class="clear"></div>
+      <div id="divGiftCertDetails" name="divGiftCertDetails" style="display:none;">
+        <div class="total_giftcerts-details">
+          <div class="giftcerts-name">Gift Code</div>
+          <div class="giftcerts-amount">Amount</div>
+          <div class="giftcerts-balance">Balance</div>
+          <div class="clear"></div>
+        </div>
+        <!--START: GIFTCERTS_DETAILS_ITEMS-->
+        <div class="total_giftcerts-details-items">
+          <div class="giftcerts-name">[certificate_name]</div>
+          <div class="giftcerts-amount">[discount_amount]</div>
+          <div class="giftcerts-balance">[discount_balance]</div>
+          <div class="giftcerts-remove"><a href="javascript:removeCoupon('[id]');"><i class="icon-cancel"></i></a></div>
+          <div class="clear"></div>
+        </div>
+        <!--END: GIFTCERTS_DETAILS_ITEMS--> 
+      </div>
+      <!--END: GIFTCERTS-->
+      <div class="clear"></div>
+      <div id="divBalance">
+        <div class="total_cart-balance">[shoppingcart_balance]</div>
+        <div class="total_balance">[BALANCE]</div>
+        <div class="clear"></div>
+      </div>
+      <!--START: apply_coupon-->
+      <div id="divApplyCoupon">
+        <div class="coupon-header"><a href="javascript:showApplyCoupon();"><i class="icon-down-open"></i> [viewcart_coupon-header]</a></div>
+        <div class="coupon-container">
+          <div class="coupon-field">
+            <input id="coupon" onchange="clearContent(this);" maxlength="30" size="15" value="" name="coupon_code" class="txtBoxStyle" />
+            <input type="button" onclick="applyCoupon(this.form.coupon_code.value);" value="Go!" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+          </div>
+          <div class="clear"></div>
+          <div class="coupon-message">[viewcart_coupon-message]</div>
+        </div>
+        <div name="divInvalidCoupon" id="divInvalidCoupon" style="display:[invalidCouponDisplay]; color:#F00;">[viewcart_coupon-invalid]</div>
+        <div class="coupon-applied">[divCouponApplied]</div>
+      </div>
+      <div class="clear"></div>
+      <!--END: apply_coupon--> 
+      <!--END: total_template--> 
+    </div>
+  </div>
+</div>
+<div class="beta-col pad10 boxShadow">
+<div class="account_login1 "> 
+  <!--START: account_login2-->
+  <div class="create_newaccount">
+    <div class="header">
+      <h3 class="checkout-headers">[checkout1_Header-createnewaccount]</h3>
+      <div class="clear"></div>
+    </div>
+    <!--START: fbconnect-->
+    <div class="fbconnect"><a onclick="popup('social_login.asp?p=fl&return=checkout',1000,550)" href="#" title="Sign in with Facebook"><img src="assets/templates/common/images/facebook_signin.png" alt="Sign in with Facebook" width="150" height="22" /></a><span>or</span></div>
+    <!--END: fbconnect-->
+    <div class="chkField chkFullWidth">
+        <input name="billing_email2" type="text" id="billing_email2" placeholder="Email Address" maxlength="50" onchange="clearContent(this);fillBillingEmail(this.value);updateOrderEmail(this.value);" value="[email]" size="25" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+    </div>
+    <!--START: confirm_email-->
+    <div class="chkField chkFullWidth">
+        <input type="text" size="25" name="billing_confirmemail" id="billing_confirmemail" value="[email]" placeholder="Confirm Email Address" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+    </div>
+    <!--END: confirm_email-->
+    <div class="chkField">
+      <div class="checkbox-format">
+        <input type="checkbox" value="1" id="maillist" name="maillist" [maillist] tabindex="3" />
+        <label for="maillist">[checkout1_joinmailinglist]</label>
+      <div class="clear"></div>
+      </div>
+    <div class="clear"></div>
+    </div>
+    <div class="chkField">
+      <div class="checkbox-format">
+        <input type="checkbox" value="1" id="registerGuest" name="registerguest" tabindex="4" />
+        <label for="registerGuest">Remember me! Create my [store_name] account.</label>
+        <div class="clear"></div>
+      </div>
+    <div class="clear"></div>
+    </div>
+    <div id="showEmailPassword"> 
+      <div class="chkField chkFullWidth">
+        <input type="password" size="12" name="pass" id="pass" autocomplete="off" placeholder="[CustomerInfo_password]" tabindex="5" class="txtBoxStyle" [CallFunctionVerifyStrongPass] />
+        <div class="clear"></div>
+      </div>
+      <!--START: StrongPasswordBar-->
+      <div class="chkField">
+        <div class="strong-pass-bar" style="background-image: linear-gradient(to left, #86e01e 0%, #f63a0f 100%);">
+          <div id="divStrong"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: StrongPasswordBar--> 
+      <!--START: PasswordMSG-->
+      <div class="PasswordMSG">
+        <p>[CustomerInfo_password_policy]</p>
+      </div>
+      <!--END: PasswordMSG-->
+    </div>
+    <!--START: recurmessage-->
+    <div class="chkField">
+      <em class="error">[recurringorders_login-required]</em>
+      <div class="clear"></div>
+    </div>
+    <!--END: recurmessage--> 
+  </div>
+  <!--END: account_login2-->
+  <div class="registered_account"> 
+    <!--START: account_login1--> 
+    <div class="header">
+      <h3 class="checkout-headers">Returning Customers</h3>
+      <div class="clear"></div>
+    </div>
+    <!--START: fbconnect-->
+    <div class="fbconnect"><a onclick="popup('social_login.asp?p=fl&return=checkout',1000,550)" href="#" title="Sign in with Facebook"><img src="assets/templates/common/images/facebook_signin.png" alt="Sign in with Facebook" width="150" height="22" /></a><span>or</span></div>
+    <!--END: fbconnect-->
+    <div class="registered-overview">
+    <div class="login1-button">
+      <button type="button" onclick="" class="btn"><i class="icon-login"></i> [checkout1_login]</button>
+    </div>
+    <div class="clear"></div>
+    <div class="loginmessage2">[checkout1_loginmessage2]</div>
+    </div>
+    <div class="registered-login">
+        <p>[login_Header-loginmessage]</p>
+        <div class="loginField">
+            <input type="email" size="30" name="email" id="loginEmail" value="[email]" placeholder="[CustomerInfo_email]" tabindex="1" class="txtBoxStyle" />
+            <div class="clear"></div>
+        </div>
+        <div class="loginField">
+            <input type="password" size="12" autocomplete="off" name="password" id="loginPassword" placeholder="[CustomerInfo_password]" tabindex="2" class="txtBoxStyle" />
+            <div class="clear"></div>
+        </div>
+        <div class="submit-button">
+            <button type="button" id="btnSubmitLogin" onclick="submitLoginForm(this.form.loginEmail.value,this.form.loginPassword.value);" class="btn"><i class="icon-login"></i> Log In</button>
+            <button type="button" id="btnCancelLogin" class="btn"><i class="icon-cancel"></i> Cancel</button>
+        </div>
+    </div>
+    <!--END: account_login1--> 
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="leftCol">
+  <div class="header">
+    <h3 class="checkout-headers"><span>1</span>[account_billing-info]</h3>
+    <div class="clear"></div>
+  </div>
+  <div id="billing_info">
+    <div id="billing_info2"> 
+      <!--START: SAVE_ADDRESSES-->
+      <div class="chkField chkFullWidth">
+        <select type="dropdown" name="save_address" onchange="javascript:filladdress_form(this,'billing','billing');check_address('billing');" tabindex="5" class="txtBoxStyle">
+            <option>[checkout3_PreviousAddresses]</option>
+            [address_billing_list]
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--END: SAVE_ADDRESSES-->
+      <div class="chkField">
+        <input name="billing_firstname" onchange="clearContent(this);" type="text" id="billing_firstname" value="[billing_firstname]" placeholder="[CustomerInfo_firstname]" size="15" tabindex="6" class="txtBoxStyle" />
+        <input name="billing_lastname" type="text" onchange="clearContent(this);" id="billing_lastname" value="[billing_lastname]" placeholder="[CustomerInfo_lastname]" size="15" tabindex="7" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="chkField chkFullWidth">
+        <input name="billing_company" type="text" onchange="clearContent(this);" id="billing_company" value="[billing_company]" placeholder="[CustomerInfo_company]" size="25" tabindex="8" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="chkField">
+        <input name="billing_address" type="text" onchange="clearContent(this);[po_box_disabled_billing]" id="billing_address" value="[billing_address]" placeholder="[CustomerInfo_address]" size="25" tabindex="9" class="txtBoxStyle" />
+        <input name="billing_address2" type="text" onchange="clearContent(this);" id="billing_address2" value="[billing_address2]" placeholder="[CustomerInfo_address2]" size="25" tabindex="10" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="chkField">
+        <input name="billing_city" type="text" onchange="clearContent(this);" id="billing_city" value="[billing_city]" placeholder="[CustomerInfo_city]" size="25" tabindex="11" class="txtBoxStyle" />
+        <select id="billing_state" onchange="this.form.billing_zip.value='';check_address('billing');" name="billing_state" tabindex="12" class="txtBoxStyle">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="chkField">
+        <input name="billing_zip" maxlength="15" type="text" id="billing_zip" value="[billing_zip]" placeholder="[CustomerInfo_zip]" size="10" tabindex="13" class="txtBoxStyle" onchange="clearContent(this);check_address('billing');" />
+        <select name="billing_country" onchange="this.form.billing_zip.value='';populateState('billing_state','billing_country');check_stateValidator('billing');check_address('billing');" tabindex="14" class="txtBoxStyle" id="billing_country">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="chkField">
+        <input name="billing_phone" type="text" onchange="clearContent(this);" id="billing_phone" value="[billing_phone]" placeholder="[CustomerInfo_phone]" size="25" maxlength="50" tabindex="15" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div id="divBillingEmail" class="chkField chkFullWidth">
+        <input name="billing_email" type="text" id="billing_email" placeholder="Email Address" maxlength="50" onchange="clearContent(this);updateOrderEmail(this.value);" value="[email]" size="25" tabindex="" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--START: GIFT_REGISTRY_SHIPPING-->
+  <input type="hidden" name="giftreg_shipping_firstname" id="giftreg_shipping_firstname" value="[giftreg_shipping_firstname]" />
+  <input type="hidden" name="giftreg_shipping_lastname" id="giftreg_shipping_lastname" value="[giftreg_shipping_lastname]" />
+  <input type="hidden" name="giftreg_shipping_company" id="giftreg_shipping_company" value="[giftreg_shipping_company]" />
+  <input type="hidden" name="giftreg_shipping_phone" id="giftreg_shipping_phone" value="[giftreg_shipping_phone]" />
+  <input type="hidden" name="giftreg_shipping_address" id="giftreg_shipping_address" value="[giftreg_shipping_address]" />
+  <input type="hidden" name="giftreg_shipping_address2" id="giftreg_shipping_address2" value="[giftreg_shipping_address2]" />
+  <input type="hidden" name="giftreg_shipping_city" id="giftreg_shipping_city" value="[giftreg_shipping_city]" />
+  <input type="hidden" name="giftreg_shipping_zip" id="giftreg_shipping_zip" value="[giftreg_shipping_zip]" />
+  <input type="hidden" name="giftreg_shipping_country" id="giftreg_shipping_country" value="[giftreg_shipping_country]" />
+  <input type="hidden" name="giftreg_shipping_state" id="giftreg_shipping_state" value="[giftreg_shipping_state]" />
+  <div class="header">
+    <h3 class="checkout-headers">[checkout1_Header-giftreg]</h3>
+    <div class="clear"></div>
+  </div>
+  <div class="giftreg-instructions">[checkout1_Header-giftreg-instructions]
+    <div class="select-giftreg-button">
+      <input type="button" id="cmdRegShip" onclick="javascript:selectGiftRegAddress();" name="cmdRegShip" value="Select Registry Address" class="btn" />
+    </div>
+  </div>
+  <!--END: GIFT_REGISTRY_SHIPPING-->
+  <div class="header">
+    <h3 class="checkout-headers">[checkout1_Header-shippinginformation]</h3>
+    <!--START: sameAsBilling1-->
+    <div class="sameAsBilling1">
+      <input type="checkbox" value="ON" name="sameAsBilling" id="sameAsBilling" onclick="showHideShipping();check_address('');showHideShippingInfo();" tabindex="16" checked="checked" />
+      <label for="sameAsBilling">[checkout3_sameasbilling]</label>
+      <div class="clear"></div>
+    </div>
+    <!--END: sameAsBilling1-->
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <div id="shipping_info"> 
+    <!--START: sameAsBilling2--> 
+    <!--START: SAVE_ADDRESSES2-->
+    <div class="chkField chkFullWidth">
+      <select type="dropdown" name="save_address" onchange="javascript:filladdress_form(this,'billing','shipping');check_address('shipping');" tabindex="17" class="txtBoxStyle">
+          <option>[checkout3_PreviousAddresses]</option>    
+          [address_list]
+      </select>
+      <div class="clear"></div>
+    </div>
+    <!--END: SAVE_ADDRESSES2-->
+    <div class="chkField">
+      <input name="shipping_firstname" onchange="clearContent(this);" type="text" id="shipping_firstname" value="[shipping_firstname]" placeholder="[CustomerInfo_firstname]" size="15" tabindex="18" class="txtBoxStyle" />
+      <input name="shipping_lastname" type="text" onchange="clearContent(this);" id="shipping_lastname" value="[shipping_lastname]" placeholder="[CustomerInfo_lastname]" size="15" tabindex="19" class="txtBoxStyle" />
+      <div class="clear"></div>
+    </div>
+    <div class="chkField chkFullWidth">
+      <input name="shipping_company" type="text" onchange="clearContent(this);" id="shipping_company" value="[shipping_company]" placeholder="[CustomerInfo_company]" size="25" tabindex="20" class="txtBoxStyle" />
+      <div class="clear"></div>
+    </div>
+    <div class="chkField">
+      <input name="shipping_address" type="text" onchange="clearContent(this);[po_box_disabled_billing]" id="shipping_address" value="[shipping_address]" placeholder="[CustomerInfo_address]" size="25" tabindex="21" class="txtBoxStyle" />
+      <input name="shipping_address2" type="text" onchange="clearContent(this);" id="shipping_address2" value="[shipping_address2]" placeholder="[CustomerInfo_address2]" size="25" tabindex="22" class="txtBoxStyle" />
+      <div class="clear"></div>
+    </div>
+    <div class="chkField">
+      <input name="shipping_city" type="text" onchange="clearContent(this);" id="shipping_city" value="[shipping_city]" placeholder="[CustomerInfo_city]" size="25" tabindex="23" class="txtBoxStyle" />
+      <select id="shipping_state" onchange="this.form.shipping_zip.value='';check_address('shipping');" name="shipping_state" tabindex="24" class="txtBoxStyle">
+      </select>
+      <div class="clear"></div>
+    </div>
+    <div class="chkField">
+      <input name="shipping_zip" maxlength="15" type="text" id="shipping_zip" value="[shipping_zip]" placeholder="[CustomerInfo_zip]" size="10" tabindex="25" class="txtBoxStyle" onchange="clearContent(this);check_address('shipping');" />
+      <select name="shipping_country" onchange="this.form.shipping_zip.value='';populateState('shipping_state','shipping_country');check_stateValidator('billing');check_address('billing');" tabindex="26" class="txtBoxStyle" id="shipping_country">
+      </select>
+      <div class="clear"></div>
+    </div>
+    <div class="chkField">
+      <input name="shipping_phone" type="text" onchange="clearContent(this);" id="shipping_phone" value="[shipping_phone]" placeholder="[CustomerInfo_phone]" size="25" maxlength="50" tabindex="27" class="txtBoxStyle" />
+      <div class="clear"></div>
+    </div>
+    <!--END: sameAsBilling2--> 
+    <!--START: sameAsBilling3-->
+    <div class="sameAsBilling3">[checkout3_sameasbillingmessage]</div>
+    <!--END: sameAsBilling3-->
+    <div class="clear"></div>
+  </div>
+    <div class="clear"></div>
+    <div id="divCheckoutQuestions"> 
+      <!--START: checkout_questions-->
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_checkoutquestions]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="chkQuestions "> 
+        <!--START: questions-->[questions]<!--END: questions-->
+        <div class="clear"></div>
+      </div>
+      <!--END: checkout_questions--> 
+    </div>
+  <div class="clear"></div>
+  <div id="divCheckoutComments">
+    <div class="header">
+      <h3 class="checkout-headers"><a href="javascript:showCheckoutComments();"><i class="icon-down-open"></i> [checkout3_Header-comment]</a></h3>
+      <div class="clear"></div>
+    </div>
+    <div class="chkComments">
+      <label for="ocomment">[checkout3_commentmessage]</label>
+      <textarea onchange="clearContent(this);" name="ocomment" class="txtBoxStyle" cols="55" rows="3"></textarea>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<div class="rightCol">
+<div class="divShippingMethod">
+  <div class="header">
+    <h3 class="checkout-headers"><span>2</span>[checkout3_Header-shippingmethodinfo]</h3>
+    <div class="clear"></div>
+  </div>
+  <!--START: echoFreightOptions-->
+  <div id="divEchoOptions" style="display:none;">
+	<!--START: echoFreightRegularMsg-->
+    <div class="header">
+        <strong>LTL Shipping options:</strong> the radio buttons below (by default) quote LTL shipping to Residential, Limited Access and truck with Lift Gate Required.
+    </div>
+    <ol>
+        <li>Adjust these buttons for your shipping location.</li>
+        <li>Then click "Refresh Rates" below, and your new cost will show in Shipping (in the Order Total to the right).</li>
+    </ol>
+	<!--END: echoFreightRegularMsg-->
+	<!--START: echoFreightShortMsg-->
+    <Ul>
+        <li>Adjust these buttons for your shipping location.</li>
+    </Ul>
+	<!--END: echoFreightShortMsg-->
+    <div class="echo-group1"> 
+      <!--<div class="echo-option">
+                        <input type="radio" name="echoFreightOptions" value="19" onclick="document.getElementById('echoFreightOptionsBus1').checked = false; document.getElementById('echoFreightOptionsBus2').checked = false; document.getElementById('echoFreightOptionsRes1').checked = false; document.getElementById('echoFreightOptionsRes2').checked = false;" />
+                        Construction Site
+                    </div>--> 
+      <!--<div class="echo-option">
+                        <input type="radio" name="echoFreightOptions" value="20" onclick="document.getElementById('echoFreightOptionsBus1').checked = false; document.getElementById('echoFreightOptionsBus2').checked = false; document.getElementById('echoFreightOptionsRes1').checked = false; document.getElementById('echoFreightOptionsRes2').checked = false;" />
+                        Trade Show or Convention Center
+                    </div>-->
+      <div class="echo-option">
+        <input type="radio" name="echoFreightOptions" [checked22] value="22" onclick="document.getElementById('echoFreightOptionsBus1').checked = false; document.getElementById('echoFreightOptionsBus2').checked = false; document.getElementById('echoFreightOptionsRes1').checked = false; document.getElementById('echoFreightOptionsRes2').checked = false; check_address('refresh');" />
+        Business <strong>with dock or fork lift</strong> </div>
+      <div class="echo-option">
+        <input type="radio" name="echoFreightOptions" id="echoFreightOptionsBus" onclick="document.getElementById('echoFreightOptionsRes1').checked = false; document.getElementById('echoFreightOptionsRes2').checked = false; check_address('refresh');" value="22" />
+        Business <strong>without</strong> (as in no dock, no fork lift) </div>
+      <div class="echo-option2">
+        <input type="checkbox" name="echoFreightOptions" id="echoFreightOptionsBus1" onclick="document.getElementById('echoFreightOptionsBus').checked = true; document.getElementById('echoFreightOptionsRes').checked = false; document.getElementById('echoFreightOptionsRes1').checked = false; document.getElementById('echoFreightOptionsRes2').checked = false; check_address('refresh');" value="21" />
+        Lift Gate required if shipment greater than 100 pounds </div>
+      <div class="echo-option2">
+        <input type="checkbox" name="echoFreightOptions" id="echoFreightOptionsBus2" onclick="document.getElementById('echoFreightOptionsBus').checked = true; document.getElementById('echoFreightOptionsRes').checked = false; document.getElementById('echoFreightOptionsRes1').checked = false; document.getElementById('echoFreightOptionsRes2').checked = false; check_address('refresh');" value="7" />
+        The driver needs to deliver inside </div>
+    </div>
+    <div class="echo-group2">
+      <div class="echo-option">
+        <input type="radio" [checked18] name="echoFreightOptions" id="echoFreightOptionsRes" onclick="document.getElementById('echoFreightOptionsBus1').checked = false; document.getElementById('echoFreightOptionsBus2').checked = false; check_address('refresh');" value="18" />
+        Residential, Limited Access, Government-Military Inspection </div>
+      <div class="echo-option2">
+        <input type="checkbox" [checked21] name="echoFreightOptions" id="echoFreightOptionsRes1" onclick="document.getElementById('echoFreightOptionsRes').checked = true; document.getElementById('echoFreightOptionsBus').checked = false; document.getElementById('echoFreightOptionsBus1').checked = false; document.getElementById('echoFreightOptionsBus2').checked = false; check_address('refresh');" value="21" />
+        Lift Gate required if shipment greater than 100 pounds </div>
+      <div class="echo-option2">
+        <input type="checkbox" name="echoFreightOptions" id="echoFreightOptionsRes2" onclick="document.getElementById('echoFreightOptionsRes').checked = true; document.getElementById('echoFreightOptionsBus').checked = false; document.getElementById('echoFreightOptionsBus1').checked = false; document.getElementById('echoFreightOptionsBus2').checked = false; check_address('refresh');" value="7" />
+        The driver needs to deliver inside </div>
+      <div class="echo-option">
+        <input type="checkbox" name="echoFreightOptions" value="14" onclick="check_address('refresh');" />
+        Delivery appointment is required (to arrange the time and day) </div>
+    </div>
+    <div class="note">Note that the carrier chosen may not be the final carrier for your order.</div>
+  </div>
+  <div class="clear"></div>
+  <!--END: echoFreightOptions-->
+  <div id="shipping_div">
+    <div id="shipResult">
+      <p>[checkout3_shippinginstructions]</p>
+    </div>
+    <div class="left"><a href="javascript:check_address('refresh');"><i class="icon-arrows-cw"></i> [checkout3_refreshRates]</a></div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div id="divPayment"> 
+<!--START: PAYMENT_BLOCK-->
+<div class="header">
+    <h3 class="checkout-headers">[checkout3_methodofpaymentselect]</h3>
+    <div class="clear"></div>
+</div>
+<!--START: NO_PAYMENT_BLOCK-->
+<div class="no-payment-method">There's no payment options available to your address. Please check the entered address and try again.</div>
+<!--END: NO_PAYMENT_BLOCK-->
+<div id="divPaymentMethods" class="pad10 boxShadow">
+    <!--START: checkoutMasterPass-->
+    <div class="checkoutMasterPass">
+    <h4>MasterPass&trade;</h4>
+    <a href="masterpass.asp?ac=token" title="Checkout with MasterPass&trade;"><img id="imgMasterPass" src="assets/templates/common/images/mcpp_wllt_btn_chk_147x034px.png" alt="Checkout with MasterPass&trade;" /></a><br />
+    <a href="javascript:void(0);" title="Learn more about MasterPass&trade;" onclick="window.open('http://www.mastercard.com/mc_us/wallet/learnmore/en/','','scrollbars=no,width=700,height=700'); return false;"><i class="icon-info-circled"></i>Learn more</a>
+    <div class="clear"></div>
+    </div>
+    <!--END: checkoutMasterPass-->
+<!--START: checkout_visacheckout-->
+<!--START: visacheckout_jscript-->
+<style id="antiClickjack">
+body {
+	display: none;
+}
+</style>
+<script type="text/javascript">
+	if (self === top) {
+		var antiClickjack = document.getElementById("antiClickjack");
+		if (antiClickjack)
+		    antiClickjack.parentNode.removeChild(antiClickjack);
+	} else {
+		top.location = self.location;
+	}
+</script>
+		<script type="text/javascript">
+			function onVmeReady() {
+				//alert(apiKey);
+				var apiKey = '[visacheckout_api_key]';
+				var dataq = '';
+
+				V.init({
+					apikey: apiKey,
+					externalClientId: '[visacheckout_externalclientid]',
+					sourceId: "",
+					settings: {
+						locale: "[visacheckout_locale]",
+						countryCode: "[visacheckout_country]",
+						displayName: "[storename]",
+						logoUrl: "[visacheckout_logourl]",
+						websiteUrl: "[visacheckout_domainname]",
+						shipping: {
+							acceptedRegions: [[visacheckout_shippingcountries]],
+							collectShipping: "[visacheckout_collectshipping]"
+						},
+						payment: {
+							cardBrands: [[cardsaccepted]],
+							acceptCanadianVisaDebit: "[visacheckout_acceptcanadadebitcard]"
+						},
+						review: {
+							buttonAction: "Continue"
+						},
+						dataLevel: "FULL"
+					},
+					paymentRequest: {
+						merchantRequestId: "[visacheckout_orderid]",
+						currencyCode: "[currency_code]",
+						subtotal: "[visacheckout_amount]",
+						total: "[visacheckout_amount]"
+					}
+				}
+				);
+				V.on("payment.success", function (payment) {
+
+					dataq = JSON.stringify(payment);
+
+					jQuery.ajax({
+						url: 'visacheckout.asp',
+						data: 'jdata=' + dataq + '&ac=unpackdata',
+						dataType: 'json',
+						type: 'post',
+						cache: false,
+						error: reportRuleError
+					})
+					.done(function (response) {
+						if (response.k == null)
+							alert('No response from VISA Checkout.  Try again or use another payment method.');
+						else {
+							window.location = 'checkout_one.asp?k=' + response.k + '&wid=' + response.wid;
+						}
+					})
+						.fail(function (strResult) {
+							alert('VISA Checkout Process call failed');
+						});
+
+				});
+
+				V.on("payment.cancel", function (payment) {
+					alert("VISA Checkout Payment method selection canceled.");
+				});
+
+				V.on("payment.error", function (payment, error) {
+					alert("Problem encountered with VISA Checkout service");
+				});
+
+			}
+
+			function reportRuleError(jqXHR, textStatus) {
+				if (jqXHR.status > 0) {
+					alert("Error processing VISA Checkout request ");
+				}
+			}
+		</script>
+<!--END: visacheckout_jscript-->
+<div class="checkout_visacheckout">
+	<h4>Checkout with Visa Checkout</h4>
+	<img alt="Visa Checkout" class="v-button" role="button" src="[visacheckout_button]" />
+	<script type="text/javascript" src="[visacheckout_jscriptsdk]"></script>
+	<div class="clear"></div>
+</div>
+<!--END: checkout_visacheckout-->
+    <!--START: VME_SELECTED-->
+    <div class="vmeSelected">
+			<input type="hidden" name="payment" value="online-[id]" checked />
+    <img src="assets/templates/common/images/vme_accpt_mark.png" alt="V.me by Visa" />
+    <div class="clear"></div>
+    </div>
+    <!--END: VME_SELECTED-->
+          
+    <!--START: checkoutByAmazon-->
+    <div class="checkoutByAmazon">
+    <h4>[payment_description]</h4>
+    <div class="payment-method">[amazon_cba_form]</div>
+    <div class="clear"></div>
+    </div>
+    <!--END: checkoutByAmazon--> 
+          
+    <!--START: PPEXPRESS-->
+    <div class="ppExpress">
+    <h4>[payment_description]</h4>
+    <div class="desc-message">[payment_description_message]</div>
+    <div class="ppe-radio">
+        <input name="payment" onclick="javascript:checkoutSwitch(true);window.location.href='paypal_express.asp?ch=0';" type="radio" value="online-[id]" />
+    </div>
+    <div class="ppe-logo"><img src="https://www.paypal.com/en_US/i/IntegrationCenter/scr/scr_ppAcceptMark_68x43.jpg" height="35" /></div>
+    <div class="payment-desc">[payment_description]</div>
+    <div class="clear"></div>
+    </div>
+    <!--END: PPEXPRESS--> 
+          
+    <!--START: PAYPALADV-->
+    <div class="ppAdv">
+    <h4>
+        <label for="online-[id]">
+            <input onclick="javascript:checkoutSwitch(true);doCheckout(document.billing);" id="online-[id]" name="payment" type="radio" value="online-[id]" />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPayPalAdv" style="display:none;">
+        <div style="text-align:left;">
+        <iframe id="iframePayPalAdv" name="iframePayPalAdv" src="assets/images/spacer.gif" width="490" height="565" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+    </div>
+    <!--END: PAYPALADV-->
+            
+    <!--START: FUTUREPAY-->
+    <div class="fpay">
+    <h4>[payment_description]</h4>
+    <div class="desc-message">[payment_description_message]</div>
+    <div class="fpay-radio">
+        <input name="payment" onclick="javascript: checkoutSwitch(false); doCheckout(document.billing);" type="radio" value="online-[id]" />
+        <input type="hidden" id="hdnFuturePayID" name="hdnFuturePayID" value="online-[id]" />
+        <input type="hidden" id="hdnFuturePayRef" name="hdnFuturePayRef" value="" />
+    </div>
+    <div class="fpay-logo"><img src="assets/images/default/fp-logo.png" height="35" /></div>
+    <div class="payment-desc">[payment_description]</div>
+    <div class="clear"></div>
+    <div id="futurepay_form" style="display:block;"></div>
+    </div>
+    <!--END: FUTUREPAY--> 
+
+	<!--START: WEPAY-->
+	<script type="text/javascript" src="https://static.wepay.com/min/js/tokenization.v2.js"></script>
+    <div class="wpay">
+    <h4>[payment_description]</h4>
+    <div class="desc-message">[payment_description_message]</div>
+    <div class="wpay-radio">
+		<input name="payment" onclick="javascript: checkoutSwitch(false); controlDivPayment('[id]');" type="radio" value="online-[id]" [FIRSTOPTIONCHECKED]>
+		<input type="hidden" id="hdnWePayID" name="hdnWePayID" value="online-[id]" />
+		<input type="hidden" id="hdnWePayClientID" name="hdnWePayClientID" value="[hdnWePayClientID]" />
+		<input type="hidden" id="hdnWePayRef" name="hdnWePayRef" value="" /> 
+		<input type="hidden" id="hdnWePayGenericErrorMsg" name="hdnWePayGenericErrorMsg" value="[hdnWePayGenericErrorMsg]" />
+    </div>
+    <div class="wpay-logo"><img src="assets/templates/common/images/wepay-logo.png"></div>
+    <div class="payment-desc">[payment_description]</div>
+    <div class="clear"></div>
+
+	<div id="divPaymentOption[id]" class="wepaydiv" name="divPaymentOption" style="display:none;">
+        <div class="ccgField">
+        <label for="creditcardnumber">[CustomerInfo_creditcardnumber]</label>
+		<input type="text" onchange="clearContent(this);" id="wepay_ocardno" name="wepay_ocardno" size="30" class="txtBoxStyle">
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+        <div class="ccgField">
+        <label for="creditexpiration">[CustomerInfo_creditexpiration]</label>
+        <select id="wepay_ocardexpiresmonth" name="wepay_ocardexpiresmonth" class="txtBoxStyle">
+            [monthlist]
+        </select>
+        <select id="wepay_ocardexpiresyear" name="wepay_ocardexpiresyear" class="txtBoxStyle">
+            [yearlist]
+        </select>
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+        <div class="ccgField">
+        <label for="cvv2">CVV2</label>
+        <input type="text" id="wepay_ocardcvv2" name="wepay_ocardcvv2" size="10" class="txtBoxStyle">
+		<a href="#" onclick="javascript:window.open('assets/templates/common/images/cvv2.gif','new','menubars=no, resizable=no, statusbar=no, titlebar=no, width=300, height=500');" class="cvv2-help">What's this?</a>
+        <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+		<!--START: SaveMyCC1-->
+		<div class="ccgField">
+        <label for="creditcardnumber">[checkout3_savecc]</label>
+		<input type="checkbox" name="ff[id]_savecc" value="1" />
+		<input type="hidden" name="ff[id]_saveccenabled" value="1" />
+        <div class="clear"></div>
+        </div>
+		<!--END: SaveMyCC1-->
+		<!--START: SaveMyCCRec1-->
+		<div>
+		<label>[checkout3_saveccrecurring]</label>
+		<div class="clear"></div>
+		</div>
+		<!--END: SaveMyCCRec1-->
+        <div class="clear"></div>
+		<!--START: SaveMyCC1-->
+		<div class="ccgField">
+        <label for="creditcardnumber">[checkout3_savecc]</label>
+		<input type="checkbox" name="ff[id]_savecc" value="1" />
+		<input type="hidden" name="ff[id]_saveccenabled" value="1" />
+        <div class="clear"></div>
+        </div>
+		<!--END: SaveMyCC1-->
+		<!--START: SaveMyCCRec1-->
+		<div>
+		<label>[checkout3_saveccrecurring]</label>
+		<div class="clear"></div>
+		</div>
+		<!--END: SaveMyCCRec1-->
+        <div class="clear"></div>
+		<!--START: SaveMyCC1-->
+		<div class="ccgField">
+        <label for="creditcardnumber">[checkout3_savecc]</label>
+		<input type="checkbox" name="ff[id]_savecc" value="1" />
+		<input type="hidden" name="ff[id]_saveccenabled" value="1" />
+        <div class="clear"></div>
+        </div>
+		<!--END: SaveMyCC1-->
+		<!--START: SaveMyCCRec1-->
+		<div>
+		<label>[checkout3_saveccrecurring]</label>
+		<div class="clear"></div>
+		</div>
+		<!--END: SaveMyCCRec1-->
+        <div class="clear"></div>
+		<!--START: SaveMyCC1-->
+		<div class="ccgField">
+        <label for="creditcardnumber">[checkout3_savecc]</label>
+		<input type="checkbox" name="ff[id]_savecc" value="1" />
+		<input type="hidden" name="ff[id]_saveccenabled" value="1" />
+        <div class="clear"></div>
+    </div>
+		<!--END: SaveMyCC1-->
+		<!--START: SaveMyCCRec1-->
+		<div>
+		<label>[checkout3_saveccrecurring]</label>
+		<div class="clear"></div>
+    </div>
+		<!--END: SaveMyCCRec1-->
+        <div class="clear"></div>
+		<!--START: SaveMyCC1-->
+		<div class="ccgField">
+        <label for="creditcardnumber">[checkout3_savecc]</label>
+		<input type="checkbox" name="ff[id]_savecc" value="1" />
+		<input type="hidden" name="ff[id]_saveccenabled" value="1" />
+        <div class="clear"></div>
+        </div>
+		<!--END: SaveMyCC1-->
+		<!--START: SaveMyCCRec1-->
+		<div>
+		<label>[checkout3_saveccrecurring]</label>
+		<div class="clear"></div>
+		</div>
+		<!--END: SaveMyCCRec1-->
+        <div class="clear"></div>
+    </div>
+    </div>
+	<!--END: WEPAY-->
+
+    <!--START: AFFIRM-->
+    <div class="affirm">
+    <h4>[payment_description]</h4>
+    <div class="desc-message"></div>
+    <div class="affirm-radio">
+        <input name="payment" onclick="javascript: checkoutSwitch(false); " type="radio" value="online-[id]" />
+        <input type="hidden" id="hdnAffirmID" name="hdnAffirmID" value="online-[id]" />
+    </div>
+    <div class="affirm-logo" style="width:220px"><img src="assets/images/default/affirm-logo.png" /><font size="1"><b>[payment_description_message]</b></font></div>
+    <div class="clear"></div>
+    </div>
+    <!--END: AFFIRM--> 
+          
+    <!--START: TRANSFLOW-->
+    <div class="transFlow">
+    <h4>
+        <label for="transflow-[id]">
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="transflow-[id]" name="payment" type="radio" value="transflow-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+    <div class="desc-message">[payment_description_message]</div>
+    <strong>Your Mobile Number</strong>
+    <input type="text" onChange="clearContent(this);" name="ff[id]_ocardno" size="20" class="txtBoxStyle" />
+    <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+    </div>
+    </div>
+    <!--END: TRANSFLOW-->
+          
+    <!--START: SHOPATRON-->
+    <div class="shopaTron">
+    <h4>[payment_description]</h4>
+    <div class="desc-message">[payment_description_message]</div>
+    <div class="st-button">
+        <input name="payment" onclick="window.location.href='shopatron.asp';" type="button" class="btn" onmouseover=="this.className='btn_over'" onmouseout="this.className='btn'" value="Checkout with Shopatron" />
+    </div>
+    <div class="payment-desc">[payment_description]</div>
+    <div class="clear"></div>
+    </div>
+    <!--END: SHOPATRON--> 
+          
+    <!--START: KLARNA--> 
+    <script src="https://cdn.klarna.com/public/kitt/toc/v1.0/js/klarna.terms.min.js" type="text/javascript" charset="utf-8"></script>
+    <input type="hidden" name="klarna_method" id="klarna_method" value="[klarna_default_method]" />
+    <script type="text/javascript">
+        function setKlarnaMethod(strMethod) {
+            document.getElementById("klarna_method").value = strMethod;
+        }
+	</script> 
+    <!--START: KLARNA_INVOICE-->
+    <div class="klarnaInvoice">
+    <div class="klarna-invoice-radio">
+        <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]invoice');setKlarnaMethod('INVOICE');" name="payment" type="radio" value="online-[id]-klarna" [FIRSTOPTIONINVOICECHECKED] />
+    </div>
+    <div class="klarna-invoice-logo"><img src="[klarna_invoice_logo]?eid=[klarna_storeid]&width=80" alt="Klarna Invoice Logo" /> <span>pay within 14 days</span></div>
+    <div class="clear"></div>
+    <div class="klarna-invoice-details">In order to finalize your purchase, please provide the following additional details:</div>
+    <div id="divPaymentOption[id]invoice" name="divPaymentOption" style="display:none;"> 
+        <!--START: KLARNA_INVOICE_GD-->
+        <div class="klarnaField">
+        <div class="label">Gender:</div>
+        <input type="radio" value="1" name="klarna_invoice_gender[id]" id="klarna_male" />
+        <label for="klarna_male">Male</label>
+        <input type="radio" value="0" name="klarna_invoice_gender[id]" id="klarna_female" />
+        <label for="klarna_female">Female</label>
+        <div class="clear"></div>
+        </div>
+        <!--END: KLARNA_INVOICE_GD--> 
+        <!--START: KLARNA_INVOICE_SSN-->
+        <div class="klarnaField">
+        <div class="label">Personal Number:</div>
+        <input type="text" name="klarna_invoice_ssn[id]" value="" size="10" maxlength="14" class="txtBoxStyle" />
+        <span>([klarna_po_format])</span>
+        <div class="clear"></div>
+        </div>
+        <!--END: KLARNA_INVOICE_SSN--> 
+        <!--START: KLARNA_INVOICE_BD-->
+        <div class="klarnaField">
+        <div class="label">Birth Date:</div>
+        <select name="klarna_invoice_birthdate_day[id]" class="txtBoxStyle">
+            <option value="">day</option>
+            [klarna_birthdate_day]
+        </select>
+        <select name="klarna_invoice_birthdate_month[id]" class="txtBoxStyle">
+            <option value="">month</option>
+            [klarna_birthdate_month]
+        </select>
+        <select name="klarna_invoice_birthdate_year[id]" class="txtBoxStyle">
+            <option value="">year</option>
+            [klarna_birthdate_year]
+        </select>
+        <div class="clear"></div>
+        </div>
+        <!--END: KLARNA_INVOICE_BD-->
+        <div id="klarna_invoiceterms"></div>
+        <script type="text/javascript">
+            var klarnaterms = new Klarna.Terms.Invoice({
+                el: 'klarna_invoiceterms',
+                eid: [klarna_storeid],
+                country: '[klarna_country]',
+                charge: 0
+            })
+		</script> 
+        <!--START: KLARNA_INVOICE_DE_BLOCK-->
+        <div id="afm_banner">
+        <input type="checkbox" name="klarna_afm_de_invoice" value="1" />
+        Mit der Übermittlung der für die Abwicklung der gewählten Klarna Zahlungsmethode und einer Identitäts- und 
+        Bonitätsprüfung erforderlichen Daten an Klarna bin ich einverstanden. Meine <a href="https://online.klarna.com/consent_de.yaws" target="_blank">Einwilligung</a> kann ich jederzeit mit Wirkung für die Zukunft widerrufen. 
+        Es gelten die AGB des Händlers. </div>
+        <!--END: KLARNA_INVOICE_DE_BLOCK-->
+        <div class="clear"></div>
+    </div>
+    </div>
+    <!--END: KLARNA_INVOICE--> 
+          
+    <!--START: KLARNA_ACCOUNT-->
+    <div class="klarnaAccount">
+    <div class="klarna-account-radio">
+        <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]account');setKlarnaMethod('ACCOUNT');" name="payment" type="radio" value="online-[id]-klarna" [FIRSTOPTIONACCOUNTCHECKED] />
+    </div>
+    <div class="klarna-account-logo"><img src="[klarna_account_logo]?eid=[klarna_storeid]&width=80" alt="Klarna Account Logo" /> <span>part pay from [klarna_monthly_cost] / month</span></div>
+    <div class="clear"></div>
+    <div class="klarna-account-details">In order to finalize your purchase, please provide the following additional details:</div>
+    <div id="divPaymentOption[id]account" name="divPaymentOption" style="display:none;"> 
+        <!--START: KLARNA_ACCOUNT_GD-->
+        <div class="klarnaField">
+        <div class="label">Gender:</div>
+        <input type="radio" value="1" name="klarna_account_gender[id]" id="klarna_male" />
+        <label for="klarna_male">Male</label>
+        <input type="radio" value="0" name="klarna_account_gender[id]" id="klarna_female" />
+        <label for="klarna_female">Female</label>
+        <div class="clear"></div>
+        </div>
+        <!--END: KLARNA_ACCOUNT_GD--> 
+        <!--START: KLARNA_ACCOUNT_SSN-->
+        <div class="klarnaField">
+        <div class="label">Personal Number:</div>
+        <input type="text" name="klarna_account_ssn[id]" value="" size="10" maxlength="14" class="txtBoxStyle" />
+        <span>([klarna_po_format])</span>
+        <div class="clear"></div>
+        </div>
+        <!--END: KLARNA_ACCOUNT_SSN--> 
+        <!--START: KLARNA_ACCOUNT_BD-->
+        <div class="klarnaField">
+        <div class="label">Birth Date:</div>
+        <select name="klarna_account_birthdate_day[id]" class="txtBoxStyle">
+            <option value="">day</option>
+            [klarna_birthdate_day]
+        </select>
+        <select name="klarna_account_birthdate_month[id]" class="txtBoxStyle">
+            <option value="">month</option>
+            [klarna_birthdate_month]
+        </select>
+        <select name="klarna_account_birthdate_year[id]" class="txtBoxStyle">
+            <option value="">year</option>
+            [klarna_birthdate_year]
+        </select>
+        <div class="clear"></div>
+        </div>
+        <!--END: KLARNA_ACCOUNT_BD-->
+        <div id="klarna_accountterms"></div>
+        <script type="text/javascript">
+            var klarnaterms2 = new Klarna.Terms.Account({
+                el: 'klarna_accountterms',
+                eid: [klarna_storeid],
+                country: '[klarna_country]',
+                charge: 0
+            })  
+        </script> 
+        <!--START: KLARNA_ACCOUNT_DE_BLOCK-->
+        <div id="afm_banner">
+        <input type="checkbox" name="klarna_afm_de_account" value="1" />
+        Mit der Übermittlung der für die Abwicklung der gewählten Klarna Zahlungsmethode und einer Identitäts- und 
+        Bonitätsprüfung erforderlichen Daten an Klarna bin ich einverstanden. Meine <a href="https://online.klarna.com/consent_de.yaws" target="_blank">Einwilligung</a> kann ich jederzeit mit Wirkung für die Zukunft widerrufen. 
+        Es gelten die AGB des Händlers. </div>
+        <!--END: KLARNA_ACCOUNT_DE_BLOCK--> 
+        <!--START: KLARNA_ACCOUNT_NL_BLOCK-->
+        <div id="afm_banner"> <img src="assets/templates/common/images/balk_afm3-jpg.jpg" width="320" /> </div>
+        <!--END: KLARNA_ACCOUNT_NL_BLOCK-->
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: KLARNA_ACCOUNT--> 
+    <!--END: KLARNA--> 
+          
+    <!--START: CCGATEWAY-->
+    <div class="ccGateway">
+    <h4>
+        <label for="online-[id]">
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="online-[id]" name="payment" type="radio" value="online-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+        <div class="desc-message">[payment_description_message]</div>
+        <div class="ccgField">
+        <label for="creditcardnumber">[CustomerInfo_creditcardnumber]</label>
+        <input type="text" onchange="clearContent(this);" name="ff[id]_ocardno" size="30" class="txtBoxStyle" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        </div>
+        <div class="clear"></div>
+        <!--START: ccStartDate-->
+        <div class="ccgField">
+        <label for="creditstartdate">[CustomerInfo_creditstartdate]</label>
+        <select name="ff[id]_ocardstartmonth" class="txtBoxStyle">
+            <option value=""></option>
+            [monthlist]
+        </select>
+        <select name="ff[id]_ocardstartyear" class="txtBoxStyle">
+            <option value=""></option>
+            [yearlistdtstart]
+        </select>
+        (Maestro, Solo and Amex only) <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        </div>
+        <div class="clear"></div>
+        <!--END: ccStartDate-->
+        <div class="ccgField">
+        <label for="creditexpiration">[CustomerInfo_creditexpiration]</label>
+        <select name="ff[id]_ocardexpiresmonth" class="txtBoxStyle">
+            [monthlist]
+        </select>
+        <select name="ff[id]_ocardexpiresyear" class="txtBoxStyle">
+            [yearlist]
+        </select>
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        </div>
+        <div class="clear"></div>
+        <div class="ccgField">
+        <label for="cardtype">[CustomerInfo_cardtype]</label>
+        <select name="ff[id]_ocardtype" class="txtBoxStyle">
+            [cctype]
+        </select>
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        </div>
+        <div class="clear"></div>
+        <!--START: ccIssueNumber-->
+        <div class="ccgField">
+        <label for="creditissuenumber">[CustomerInfo_creditissuenumber]</label>
+        <input type="text" name="ff[id]_ocardissue" maxlength="10" size="3" class="txtBoxStyle" />
+        (Maestro and Solo only) <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--END: ccIssueNumber-->
+        <div class="ccgField">
+        <label for="cvv2">CVV2</label>
+        <div class="clear"></div>
+        <input type="text" name="ff[id]_ocardcvv2" size="3" class="txtBoxStyle" />
+		<!--START: cvvrequired--><input type="hidden" name="hdnCvvRequired" id="hdnCvvRequired" value="1" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /><!--END: cvvrequired--> <a href="#" onclick="javascript:window.open('assets/templates/common/images/cvv2.gif','new','menubars=no, resizable=no, statusbar=no, titlebar=no, width=300, height=500');" class="cvv2-help">What's this?</a>
+        </div>
+        <div class="clear"></div>
+		<!--START: SaveMyCC2-->
+		<div class="ccgField">
+        <label for="creditcardnumber">[checkout3_savecc]</label>
+		<input type="checkbox" name="ff[id]_savecc" value="1" />
+		<input type="hidden" name="ff[id]_saveccenabled" value="1" />
+        <div class="clear"></div>
+        </div>
+		<!--END: SaveMyCC2-->
+		<!--START: SaveMyCCRec2-->
+		<div>
+		<label>[checkout3_saveccrecurring]</label>
+		<div class="clear"></div>
+		</div>
+		<!--END: SaveMyCCRec2-->
+        <div class="clear"></div>
+    </div>
+    </div>
+    <!--END: CCGATEWAY--> 
+          
+    <!--START: AUTHNETCIMBLOCK-->
+    <div class="authneticIMBlock">
+    <h4>
+        <label for="online-[id]-CIM">
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]CIM');" id="online-[id]-CIM" name="payment" type="radio" value="online-[id]-CIM" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]CIM" name="divPaymentOptionCIM" style="display:none;"> 
+        <!--START: authCIMBlock-->
+        <div class="cimField">
+        <label for="use-creditcard-on-file">[checkout3_use-creditcard-on-file]</label>
+        <select name="authCIMProfileID" id="authCIMProfileID" class="txtBoxStyle">
+            <!--START: authCIMPaymentProfileItem-->
+            <option value="authCIMProfileID_[custProfId]_[custPmntProfId]_[authCIMProfileID_cardlastdigits]_[authCIMProfileID_cardexp]"> [checkout3_creditcard-last-digits]: [authCIMProfileID_cardlastdigits] / [CustomerInfo_creditexpiration]: [authCIMProfileID_cardexp]</option>
+            <!--END: authCIMPaymentProfileItem-->
+        </select>
+        <div class="clear"></div>
+        </div>
+        <!--END: authCIMBlock--> 
+    </div>
+    </div>
+    <!--END: AUTHNETCIMBLOCK--> 
+          
+    <!--START: MILITARYSTAR-->
+    <div class="militaryStar">
+    <h4>
+        <label for="online-[id]">
+            <input type="hidden" value="1" name="ff[id]_isstarcard" id="ff[id]_isstarcard" />
+            <input  onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="online-[id]" name="payment" type="radio" value="online-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+        <div class="desc-message">[payment_description_message]</div>
+        <div class="msField">
+        <label for="ff[id]_ocardno">[CustomerInfo_creditcardnumber]</label>
+        <input type="text" onchange="clearContent(this);" name="ff[id]_ocardno" size="30" class="txtBoxStyle" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: MILITARYSTAR--> 
+          
+    <!--START: GEMONEY-->
+    <div class="geMoney">
+    <h4>
+        <label for="online-[id]">
+            <input type="hidden" value="1" name="ff[id]_isstarcard" />
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="online-[id]" name="payment" type="radio" value="online-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+        <div class="desc-message">[payment_description_message]</div>
+        <div class="gmField">
+        <label for="ff[id]_ocardno">[CustomerInfo_creditcardnumber]</label>
+        <input type="text" onchange="clearContent(this);" name="ff[id]_ocardno" size="30" class="txtBoxStyle" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <input type="hidden" name="ff[id]_ocardexpiresmonth" value="12" />
+        <input type="hidden" name="ff[id]_ocardexpiresyear" value="49" />
+        <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: GEMONEY--> 
+          
+    <!--START: CHECKGATEWAY-->
+    <div class="chkGateway">
+    <h4>
+        <label for="online-[id]">
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="online-[id]" name="payment" type="radio" value="online-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+        <div class="desc-message">[payment_description_message]</div>
+        <div class="chkField">
+        <label for="ff[id]_ochecktype">[CustomerInfo_check-type]</label>
+        <select name="ff[id]_ochecktype" class="txtBoxStyle">
+        [checktypelist]
+        </select>
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+        <div class="chkField">
+        <label for="ff[id]_ocheckaccttype">[CustomerInfo_check-acct-type]</label>
+        <select name="ff[id]_ocheckaccttype" class="txtBoxStyle">
+        [checkaccttypelist]
+        </select>
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+        <div class="chkField">
+        <label for="ff[id]_ocheckrouting">[CustomerInfo_check-routing]</label>
+        <input type="text" name="ff[id]_ocheckrouting" maxlength="9" size="10" class="txtBoxStyle" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+        <div class="chkField">
+        <label for="ff[id]_ocheckaccount">[CustomerInfo_check-acct]</label>
+        <input type="text" name="ff[id]_ocheckaccount" maxlength="30" size="10" class="txtBoxStyle" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: CHECKGATEWAY--> 
+          
+    <!--START: LINKGATEWAY-->
+    <div class="linkGateway">
+    <h4>
+        <label for="online-[id]">
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="online-[id]" name="payment" type="radio" value="online-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+        <div class="desc-message">[payment_description_message]</div>
+        <div class="payment-desc">Pay [payment_description]</div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: LINKGATEWAY--> 
+          
+    <!--START: ELAYAWAYGATEWAY-->
+    <div class="elayawayGateway">
+    <h4>
+        <label for="online-[id]">
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="online-[id]" name="payment" type="radio" value="online-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_description]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+        <div class="desc-message">[payment_description_message]</div>
+        <div class="divElayaway"><a name="eLayAway"></a> <a onclick="eLayaway.button_click({amount:'[lay_order_total]', 
+    merchant_name:'[company_name]',
+    max_lay_length: [max_lay_length],
+    eci_form: 'eci_form',
+    months_field: 'months',
+    payment_frequency_field: 'payment_frequency',
+    currency_code:'[currency_code]'}, event);" href="javascript:void(0);">Select Term</a>
+        <div name="divElayawayInfo" id="divElayawayInfo"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: ELAYAWAYGATEWAY--> 
+          
+    <!--START: CUSTOM-->
+    <div class="customGateway">
+    <h4>
+        <label for="offline-[id]">
+            <input onclick="javascript:checkoutSwitch(false);controlDivPayment('[id]');" id="offline-[id]" name="payment" type="radio" value="offline-[id]" [FIRSTOPTIONCHECKED] />
+            [payment_type]
+        </label>
+    </h4>
+    <div class="clear"></div>
+    <div id="divPaymentOption[id]" name="divPaymentOption" style="display:none;">
+        <div class="payment-desc">[payment_description]</div>
+        <div class="payment-type">[payment_type]</div>
+        <!--START: CUSTOM_FIELD-->
+        <div class="custField">
+        <div class="cust-input">[InputName]</div>
+        <div class="cust-field">[field]</div>
+        <div class="clear"></div>
+        </div>
+        <!--END: CUSTOM_FIELD-->
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: CUSTOM-->
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+<!--END: PAYMENT_BLOCK--> 
+        
+<!--START: VME_NOTSELECTED-->
+<div id="divVmeNotSelected">
+    <div class="payment-desc">[payment_description]</div>
+    <div><!--START: vMeByVisa--> 
+    [vMeByVisaButton] 
+    <script type="text/javascript">
+        if (typeof jQuery == 'undefined')
+            document.write("<script type=\"text/javascript\" src=\"assets/templates/common/js/jquery.min.js\"></" + "script>");
+
+        function myCallbackFunctionForVmeEvents(VmeEventType, eventData) {
+            if (VmeEventType == "purchase.success") {
+                var url = "vmebyvisa.asp?r=purchase.success&s=checkout&no-cache=" + Math.random();
+                var params = "mt=" + eventData.merchTrans;
+                params = params + "&ci=" + eventData.callId;
+                params = params + "&tp=" + eventData.type;
+                params = params + "&st=" + eventData.state;
+                params = params + "&sg=" + eventData.signature;
+                params = params + "&pi=" + eventData.productId;
+                if (eventData.subTotal) {
+                    params = params + "&sta=" + eventData.subTotal.amount;
+                    params = params + "&stc=" + eventData.subTotal.currency;
+                }
+                if (eventData.total) {
+                    params = params + "&tta=" + eventData.total.amount;
+                    params = params + "&ttc=" + eventData.total.currency;
+                }
+
+                jQuery.ajax({
+                    url: url,
+                    dataType: 'html',
+                    type: 'POST',
+                    data: params,
+                    cache: false,
+                    success: function (strResult) {
+                        var arrResult = strResult.split("|");
+                        if (arrResult.length < 2){
+                            alert("Error processing v.me request. Please, try again." + strResult);}
+                        else{
+                            //doPayment();
+                            //document.getElementById("divVmeNotSelected").style.display='none';
+                            document.location.href = "checkout_one.asp";
+                        }
+                    },
+                    error: reportError
+                });
+            }
+        }
+
+        function reportError(jqXHR, textStatus) {
+            if (jqXHR.status > 0) {
+                alert("Error processing v.me request. Please, try again.");
+                //alert(jqXHR.responseText);
+            }
+        }
+</script>
+<!--END: vMeByVisa--></div>
+</div>
+<!--END: VME_NOTSELECTED--> 
+</div>
+<div class="clear"></div>
+<div id="spanCheckout">
+  <div id="divCheckout" name="divCheckout" style="width:80%;display:none;background:#ffffff;border:0px solid black;text-align:center;padding:10px;"> <br />
+    Processing... </div>
+    <a name="checkoutButton"></a>
+    <button type="button" onclick="doCheckout(this.form,'checkoutButton');" class="btn"><i class="icon-basket"></i> [checkout3_submitbutton]</button>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</form>
+<div class="clear"></div>
+<!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="checkoutSinglePageFooter">[CONTENT]</div>
+<!--END: CATEGORY_FOOTER-->
+<form name="myaccountLogin" id="myaccountLogin" action="login.asp?ordertracking=0" method="post">
+    <input type="email" name="email" value="" />
+    <input type="password" autocomplete="off" name="password" />
+    <input type="hidden" name="bypasscaptcha" value="1" />
+</form>
+  <script type="text/javascript">
+      window.setTimeout('showHideShipping_init()',100);
+
+      function showHideShipping_init()
+      {
+          var objBody = getElementById_s('shipping_info');	
+          var intWidth = objBody.clientWidth;
+          if (intWidth == 0)
+              window.setTimeout('showHideShipping_init()',100);
+          else
+              showHideShipping();
+      }
+
+      function submitLoginForm(loginEmail,loginPassword) {
+          document.myaccountLogin.email.value = loginEmail;
+          document.myaccountLogin.password.value = loginPassword;
+          document.myaccountLogin.submit();
+      }
+
+      function fillBillingEmail(strEmail) {
+          jQuery('#billing_email').val(strEmail);
+      }
+
+      //Show/Hide 'Shiping Information'
+      function showHideShippingInfo() {
+          jQuery('#shipping_info').slideToggle();
+      }
+      //Show/Hide 'Apply Coupon'
+      function showApplyCoupon() {
+          jQuery('#divApplyCoupon .coupon-container').slideToggle();
+      }
+      function showCheckoutComments() {
+          jQuery('#divCheckoutComments .chkComments').slideToggle();
+      }
+      //Show/Hide 'Email Confirmation/Password'
+      jQuery(function() {
+          jQuery('#registerGuest').on('click', function() {
+              jQuery('#showEmailPassword').slideToggle();
+          });
+
+          if(jQuery('#billing_email2').length == 0) {
+              jQuery('#divBillingEmail').show();
+          }
+
+          // <!--START: passwordrequired-->
+          jQuery('#registerGuest').prop('checked', true);
+          jQuery('#showEmailPassword').show();
+          // <!--END: passwordrequired-->
+
+          jQuery('.registered_account button').on('click', function() {
+              jQuery('.create_newaccount').hide(100);
+              jQuery('.registered-overview').hide();
+              jQuery('.account_login1 .registered_account').animate({
+                  width: '100%'
+              }, 600);
+              jQuery('.registered-login').fadeIn();
+          });
+
+          jQuery('#btnCancelLogin').on('click', function() {
+              jQuery('.account_login1 .registered_account').animate({
+                  width: '43%'
+              });
+              jQuery('.registered-login').hide();
+              jQuery('.registered-overview').fadeIn();
+              jQuery('.create_newaccount').delay(1000).fadeIn();
+          });
+      });
+ 
+      initCountry('[billing_country]','[billing_state_script]','billing_state','billing_country');
+      if (get_Element('sameAsBilling') != 'undefined' && get_Element('sameAsBilling') != null)
+          initCountry('[shipping_country]','[shipping_state_script]','shipping_state','shipping_country');
+
+      //Every time that there's no state for a selected country, that script deletes the state control and creates another one.
+      //That's why we need to re-create the validation for the state.
+      var billingStateType = document.billing.billing_state.type;
+      if (get_Element('sameAsBilling') != 'undefined' && get_Element('sameAsBilling') != null)
+          var shippingStateType = document.billing.shipping_state.type;
+
+      function check_stateValidator(type)
+      {
+          if (type == 'billing')
+          {
+              if (document.billing.billing_state.type == 'select-one') //billingStateType)
+              {
+
+                  frmvalidator.addValidation("billing_state","req","Please enter/select your billing state");
+                  frmvalidator.addValidation("billing_state","maxlen=50");
+                  billingStateType = document.billing.billing_state.type;
+              }
+          }
+          else
+          {
+              if (document.billing.shipping_state.type == 'select-one')
+              {
+                  frmvalidator.addValidation("shipping_state","req","Please enter/select your shipping state");
+                  frmvalidator.addValidation("shipping_state","maxlen=50");
+                  shippingStateType = document.billing.shipping_state.type;
+              }		
+          }
+      }
+
+      function setValidation()
+      {
+          frmvalidator.clearAllValidations();
+	
+          frmvalidator.addValidation("billing_firstname","req","Please enter your billing First Name");
+          frmvalidator.addValidation("billing_firstname","maxlen=20","Max length for billing First Name is 20");
+
+          frmvalidator.addValidation("billing_lastname","req","Please enter your billing Last Name");
+          frmvalidator.addValidation("billing_lastname","maxlen=20","Max length for billing Last Name is 20");
+
+      	  //<!--START: phonerequiredscript_billing-->
+          frmvalidator.addValidation("billing_phone","maxlen=18","Max length for billing Phone is 18");
+          if (get_Element('billing_country') != 'undefined' && get_Element('billing_country') != null)
+              if (get_Element('billing_country').value == "US")
+                  frmvalidator.addValidation("billing_phone","phone","Invalid phone number.");
+          frmvalidator.addValidation("billing_phone","req","Please enter your billing phone")
+      	  //<!--END: phonerequiredscript_billing-->
+
+          frmvalidator.addValidation("billing_address","maxlen=50");
+          frmvalidator.addValidation("billing_address","req","Please enter your billing address");
+
+          frmvalidator.addValidation("billing_city","maxlen=50");
+          frmvalidator.addValidation("billing_city","req","Please enter your billing city");
+
+          if (get_Element('billing_country').value == "US" || get_Element('billing_state').type == 'select-one')
+          {
+              frmvalidator.addValidation("billing_state","req","Please enter/select your billing state");
+              frmvalidator.addValidation("billing_state","maxlen=50");
+          }
+
+          frmvalidator.addValidation("billing_zip","maxlen=15");
+          frmvalidator.addValidation("billing_zip","req","Please enter your billing zip code");
+	
+          <!--START: emailrequiredscript-->
+          frmvalidator.addValidation("billing_email","maxlen=50","Max length for Email is 50");
+          frmvalidator.addValidation("billing_email","req","Please enter your email address");
+          frmvalidator.addValidation("billing_email","email");		
+          <!--END: emailrequiredscript-->
+	
+          <!--START: confirmemailscript-->
+          if (document.billing.billing_confirmemail != null && document.billing.billing_confirmemail != 'undefined')
+          {
+              frmvalidator.addValidation("billing_confirmemail","maxlen=50","Max length for Email is 50");
+              frmvalidator.addValidation("billing_confirmemail","req","Please confirm your Email.");
+              frmvalidator.addValidation("billing_confirmemail","email","Please confirm your Email.");
+              frmvalidator.setAddnlValidationFunction("confirmationValidation");
+          }
+          <!--END: confirmemailscript-->
+
+          <!--START: passwordrequiredscript-->
+          frmvalidator.addValidation("pass","maxlen=20");
+          frmvalidator.addValidation("pass","req","Please enter your new password (registration is required)");
+          <!--END: passwordrequiredscript-->
+			
+          frmvalidator.addValidation("billing_country","dontselect=0");
+			
+          if (get_Element('sameAsBilling') != 'undefined' && get_Element('sameAsBilling') != null)
+              if (!document.billing.sameAsBilling.checked)
+              {
+                  frmvalidator.addValidation("shipping_firstname","req","Please enter your shipping First Name");
+                  frmvalidator.addValidation("shipping_firstname","maxlen=20","Max length for shipping First Name is 20");
+
+                  frmvalidator.addValidation("shipping_lastname","req","Please enter your shipping Last Name");
+                  frmvalidator.addValidation("shipping_lastname","maxlen=20","Max length for shipping Last Name is 20");
+              	  //<!--START: phonerequiredscript_shipping-->
+                  frmvalidator.addValidation("shipping_phone","maxlen=18","Max length for shipping Phone is 18");
+                  if (get_Element('shipping_country') != 'undefined' && get_Element('shipping_country') != null)
+                      if (get_Element('shipping_country').value == "US")
+                          frmvalidator.addValidation("shipping_phone","phone","Invalid phone number.");
+                  frmvalidator.addValidation("shipping_phone","req","Please enter your shipping phone")
+              	  //<!--END: phonerequiredscript_shipping-->
+                  frmvalidator.addValidation("shipping_address","maxlen=50");
+                  frmvalidator.addValidation("shipping_address","req","Please enter your shipping address");
+
+                  frmvalidator.addValidation("shipping_city","maxlen=50");
+                  frmvalidator.addValidation("shipping_city","req","Please enter your shipping city");
+
+                  if (get_Element('shipping_country').value == "US" || get_Element('shipping_state').type == 'select-one')
+                  {
+                      frmvalidator.addValidation("shipping_state","req","Please enter/select your shipping state");
+                      frmvalidator.addValidation("shipping_state","maxlen=50");
+                  }
+
+                  frmvalidator.addValidation("shipping_zip","maxlen=15");
+                  frmvalidator.addValidation("shipping_zip","req","Please enter your shipping zip code");
+
+                  frmvalidator.addValidation("shipping_country","dontselect=0");		
+              }
+		
+      }
+</script> 
+<script type="text/javascript">
+    //You should create the validator only after the definition of the HTML form
+    var frmvalidator = new Validator("billing");
+    frmvalidator.EnableMsgsTogether();
+
+    function confirmationValidation()
+    {
+        if(get_Element("billing_email").value != get_Element("billing_confirmemail").value)
+        {
+            alert('The Email does not match.');
+            return false;
+        }
+        return true;
+    }
+</script> 
+  
+<!--START: ELAYAWAYGATEWAYSCRIPTS--> 
+<script type="text/javascript" src="https://app2.elayaway.com/javascripts/prototype.js"></script> 
+<script type="text/javascript" src="https://app2.elayaway.com/javascripts/elayaway.js"></script> 
+<script type="text/javascript">
+    function eLayAwayPost() {
+        //Hide the calculator
+        var myDivCalculator = document.getElementById("elayaway_configurator0");
+        myDivCalculator.style.display = 'none';	
+	
+        //Write the selected payment configuration
+        var myDivElayaway = document.getElementById("divElayawayInfo");
+        var intMonths = 0;
+        intMonths = eval(parseInt(document.eci_form.months.value)+1);
+        var myString = "Selected term: " + intMonths + " months";
+        myDivElayaway.innerHTML = myString;
+	
+        document.eci_form.elayawayconfigured.value = "1";
+    }
+</script>
+  <form name="eci_form" id="eci_form" method="POST" action="javascript:eLayAwayPost();">
+    <input type="hidden" value="0" name="elayawayconfigured" id="elayawayconfigured"/>
+    <input type="hidden" value="" name="months" id="months"/>
+    <input type="hidden" value="" name="payment_frequency" id="payment_frequency"/>
+  </form>
+  <!--END: ELAYAWAYGATEWAYSCRIPTS--> 
+  
+  <!-- /* BEGIN TEMPLATES BLOCKS */  --> 
+  
+  <!--START: addressType-->
+  <div class="addressType">
+    <label for="shipping_addresstype">[CustomerInfo_address_type]</label>
+    <select name="shipping_addresstype" id="shipping_addresstype" class="txtBoxStyle" onChange="check_address('addresstype');">
+    [addressTypeDropDown]
+    </select>
+    <div class="clear"></div>
+  </div>
+  <!--END: addressType--> 
+  <!--START: CARRIER--> 
+  <!--START: displayblock-->
+  <div class="carrierDisplay">
+    <div class="option-shipper"><img src="/assets/templates/common/images/[OPTION-SHIPPER].gif" alt="" /></div>
+    <div class="display-rates button right"><a href="javascript:click_ship();" onclick="controlDivShipping('[OPTION-SHIPPER]');" class="icon-btn icon-btn-refresh">Display Rates</a></div>
+    <div class="clear"></div>
+  </div>
+  <!--END: displayblock-->
+  <div name="divShipping[OPTION-SHIPPER]" id="divShipping[OPTION-SHIPPER]" class="ship" style="display:none;"> 
+    <!--START: SHIPPING_OPTION-->
+    <div class="shippingOption">
+      <input type="radio" name="shipping" value="[ID]" [SELECTED] id="radio_ship" onClick="select_shipping([ID]);" />
+      <div class="shipper-option-desc"><!--[OPTION-SHIPPER]-->[OPTION-DESCRIPTION]</div>
+      <div class="shipper-option-price2">[OPTION-PRICE2]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: SHIPPING_OPTION--> 
+  </div>
+  <!--END: CARRIER--> 
+
+  <!--START: INSURANCE-->
+  <div class="divInsurance">
+    <h4>[checkout2_insurance]</h4>
+    <div class="insurField">
+        <input type="radio" name="insurance" value="yes" onclick="javascript:select_shipping(jQuery('input[name=shipping]:checked', '#billing').val());" [insurance_selected] />
+        <label for="insurance">(+[insurance_cost]) [checkout2_insurance-selected]</label>
+        <div class="clear"></div>
+    </div>
+    <!--START: optional--> 
+    <div class="insurField">
+        <input type="radio" name="insurance" onclick="javascript:select_shipping(jQuery('input[name=shipping]:checked', '#billing').val());" value="no" [no_insurance_selected] />
+        <label for="insurance">[checkout2_insurance-not-selected]</label>
+        <div class="clear"></div>
+    </div>
+    <!--END: optional-->
+  </div>
+  <!--END: INSURANCE-->
+
+  <!--START: checkout_questions_templates-->
+  <div class="chkQuestionsTemplates">
+  <!--START: textarea-format-->
+    <div class="chk-questions-section">
+      <div class="textarea-format">
+          <!--START: req[id]--> 
+          <div class="required"> 
+            <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          </div>
+          <!--END: req[id]-->
+          <label for="cq[id]">[question]</label>
+          <textarea cols="30" rows="5" name="cq[id]" class="txtBoxStyle">[answer]</textarea>
+          <div class="clear"></div>
+      </div>
+    </div>
+  <!--END: textarea-format--> 
+  <!--START: text-format-->
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+      <input type="text" size="30" name="cq[id]" value="[answer]" class="txtBoxStyle" />
+      <div class="clear"></div>
+    </div>
+  <!--END: text-format--> 
+  <!--START: checkbox-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+        <label class="checkbox">
+            <input type="checkbox" name="cq[id]" class="txtBoxStyle" value="[answer]" [selected] />
+            [question]
+        </label>
+      <div class="clear"></div>
+    </div>
+  <!--END: checkbox-format--> 
+  <!--START: radio-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+      <!--START: option-->
+        <label class="radio">
+        <input type="radio" name="cq[id]" value="[option]" class="txtBoxStyle" [selected] />
+        [option]</label>
+      <!--END: option-->
+      <div class="clear"></div>
+    </div>
+  <!--END: radio-format--> 
+  <!--START: dropdown-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+        <label class="select">
+            <select name="cq[id]">
+            <!--START: option-->
+            <option value="[option]" [selected]>[option]</option>
+            <!--END: option-->
+            </select>
+        </label>
+      <div class="clear"></div>
+    </div>
+  <!--END: dropdown-format-->
+  <div class="clear"></div>
+  </div>
+  <!--END: checkout_questions_templates-->
+  <div class="clear"></div>
+</section>
+
+<!--START: verByVisa--> 
+<script type="text/javascript">
+    function openVerByVisa(strUrl) {
+        add_overlay("billing_div", 1);
+        var elt = jQuery('#divVerByVisa');
+        document.getElementById("iframeVisa").src = strUrl;
+
+        // calculate the center of the page using the browser and element dimensions
+        var y = (jQuery(document).height() - jQuery('#divVerByVisa').height()) / 2;
+        var x = (jQuery(document).width() - jQuery('#divVerByVisa').width()) / 2;
+
+        // set the style of the element so it is centered
+        var styles = { position: 'absolute',
+            top: y + 'px',
+            left: x + 'px',
+            display: 'block'
+        };
+
+        elt.css(styles);
+        elt.scrollTo();
+    }
+    function closeVerByVisa(bolDoCheckout, strMsg) {
+        remove_overlay("billing_div");
+        var elt = jQuery('#divVerByVisa');
+        var styles = { position: 'absolute',
+            top: '0px',
+            left: '0px',
+            display: 'none'
+        };
+        elt.css(styles);
+        document.getElementById("iframeVisa").src = "assets/images/spacer.gif";
+
+        if (bolDoCheckout) {
+            doCheckout(document.billing);
+        }
+        else {
+            if (strMsg != "") {
+                var objDiv = get_Element('divCheckout');
+                objDiv.style.display = 'block';
+                objDiv.innerHTML = strMsg;
+            }
+        }
+    }
+</script>
+<div id="divVerByVisa" style="display:none;"> <br />
+  <div style="background-color:#fff; text-align:right; border: 1px solid #ccc; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);"> <a href="#" onclick="javascript:closeVerByVisa();//window.location.reload();">close</a>&nbsp;&nbsp;
+    <div style="text-align:center;">
+      <iframe id="iframeVisa" name="iframeVisa" src="assets/images/spacer.gif" width="750" height="450" scrolling="no" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+<!--END: verByVisa--> 
+
+<!--START: paypaladvance-->
+<form method="post" action="https://payflowlink.paypal.com" name="frmPayPalAdv" id="frmPayPalAdv" target="iframePayPalAdv">
+  <input type="hidden" name="SECURETOKEN" value="">
+  <input type="hidden" name="SECURETOKENID" value="" >
+</form>
+<script type="text/javascript">
+    function openPayPalAdv(strToken, strTokenId) {
+        var elt = document.getElementById("divPayPalAdv");
+
+        //document.getElementById("iframePayPalAdv").src = "https://payflowlink.paypal.com/?SECURETOKEN=" + strToken + "&SECURETOKENID=" + strTokenId;
+        document.getElementById("frmPayPalAdv").SECURETOKEN.value = strToken;
+        document.getElementById("frmPayPalAdv").SECURETOKENID.value = strTokenId;
+        document.getElementById("frmPayPalAdv").submit();
+
+        elt.style.display = 'block';
+    }
+    function checkoutSwitch(bolHide) {
+        if (document.getElementById("spanCheckout")) {
+            if (bolHide)
+                document.getElementById("spanCheckout").style.display = 'none';
+            else
+                document.getElementById("spanCheckout").style.display = 'block';
+        }
+    }
+</script> 
+<!--END: paypaladvance--> 
+
+<!--START: kount-->
+<iframe width="1" height="1" frameborder="0" scrolling="no" src="/logo_k.htm?m=[kount_merchantid]&s=[kount_sessionid]"> <img width="1" height="1" src="/logo_k.gif?m=[kount_merchantid]&s=[kount_sessionid]" alt="" /> </iframe>
+<!--END: kount-->
+
+<input type="hidden" name="hdnAddrressValidatorResult" id="hdnAddrressValidatorResult" value="" />
+<div id="divAddrressValidator" style="display:none;"> 
+  <!--START: AddressValidatorBlock-->
+  <div style="background-color: #FFF; padding: 30px; min-height: 210px; -webkit-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.5); -moz-box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.5); box-shadow: 0px 0px 12px rgba(50, 50, 50, 0.5);"> 
+    <!--START: AddressValidatorBlock_ValidationFailed-->
+    <div>[result_msg]</div>
+    <!--END: AddressValidatorBlock_ValidationFailed--> 
+    <!--START: AddressValidatorBlock_ValidationSuggestion-->
+    <div> [result_msg] 
+      <!--START: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+      <br />
+      <br />
+      <strong>[checkout1_AddressValidator_SuggestedAddress]</strong> <a style="text-decoration:underline;" href="#" onclick="javascript:selectAddress('[AddrressValidator_address1]', '[AddrressValidator_address2]', '[AddrressValidator_city]', '[AddrressValidator_state]', '[AddrressValidator_zip]', '[AddrressValidator_addresstype]', '[AddrressValidator_rdi]');">[AddrressValidator_address], [AddrressValidator_city], [AddrressValidator_state], [AddrressValidator_zip]</a> 
+      <!--END: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+    </div>
+    <!--END: AddressValidatorBlock_ValidationSuggestion--> 
+    <!--START: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br />
+    <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:addressValidatorContinue('[AddrressValidator_addresstype]');">[checkout1_AddressValidator_Continue]</a> <br />
+    <!--END: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br />
+    <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:closeAddressValidatorModal();">[checkout1_AddressValidator_Close]</a></div>
+  <!--END: AddressValidatorBlock--> 
+</div>
+
+<!--START: VME_SELECTED_SCRIPT--> 
+<script type="text/javascript">
+    function add_vme_overlay(panel)
+    {
+        var objBody = getElementById_s(panel);
+        var objOverlay = document.createElement("div");
+		
+        objOverlay.setAttribute('id','overlay_'+panel);	
+        objOverlay.className='overlay';
+        objOverlay.style.position = 'absolute';
+        objOverlay.style.textAlign = 'center';
+        objOverlay.style.width = objBody.clientWidth+"px";
+        objOverlay.style.height = objBody.clientHeight+"px";
+        objBody.insertBefore(objOverlay, objBody.firstChild);
+        objOverlay.style.display = 'block';
+
+        get_Element('overlay_'+panel).innerHTML = '<table border=\"0\" width=\"100%\"><tr><td style=\"text-align: left;\"><div style=\"margin:10px 0px 0px 0px;\"><img src=\"assets/templates/common/images/vme_accpt_mark.png\"></div></td></tr></table>';
+    } 	
+    add_vme_overlay("billing_info2");
+    add_vme_overlay("billing_info2");
+    add_vme_overlay("billing_info2");
+    add_vme_overlay("billing_info2");
+</script> 
+<!--END: VME_SELECTED_SCRIPT-->

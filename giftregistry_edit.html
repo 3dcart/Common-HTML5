@@ -1,0 +1,158 @@
+<section id="giftregistryEdit">
+  <h1 class="page_headers">[giftregistry_create]</h1>
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="giftregistryEditHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="giftregistry_edit.asp" name="frmForm" id="frmForm" method="post">
+    <input type="hidden" id="action" name="action" value="" />
+    <!--START: ERROR_MSG-->
+    <div class="error pad10 boxShadow">[strErrMsg]</div>
+    <!--END: ERROR_MSG-->
+    <div class="header">
+      <h3>[giftregistry_create-giftinfo]</h3>
+      <div class="clear"></div>
+    </div>
+    <div class="giftregistryeditInfo pad10 boxShadow">
+      <div class="giftregField">
+        <label for="txtRegName">[giftregistry_create-name]*</label>
+        <input type="text" id="txtRegName" name="txtRegName" maxlength="50" size="50" value="[regname]" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="drpRegDate">[giftregistry_create-eventdate]*</label>
+        <select name="drpRegMonth" id="drpRegMonth" tabindex="2" class="txtBoxStyle">
+          <option value="">Month</option>
+          <!--START: drpRegMonth-->
+          <option value="[intMonth]" [selected]>[month]</option>
+          <!--END: drpRegMonth-->
+        </select>
+        <select name="drpRegDay" id="drpRegDay" tabindex="3" class="txtBoxStyle">
+          <option value="">Day</option>
+          <!--START: drpRegDay-->
+          <option value="[day]" [selected]>[day]</option>
+          <!--END: drpRegDay-->
+        </select>
+        <select name="drpRegYear" id="drpRegYear" tabindex="4" class="txtBoxStyle">
+          <option value="">Year</option>
+          <!--START: drpRegYear-->
+          <option value="[year]" [selected]>[year]</option>
+          <!--END: drpRegYear-->
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="txtRegPassword">[giftregistry_create-password]<!--START: giftregistry_password--><span>*</span><!--END: giftregistry_password--></label>
+        <input type="text" id="txtRegPassword" name="txtRegPassword" maxlength="10" size="8" value="[regpassword]" tabindex="5" class="txtBoxStyle" />
+        <div class="passwordinstructions">[giftregistry_create-passwordinstructions]</div>
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="">[giftregistry_create-message]</label>
+        <textarea rows="3" cols="50" id="txtRegMessage" name="txtRegMessage" tabindex="6" class="txtareaStyle">[regmessage]</textarea>
+        <div class="messageinstructions">[giftregistry_create-messageinstructions]</div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="header">
+      <h3>[giftregistry_create-yourinfo]</h3>
+      <div class="clear"></div>
+    </div>
+    <div class="giftregistryYourInfo pad10 boxShadow">
+      <div class="label">[giftregistry_create-firstname]</div>
+      <div class="text">[firstname]</div>
+      <div class="clear"></div>
+      <div class="label">[giftregistry_create-lastname]</div>
+      <div class="text">[lastname]</div>
+      <div class="clear"></div>
+      <div class="label">[giftregistry_create-email]</div>
+      <div class="text">[email]</div>
+      <div class="clear"></div>
+    </div>
+    <div class="header">
+      <h3>[giftregistry_create-shippingoptions]</h3>
+      <div class="clear"></div>
+    </div>
+    <div class="giftregistryShipOptions pad10 boxShadow">
+      <input type="checkbox" id="regShipMyAddress" name="regShipMyAddress" onclick="javascript:controlAddressBtn(this);" value="1" [regShipMyAddressChecked] />
+      <div class="giftreg-ship-address"><span>[giftregistry_create-shiptomyaddress]</span>[giftregistry_create-shiptomyaddressinstructions]</div>
+      <div class="clear"></div>
+      <div id="divSelectedAddress" name="divSelectedAddress" style="display:[divSelectedAddressStyle];"> 
+        <!--START: selectedAddress-->
+        <p><strong>[giftregistry_create-selected-address]</strong></p>
+        <p>[address_alias]</p>
+        <p>[shipping_firstname] [shipping_lastname]</p>
+        <!--START: shipping_address2-->
+        <p>[shipping_address2]</p>
+        <!--END: shipping_address2-->
+        <p>[shipping_city], [shipping_state] [shipping_zip] [shipping_country]</p>
+        <p>[shipping_phone]</p>
+        <div class="clear"></div>
+        <!--END: selectedAddress--> 
+      </div>
+      <div class="clear"></div>
+      <div id="divChooseAddress" name="divChooseAddress" class="button left" style="display:[divChooseAddressStyle];"><a href="javascript:chooseAddress();" class="icon-btn icon-btn-next">[giftregistry_create-click-choose-address]</a></div>
+      <div class="clear"></div>
+    </div>
+    <div class="save-cancel-button">
+      <input type="button" id="cmdCancel" name="cmdCancel" onclick="javascript:location.href='myaccount.asp';" class="btn" value="Cancel" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      <input type="button" id="cmdSave" name="cmdSave" onclick="javascript:saveRegistry();" class="btn" value="[giftregistry_create-save]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="giftregistryEditFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+var addReplyClick=0;
+function controlAddressBtn(objChkBox)
+{
+	if (objChkBox.checked)
+	{
+		window.document.getElementById('divChooseAddress').style.display='';
+		window.document.getElementById('divSelectedAddress').style.display='';
+	}
+	else
+	{
+		window.document.getElementById('divChooseAddress').style.display='none';
+		window.document.getElementById('divSelectedAddress').style.display='none';
+	}
+}
+
+function submitForm(strAction)
+{
+	window.document.body.style.cursor = 'wait';
+	if(window.document.activeElement){window.document.activeElement.style.cursor='wait'; }
+	
+	document.frmForm.action.value = strAction;
+	document.frmForm.submit();
+}
+
+function chooseAddress()
+{
+	submitForm('chooseaddress');
+}
+
+function saveRegistry()
+{
+	var strMsg = "";
+	if (document.frmForm.txtRegName.value.trim() == "")
+		strMsg += " - [giftregistry_create-name] cannot be blank.\n"
+	if (document.frmForm.drpRegMonth.value.trim() == "" || document.frmForm.drpRegDay.value.trim() == "" || document.frmForm.drpRegYear.value.trim() == "" )
+		strMsg += " - [giftregistry_create-eventdate] cannot be blank.\n"
+	if (document.frmForm.txtRegPassword.value.trim() == "" && '[giftregistry_password]' == '1')
+		strMsg += " - [giftregistry_create-password] cannot be blank.\n"
+	if (strMsg != ""){
+		alert(strMsg);
+		return false;
+	}
+	if (addReplyClick == 0){
+		addReplyClick = 1;
+		submitForm('save');
+	}
+}
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+</script>

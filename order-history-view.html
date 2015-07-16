@@ -1,0 +1,317 @@
+<link rel="stylesheet" href="assets/templates/common-html5/css/layout.css" type="text/css" media="print" /><style type="text/css" media="print">
+#orderHistoryView {
+    font-size: 12px;
+    line-height: normal;
+}
+.pad10 {
+    padding: 0;
+}
+.boxShadow {
+    border: none;
+}
+#orderHistoryView p {
+    margin: 0;
+	padding: 0;
+}
+.orderDetailsBlock .right-col {
+    width: 50%;
+}
+</style>
+<script type="text/javascript">
+function saveRecurring(objForm) {
+	var strMsg = "";
+
+	if (objForm.next_order.value.trim() == '')
+		strMsg += " - [recurringorders_next-order] cannot be blank.\n";
+
+	if (strMsg != "") {
+		alert(strMsg);
+		return false;
+	}
+
+	objForm.submit();
+}
+function cancelRecurring(objForm) {
+	var rep = confirm("[recurringorders_cancel-confirm]");
+	if (rep) {
+		objForm.hdnAction2.value = "cancelrecurring";
+		objForm.submit();
+	}
+}
+String.prototype.trim = function () {
+	return this.replace(/^\s+|\s+$/g, "");
+}		
+</script>
+
+<section id="orderHistoryView">
+<div class="left"><a href="#" onclick="window.open('ordertracking.asp?action=view&id=[orderid]&printable=1', name , 'width=550,height=600,toolbar=yes,scrollbars=yes' );"><i class="icon-print"></i>[orderhistory_printableversion]</a></div>
+<div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Click Here to go Back</a></div>
+<div class="clear"></div>
+  <!--START: header-->
+  <div class="header">
+    <h3 class="center">Order [invoicenum_prefix][invoicenum]</h3>
+  </div>
+  <!--END: header--> 
+  <!--START: RECURRINGORDER-->
+  <div class="header">
+    <h3>[recurringorders_recurringordersettings-header]</h3>
+  </div>
+  <div class="recurringOrderForm pad10 boxShadow">
+    <form action="ordertracking.asp?action=view&id=[orderid]" method="post" name="frmRecurring" id="frmRecurring">
+      <input type="hidden" name="hdnAction2" id="hdnAction2" value="updaterecurring" />
+      <input type="hidden" name="hdnNextOrder" id="hdnNextOrder" value="[next_order_encrypted]" />
+      <div class="left-col">
+        <div class="oviewField">
+          <label for="recurring_frequency">[recurringorders_frequency]:</label>
+          <select name="recurring_frequency" class="txtBoxStyle" id="recurring_frequency">
+            [recurring_frequency]
+          </select>
+          <div class="clear"></div>
+        </div>
+        <div class="oviewField">
+          <label for="next_order">[recurringorders_next-order]:</label>
+          <input type="text" name="next_order" value="[next_order_date]" size="8" maxlength="10" class="txtBoxStyle" id="next_order" />
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="oviewField">
+          <label for="recurring_payment">[recurringorders_payment]:</label>
+          <select name="recurring_payment" class="txtBoxStyle" id="recurring_payment">
+            [recurring_payment]
+          </select>
+          <div class="clear"></div>
+        </div>
+        <div class="save-cancel-button">
+          <input type="button" class="btn" onclick="saveRecurring(this.form);" value="[recurringorders_save-button]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'"/>
+          <input type="button" class="btn" onclick="cancelRecurring(this.form);" value="[recurringorders_cancel-button]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'"/>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </form>
+  </div>
+  <!--END: RECURRINGORDER--> 
+  <!------ START: Confirmation ------> 
+  <!--START: order_details-->
+  <div class="customerInfoBlock"> 
+    <!--start customer info block-->
+    <div class="left-col"> 
+      <!--START: invoicelogo-->
+      <div class="invoice-logo"><img src="../[invoicelogo]" alt="[company]" /></div>
+      <!--END: invoicelogo-->
+      <p>[company]</p>
+      <p>[address1]</p>
+      <!--START: address2-->
+      <p>[address2]</p>
+      <!--END: address2-->
+      <p>[city], [state] [zip]</p>
+    </div>
+    <!--end customer info block--> 
+    <!--start invoice info block-->
+    <div class="right-col">
+      <div class="label">[invoice_dateordered]</div>
+      <div class="text">[odate]</div>
+      <div class="clear"></div>
+      <div class="label">[invoice_ordernum]</div>
+      <div class="text">[invoicenum_prefix][invoicenum]</div>
+      <div class="clear"></div>
+      <!--START: salesperson-->
+      <div class="label">Sales Person</div>
+      <div class="text">[salesperson]</div>
+      <div class="clear"></div>
+      <!--END: salesperson--> 
+    </div>
+    <!--end invoice info block-->
+    <div class="clear"></div>
+  </div>
+  <div class="billingBlock"> 
+    <!--start billing block-->
+    <div class="left-col">
+      <h4>[invoice_billingaddress]</h4>
+      <p>[ofirstname] [olastname]</p>
+      <!--START: ocompany-->
+      <p>[ocompany]</p>
+      <!--END: ocompany-->
+      <p>[oaddress]</p>
+      <!--START: oaddress2-->
+      <p>[oaddress2]</p>
+      <!--END: oaddress2-->
+      <p>[ocity], [ostate] [ozip] - [ocountry]</p>
+      <!--START: ophone-->
+      <p>[ophone]</p>
+      <!--END: ophone--> 
+      <!--START: oemail-->
+      <p>[oemail]</p>
+      <!--END: oemail--> 
+    </div>
+    <!--end billing block--> 
+    <!--start shipping block-->
+    <div class="right-col">
+      <h4>[invoice_shippingaddress]</h4>
+      <!--START: shipping_address-->
+      <p>[oshipfirstname] [oshiplastname]</p>
+      <!--START: oshipcompany-->
+      <p>[oshipcompany]</p>
+      <!--END: oshipcompany-->
+      <p>[oshipaddress]</p>
+      <!--START: oshipaddress2-->
+      <p>[oshipaddress2]</p>
+      <!--END: oshipaddress2-->
+      <p>[oshipcity], [oshipstate] [oshipzip] - [oshipcountry]</p>
+      <!--END: shipping_address--> 
+      <!--START: shipping_multiple--> 
+      <!--START: shipment-->
+      <p>Shipment #[num] - [oshipfirstname] [oshiplastname]</p>
+      <!--END: shipment--> 
+      <!--END: shipping_multiple--> 
+    </div>
+    <!--end shipping block-->
+    <div class="clear"></div>
+  </div>
+  <div class="shippingInfoBlock"> 
+    <!--START: shipping_info-->
+    <div class="label">[invoice_shipmethod]</div>
+    <div class="text">[oshipmethod]</div>
+    <div class="clear"></div>
+    <!--START: trackingcode-->
+    <div class="label">[invoice_trackingnum]:</div>
+    <div class="text"><a href="shiptracking.asp?trackingnumber=[trackingcode]" target="new">[trackingcode]</a></div>
+    <div class="clear"></div>
+    <!--END: trackingcode--> 
+    <!--START: oshippeddate-->
+    <div class="label">[invoice_shippeddate]</div>
+    <div class="text">[oshippeddate]</div>
+    <div class="clear"></div>
+    <!--END: oshippeddate--> 
+    <!--END: shipping_info--> 
+    <!--START: opaymethod-->
+    <div class="label">[invoice_paymenttype]</div>
+    <div class="text">[opaymethod]</div>
+    <div class="clear"></div>
+    <!--END: opaymethod--> 
+    <!--START: coupon-->
+    <div class="label">[invoice_discounts]</div>
+    <div class="text">[invoice_coupon]: [coupon] - [coupondiscount]</div>
+    <div class="clear"></div>
+    <!--END: coupon--> 
+  </div>
+  <!--START: RMAButton-->
+  <div class="addnew-rma-button">
+    <input type="button" class="btn" onclick="window.location.href='rma_new.asp?oid=[orderid]'" value="[shoppingcart_rma-btn-addnew]"  onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+  </div>
+  <div class="clear"></div>
+  <!--END: RMAButton--> 
+  <!--END: order_details-->
+  <div class="invoiceTable pad10 boxShadow">
+    <div class="titles2">
+      <div class="invoice-id">[shoppingcart_itemid]</div>
+      <div class="invoice-items">[shoppingcart_items]</div>
+      <div class="invoice-price">[shoppingcart_price]</div>
+      <div class="invoice-qty">[shoppingcart_quantity]</div>
+      <div class="invoice-total">[shoppingcart_total]</div>
+      <div class="clear"></div>
+    </div>
+    <!--START: shipment_header-->
+    <div class="shipmentTable">
+      <div class="ship-num">Shipment #[num]</div>
+      <div class="ship-info"><span>[oshipfirstname] [oshiplastname]<!--START: oshipcompany-->[oshipcompany]<!--END: oshipcompany--></span> <span>[oshipaddress] [oshipaddress2] [oshipcity], [oshipstate] [oshipzip] [oshipcountry]</span></div>
+      <div class="ship-method"><span><!--START: oshipmethod--><strong>[invoice_shipmethod]</strong> [oshipmethod]<!--END: oshipmethod--></span> <span><!--START: trackingcode--><strong>[invoice_trackingnum]</strong> [trackingcode]<!--END: trackingcode--></span></div>
+      <div class="clear"></div>
+    </div>
+    <!--END: shipment_header--> 
+    <!--START: items-->
+    <div class="row">
+      <div class="invoice-id">[id]</div>
+      <div class="invoice-items">[itemname]&nbsp;<!--START: edownload--><span><a href="[store_url]/order_eproduct.asp?action=edownload&eid=[orderkey]">Click Here to Download</a></span><!--END: edownload--></div>
+      <div class="invoice-price">[unitprice]</div>
+      <div class="invoice-qty">[numitems]</div>
+      <div class="invoice-total">[subtotal]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: items-->
+    <div class="orderDetailsBlock">
+      <div class="left-col"> 
+        <!--START: ocomment-->
+        <div class="ocomment"><strong>[invoice_ordercomments]</strong>
+          <p>[ocomment]</p>
+        </div>
+        <!--END: ocomment--> 
+        <!--START: invoice_terms-->
+        <div class="invoice_terms">[invoice_terms]</div>
+        <!--END: invoice_terms--> 
+      </div>
+      <div class="right-col">
+        <div class="label">[shoppingcart_subtotal]:</div>
+        <div class="text">[subtotal]</div>
+        <div class="clear"></div>
+        <div class="label">[shoppingcart_discount]:</div>
+        <div class="text">[discounts]</div>
+        <div class="clear"></div>
+        <!--START: TAX-->
+        <div class="label">[shoppingcart_taxes]:</div>
+        <div class="text">[tax]</div>
+        <div class="clear"></div>
+        <!--END: TAX--> 
+        <!--START: TAX2-->
+        <div class="label">[shoppingcart_taxes2]:</div>
+        <div class="text">[tax2]</div>
+        <div class="clear"></div>
+        <!--END: TAX2--> 
+        <!--START: TAX3-->
+        <div class="label">[shoppingcart_taxes3]:</div>
+        <div class="text">[tax3]</div>
+        <div class="clear"></div>
+        <!--END: TAX3-->
+        <div class="label">[shoppingcart_shipping]:</div>
+        <div class="text">[shipping]</div>
+        <div class="clear"></div>
+        <div class="label">[shoppingcart_total]:</div>
+        <div class="text">[total]</div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!--START: GIFTCERTS-->
+    <strong>[shoppingcart_giftcertificate]:</strong>
+    [GIFTCERTS]
+    <strong>[shoppingcart_balance]:</strong>
+    [BALANCE]
+    <!--END: GIFTCERTS-->
+    <div class="clear"></div>
+  </div>
+  <!------ END: Confirmation ------> 
+  <!--START: rewards-->
+  <div class="header">
+    <h3>Rewards</h3>
+  </div>
+  <div class="rewardsView pad10 boxShadow"> 
+    <!--START: rwdPointsRewarded--> 
+    <strong>Points rewarded:</strong> [rwdPointsRewarded] &nbsp; <!--START: rwdPointsDetailsLink-->[<a href="reward_detail.asp">view points details</a>]<!--END: rwdPointsDetailsLink--> 
+    <!--END: rwdPointsRewarded--> 
+    <!--START: rwdPointsUsed--> 
+    <strong>Points used in this order:</strong> [rwdPointsUsed] &nbsp; <!--START: rwdPointsDetailsLink-->[<a href="reward_detail.asp">view points details</a>]<!--END: rwdPointsDetailsLink--> 
+    <!--END: rwdPointsUsed--> 
+  </div>
+  <!--END: rewards--> 
+  <!--START: RMA-->
+  <div class="header">
+    <h3>[account_rma-header]<a name="rma"></a></h3>
+  </div>
+  <div class="viewRma">
+    <div class="titles2">
+      <div class="rma-id">[rma_header-rmanum]</div>
+      <div class="rma-date">[rma_header-rmadate]</div>
+      <div class="rma-status">[rma_header-rmastatus]</div>
+      <div class="clear"></div>
+    </div>
+    <!--START: RmaItems-->
+    <div class="row">
+      <div class="rma-id"><a href="my_rma.asp?oid=[OrderId]&amp;r=[idRma]">[idRma]</a></div>
+      <div class="rma-date"><a href="my_rma.asp?oid=[OrderId]&amp;r=[idRma]">[Date]</a></div>
+      <div class="rma-status"><a href="my_rma.asp?oid=[OrderId]&amp;r=[idRma]">[RMAStatus]</a></div>
+      <div class="clear"></div>
+    </div>
+    <!--END: RmaItems--> 
+  </div>
+  <!--END: RMA-->
+  <div class="clear"></div>
+</section>

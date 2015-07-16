@@ -1,0 +1,127 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	#upsTracking td:nth-of-type(1):before { content: "Date / Time"; }
+	#upsTracking td:nth-of-type(2):before { content: "Description"; }
+	#upsTracking td:nth-of-type(3):before { content: "Location"; }
+}
+</style>
+<script type="text/javascript">
+<!--
+function viewlicense()
+{
+	var windowhtml= '<html><body><table border="0" width="100%"><tr><td><img src="/admin/templates/images/ups_logo.gif"  alt="UPS"></td><td><font size="3" face="Verdana"><strong>UPS Tracking Terms and Conditions</strong></td>	</tr>	<tr>		<td colspan="2"><font size="1" face="Verdana">The UPS package tracking systems accessed via this Web Site (the &quot;Tracking Systems&quot;) and tracking information obtained through this Web Site (the &quot;Information&quot;) are the private property of UPS. UPS authorizes you to use the Tracking Systems solely to track shipments tendered by or for you to UPS for delivery and for no other purpose. Without limitation, you are not authorized to make the Information available on any web site or otherwise reproduce, distribute, copy, store, use or sell the Information for commercial gain without the express written consent of UPS. This is a personal service, thus your right to use the Tracking Systems or Information is non-assignable.';
+	windowhtml+='Any access or use that is inconsistent with these terms is unauthorized and strictly prohibited.</td></tr><tr><td colspan="2"><font size="1" face="Verdana">Copyright&nbsp;&copy; 1994-2003 United Parcel Service of America, Inc. All rights reserved.</td>	</tr>	<tr>		<td colspan="2">		<p align="center"><font face="Arial"><b><a href="#" onclick="self.close();">Close Window</a></b></td>	</tr></table></body></html>';
+
+	var lwindow = window.open("","license",'menubar=no, scrollbars=yes, width=500, height=270, directories=no,location=no,resizable=yes,status=no,toolbar=no');
+	lwindow.document.open();
+	lwindow.document.write(windowhtml);
+	lwindow.document.close();
+}
+
+
+function checkaccept()
+{
+  if (document.form1.agree.checked == false)
+  {
+    alert("You must accept the UPS Tracking Terms and conditions by selecting the checkbox below.");
+    return (false);
+  }else{
+	document.form1.submit();
+  }
+  return (true);
+}
+//-->
+</script>
+
+<section id="upsTracking">
+  <div class="header">
+    <h3>UPS Tracking Tool</h3>
+    <div class="right logo"><img src="/admin/templates/images/ups_logo.gif" alt="UPS" /></div>
+    <div class="clear"></div>
+  </div>
+  <!--START: results-->
+  <div class="titles2">
+    <div class="detail-results">Tracking Details: [trackno]</div>
+  </div>
+  <div class="left-col"> 
+    <!--START: shipper_number-->
+    <div class="label">Shipper Number:</div>
+    <div class="text">[shipper_number]</div>
+    <div class="clear"></div>
+    <!--END: shipper_number--> 
+    <!--START: service_description-->
+    <div class="label">Service Description:</div>
+    <div class="text">[service_description]</div>
+    <div class="clear"></div>
+    <!--END: service_description--> 
+    <!--START: delivery_date-->
+    <div class="label">Sched. Delivery Date:</div>
+    <div class="text">[delivery_date]</div>
+    <div class="clear"></div>
+    <!--END: delivery_date--> 
+    <!--START: redelivery_date-->
+    <div class="label">Re-Sched. Delivery Date:</div>
+    <div class="text">[redelivery_date]</div>
+    <div class="clear"></div>
+    <!--END: redelivery_date--> 
+  </div>
+  <div class="right-col"> 
+    <!--START: shipper_address-->
+    <div class="shipper-address">
+      <div class="label">Shipper Address:</div>
+      <div class="text">[shipper_address]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: shipper_address--> 
+    <!--START: shipto_address-->
+    <div class="shipto-address">
+      <div class="label">Ship-To Address:</div>
+      <div class="text">[shipto_address]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: shipto_address--> 
+  </div>
+  <div class="clear"></div>
+  <div class="trackingStatus pad10 boxShadow">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="date-time">Date / Time</th>
+			<th class="desc">Description</th>
+			<th class="loc">Location</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: activity-->
+		<tr class="row">
+			<td class="date-time">[date_time]</td>
+			<td class="desc">[description]</td>
+			<td class="loc">[location]&nbsp;</td>
+		</tr>
+		<!--END: activity-->
+		</tbody>
+	</table> 
+  </div>
+  <!--END: results-->
+  <div class="trackingModule pad10 boxShadow">
+    <form method="post" action="shiptracking.asp" name="form1">
+      <div class="trackingField">
+        <label for="trackno">UPS Tracking Number:</label>
+        <input size="30" value="[trackno]" name="trackno" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="view-lic-button">
+        <input onclick="viewlicense()" type="button" value="View License" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="track-pkg-button">
+        <input onclick="checkaccept()" type="button" value="Track Package" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+      <input type="checkbox" value="ON" name="agree" />
+      <div class="ups-terms">By selecting this box and the &quot;Track Package&quot; button, I agree to these <a href="javascript:viewlicense();"><strong>Terms and Conditions</strong></a>.</div>
+      <div class="clear"></div>
+    </form>
+  </div>
+  <div class="ups-disclaimer">UPS&reg;, UPS &amp; Shield Design&reg; and UNITED PARCEL SERVICE&reg; are registered trademarks of United Parcel Service of America, Inc.</div>
+  <div class="clear"></div>
+</section>

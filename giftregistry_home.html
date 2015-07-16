@@ -1,0 +1,289 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	.giftRegistrySearchResult td:nth-of-type(1):before { content: "[giftregistry_header-name]"; }
+	.giftRegistrySearchResult td:nth-of-type(2):before { content: "[giftregistry_header-eventdate]"; }
+	.giftRegistrySearchResult td:nth-of-type(3):before { content: "[giftregistry_create-firstname]"; }
+	.giftRegistrySearchResult td:nth-of-type(4):before { content: "[giftregistry_create-lastname]"; }
+	.giftRegistrySearchResult td:nth-of-type(5):before { content: ""; }
+    .giftRegistrySearchResult td.search-noresults:nth-of-type(1):before { content: ""; }
+}
+</style>
+
+<section id="giftregistryHome">
+  <h1 class="page_headers">[giftregistry_home]</h1>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="giftregistryHomeHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="giftregistry_home.asp" name="frmForm" id="frmForm" method="post">
+    <input type="hidden" name="action" id="action" value="" />
+    <input type="hidden" name="intCustId" id="intCustId" value="" />
+    <!--START: giftRegistryMyRegistry-->
+    <div class="giftRegistryMyRegistry pad10 boxShadow">
+      <div class="header">
+        <h3>[regName]</h3>
+      </div>
+      <div class="left-col">
+        <div class="label">[giftregistry_header-eventdate]</div>
+        <div class="text">[regEvent]</div>
+        <div class="clear"></div>
+        <div class="label">[giftregistry_header-expiration]</div>
+        <div class="text">[regExpiration]</div>
+        <div class="clear"></div>
+        <div class="label">[giftregistry_header-productsdesired]</div>
+        <div class="text">[regProductsDesired]</div>
+        <div class="clear"></div>
+        <div class="label">[giftregistry_header-productspurchased]</div>
+        <div class="text">[regProductsPurchased]</div>
+        <div class="clear"></div>
+      </div>
+      <div class="right-col">
+        <div class="giftreg-product-list"><a href="view_giftregistry.asp?id=[custid]">[giftregistry_view-productlist]</a></div>
+        <div class="giftreg-edit-info"><a href="giftregistry_edit.asp">Edit Account Information</a></div>
+        <div class="giftreg-viewdetails"><a href="giftregistry_edit.asp?action=view">[account_giftRegistry-header-view]</a></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--END: giftRegistryMyRegistry--> 
+    <!--START: giftRegistryCreate-->
+    <div class="giftRegistryCreate pad10 boxShadow">
+      <div class="header">
+        <h3>[account_giftRegistry]</h3>
+      </div>
+      <div class="home-create-registry">[giftregistry_home-create-registry]</div>
+      <div class="create-registry-button">
+        <input type="button" class="btn" onclick="window.location='giftregistry_edit.asp';" value="[giftregistry_header-create-registry]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--END: giftRegistryCreate--> 
+    <!--START: giftRegistrySearch-->
+    <div class="giftRegistrySearch pad10 boxShadow">
+      <div class="header">
+        <h3>[giftregistry_home-header-search]</h3>
+      </div>
+      <div class="giftregField">
+        <label for="txtRegName">[giftregistry_header-name]</label>
+        <input type="text" id="txtRegName" name="txtRegName" maxlength="50" size="50" value="[regname]" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="drpRegDate">[giftregistry_header-eventdate]</label>
+        <select name="drpRegMonth" id="drpRegMonth" tabindex="2" class="txtBoxStyle">
+          <option value="">Month</option>
+          <!--START: drpRegMonth-->
+          <option value="[intMonth]" [selected]>[month]</option>
+          <!--END: drpRegMonth-->
+        </select>
+        <select name="drpRegDay" id="drpRegDay" tabindex="3" class="txtBoxStyle">
+          <option value="">Day</option>
+          <!--START: drpRegDay-->
+          <option value="[day]" [selected]>[day]</option>
+          <!--END: drpRegDay-->
+        </select>
+        <select name="drpRegYear" id="drpRegYear" tabindex="4" class="txtBoxStyle">
+          <option value="">Year</option>
+          <!--START: drpRegYear-->
+          <option value="[year]" [selected]>[year]</option>
+          <!--END: drpRegYear-->
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="txtRegFirstName">[giftregistry_create-firstname]</label>
+        <input type="text" id="txtRegFirstName" name="txtRegFirstName" maxlength="50" size="50" value="[firstname]" tabindex="5" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="txtRegLastName">[giftregistry_create-lastname]</label>
+        <input type="text" id="txtRegLastName" name="txtRegLastName" maxlength="50" size="50" value="[lastname]" tabindex="6" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="home-search-button">
+        <input type="button" name="cmdViewList" onclick="javascript:searchRegistry();" class="btn" value="[giftregistry_home-search]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--END: giftRegistrySearch--> 
+    <!--START: giftRegistrySearchResult-->
+    <div class="giftRegistrySearchResult">
+      <div class="header">
+        <h3>[giftregistry_home-header-searchresult]</h3>
+      </div>
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="giftreg-name">[giftregistry_header-name]</th>
+			<th class="giftreg-date">[giftregistry_header-eventdate]</th>
+			<th class="giftreg-fname">[giftregistry_create-firstname]</th>
+			<th class="giftreg-lname">[giftregistry_create-lastname]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: giftRegistrySearchNoResult-->
+		<tr class="row">
+            <td colspan="5" class="search-noresults">[giftregistry_home-search-noresults]</td>
+        </tr>
+		<!--END: giftRegistrySearchNoResult-->
+		<!--START: giftRegistrySearchResultDetail-->
+		<tr class="row">
+			<td class="giftreg-name">[regName]</td>
+			<td class="giftreg-date">[regEvent]</td>
+			<td class="giftreg-fname">[regFirstName]</td>
+			<td class="giftreg-lname">[regLastName]</td>
+            <td colspan="5" class="select-registry-button"><input type="button" name="cmdViewList" onclick="javascript: location.href = 'giftregistry_home.asp?action=view&id=[custid]';" class="btn" value="[giftregistry_home-select-registry]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /></td>
+		</tr>
+		<!--END: giftRegistrySearchResultDetail-->
+		</tbody>
+	</table>
+    </div>
+    <!--END: giftRegistrySearchResult-->
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="giftregistryHomeFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+    function submitForm(strAction)
+    {
+        window.document.body.style.cursor = 'wait';
+        if(window.document.activeElement){window.document.activeElement.style.cursor='wait'; }
+	
+        document.frmForm.action.value = strAction;
+        document.frmForm.submit();
+    }
+    function searchRegistry()
+    {
+
+        var objTxtLastName = window.document.getElementById('txtRegLastName');
+        var objTxtFirstName = window.document.getElementById('txtRegFirstName');
+        var objTxtRegName = window.document.getElementById('txtRegName');
+        var objRegMonth = window.document.getElementById('drpRegMonth');
+        var objRegDay = window.document.getElementById('drpRegDay');
+        var objRegYear = window.document.getElementById('drpRegYear');
+	
+        var regDate = objRegMonth.value +"/"+ objRegDay.value +"/"+ objRegYear.value;
+	
+        var strMsg = "";
+	
+        if (objTxtLastName.value.trim() == "" && objTxtFirstName.value.trim() == "" && objTxtRegName.value.trim() == "" && regDate == "//")
+            strMsg += " - You must fill at least one field in order to search.\n"
+
+        if (regDate != "//")
+            if (!isDate(regDate))
+                strMsg += " - The date is incorrect. You can fill with a correct date or leave the date blank.\n"
+
+        if (strMsg != ""){
+            alert(strMsg);
+            return false;
+        }
+
+        submitForm('search');
+    }
+    function viewRegistry(intCustId)
+    {
+        var objTxtPass = window.document.getElementById('txtRegPassword'+intCustId);
+        var strMsg = "";
+	
+        if (objTxtPass)
+            if (objTxtPass.value.trim() == "")
+                strMsg += " - [giftregistry_create-password] cannot be blank.\n"
+
+        if (strMsg != ""){
+            alert(strMsg);
+            return false;
+        }
+	
+        document.frmForm.intCustId.value = intCustId;
+        submitForm('view');
+    }
+    String.prototype.trim = function() {
+        return this.replace(/^\s+|\s+$/g,"");
+    }
+</script>
+<script type="text/javascript">
+    /**
+     * DHTML date validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+     */
+    // Declaring valid date character, minimum year and maximum year
+    var dtCh= "/";
+    var minYear=1900;
+    var maxYear=2100;
+
+    function isInteger(s){
+        var i;
+        for (i = 0; i < s.length; i++){  
+            // Check that current character is number.
+            var c = s.charAt(i);
+            if (((c < "0") || (c > "9"))) return false;
+        }
+        // All characters are numbers.
+        return true;
+    }
+
+    function stripCharsInBag(s, bag){
+        var i;
+        var returnString = "";
+        // Search through string's characters one by one.
+        // If character is not in bag, append to returnString.
+        for (i = 0; i < s.length; i++){  
+            var c = s.charAt(i);
+            if (bag.indexOf(c) == -1) returnString += c;
+        }
+        return returnString;
+    }
+
+    function daysInFebruary (year){
+        // February has 29 days in any year evenly divisible by four,
+        // EXCEPT for centurial years which are not also divisible by 400.
+        return (((year % 4 == 0) && ( (!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28 );
+    }
+    function DaysArray(n) {
+        for (var i = 1; i <= n; i++) {
+            this[i] = 31
+            if (i==4 || i==6 || i==9 || i==11) {this[i] = 30}
+            if (i==2) {this[i] = 29}
+        } 
+        return this
+    }
+
+    function isDate(dtStr){
+        var daysInMonth = DaysArray(12)
+        var pos1=dtStr.indexOf(dtCh)
+        var pos2=dtStr.indexOf(dtCh,pos1+1)
+        var strMonth=dtStr.substring(0,pos1)
+        var strDay=dtStr.substring(pos1+1,pos2)
+        var strYear=dtStr.substring(pos2+1)
+        strYr=strYear
+        if (strDay.charAt(0)=="0" && strDay.length>1) strDay=strDay.substring(1)
+        if (strMonth.charAt(0)=="0" && strMonth.length>1) strMonth=strMonth.substring(1)
+        for (var i = 1; i <= 3; i++) {
+            if (strYr.charAt(0)=="0" && strYr.length>1) strYr=strYr.substring(1)
+        }
+        month=parseInt(strMonth)
+        day=parseInt(strDay)
+        year=parseInt(strYr)
+        if (pos1==-1 || pos2==-1){
+            //alert("The date format should be : mm/dd/yyyy")
+            return false
+        }
+        if (strMonth.length<1 || month<1 || month>12){
+            //alert("Please enter a valid month")
+            return false
+        }
+        if (strDay.length<1 || day<1 || day>31 || (month==2 && day>daysInFebruary(year)) || day > daysInMonth[month]){
+            //alert("Please enter a valid day")
+            return false
+        }
+        if (strYear.length != 4 || year==0 || year<minYear || year>maxYear){
+            //alert("Please enter a valid 4 digit year between "+minYear+" and "+maxYear)
+            return false
+        }
+        if (dtStr.indexOf(dtCh,pos2+1)!=-1 || isInteger(stripCharsInBag(dtStr, dtCh))==false){
+            //alert("Please enter a valid date")
+            return false
+        }
+        return true
+    }
+</script>

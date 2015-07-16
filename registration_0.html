@@ -1,0 +1,349 @@
+<script type="text/javascript" src="state_countryjs.asp"></script>
+<script type="text/javascript" src="assets/templates/common/js/address_validator.js"></script>
+<script type="text/javascript">
+    useAddressValidator = "[useAddressValidator]";
+	var emailReq = 0;
+	var passwordReq = 0;
+</script>
+
+<section id="registration0">
+  <form action="register.asp?action=register" method="post" name="registrationform" id="registrationform">
+    <input type="hidden" name="view_cart" value="[view_cart]" />
+    <input type="hidden" name="catalogid" value="[catalogid]" />
+    <h1 class="page_headers">[registration_header-new-registration]</h1>
+    <!--START: CATEGORY_HEADER-->
+      <div class="category-header" id="registrationHeader">[CONTENT]</div>
+    <!--END: CATEGORY_HEADER-->
+    <div class="group-message">[group_message]</div>
+    <div class="accountRegForm pad10 boxShadow">
+      <div class="header">
+        <h3>[registration_Header-createnewaccount]</h3>
+      </div>
+      <div class="loginField">
+        <label for="email">[CustomerInfo_email]:</label>
+        <input type="text" size="25" name="email" maxlength="50" tabindex="1" class="txtBoxStyle" />
+        <!--START: emailrequired--> 
+        <!--START: req_email--> 
+        <script type="text/javascript">emailReq = 1;</script> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_email--> 
+        <!--END: emailrequired-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="pass">[CustomerInfo_password]:</label>
+        <input type="password" size="12" name="pass" maxlength="16" tabindex="2" class="txtBoxStyle" [CallFunctionVerifyStrongPass] />
+        <!--START: passwordrequired--> 
+        <!--START: req_pass--> 
+        <script type="text/javascript">passwordReq = 1;</script> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_pass--> 
+        <!--END: passwordrequired-->
+        <div class="clear"></div>
+      </div>
+      <!--START: StrongPasswordBar-->
+      <div class="loginField">
+        <div class="strong-pass-bar" style="background-image: linear-gradient(to left, #86e01e 0%, #f63a0f 100%);">
+            <div id="divStrong"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: StrongPasswordBar-->
+      <!--START: PasswordMSG-->
+      <div class="PasswordMSG">
+        <p>[CustomerInfo_password_policy]</p>
+      </div>
+      <!--END: PasswordMSG-->
+      <!--START: account_type-->
+      <div class="loginField">
+        <label for="discount">[registration_account-type]:</label>
+        <select name="discount" tabindex="3" class="txtBoxStyle">
+          [reg_groupdropdown]
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--END: account_type--> 
+    </div>
+    <!--START: required_fields-->
+    <div class="error">ERROR: PLEASE CHECK THE REQUIRED FIELDS BELOW!</div>
+    <!--END: required_fields-->
+    <div class="accountRegForm pad10 boxShadow">
+      <div class="header">
+        <h3>[registration_Header-information]</h3>
+      </div>
+      <div class="loginField">
+        <label for="shipping_firstname">[CustomerInfo_firstname]</label>
+        <input name="shipping_firstname" type="text" id="shipping_firstname" maxlength="20" size="15" tabindex="4" class="txtBoxStyle" />
+        <!--START: req_shipping_firstname--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_firstname-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_lastname">[CustomerInfo_lastname]</label>
+        <input name="shipping_lastname" type="text" id="shipping_lastname" maxlength="20" size="15" tabindex="5" class="txtBoxStyle" />
+        <!--START: req_shipping_lastname--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_lastname-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="">[CustomerInfo_company]</label>
+        <input name="shipping_company" type="text" id="shipping_company" maxlength="200" size="25" tabindex="6" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="tax_id">Tax ID</label>
+        <input name="tax_id" type="text" id="tax_id" maxlength="20" size="25" tabindex="7" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_phone">[CustomerInfo_phone]</label>
+        <input name="shipping_phone" type="text" id="shipping_phone" maxlength="18" size="25" tabindex="8" class="txtBoxStyle" />
+        <!--START: req_shipping_phone--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_phone-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_address">[CustomerInfo_address]</label>
+        <input name="shipping_address" type="text" id="shipping_address" maxlength="50" size="25" tabindex="9" class="txtBoxStyle" />
+        <!--START: req_shipping_address--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_address-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_address2">[CustomerInfo_address2]</label>
+        <input name="shipping_address2" type="text" id="shipping_address2" maxlength="50" size="25" tabindex="9" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_city">[CustomerInfo_city]</label>
+        <input name="shipping_city" type="text" id="shipping_city" size="25" maxlength="50" tabindex="10" class="txtBoxStyle" />
+        <!--START: req_shipping_city--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_city-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_country">[CustomerInfo_country]</label>
+        <select name="shipping_country" onchange="populateState('shipping_state','shipping_country');" tabindex="11" class="txtBoxStyle">
+        </select>
+        <!--START: req_shipping_country--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_country-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_state">[CustomerInfo_state]</label>
+        <span name="spanState" id="spanState">
+        <select name="shipping_state" maxlength="20" tabindex="12" class="txtBoxStyle">
+        </select>
+        </span> 
+        <!--START: req_shipping_state--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_state-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="shipping_zip">[CustomerInfo_zip]</label>
+        <input name="shipping_zip" type="text" size="10" maxlength="20" tabindex="13" class="txtBoxStyle" />
+        <!--START: req_shipping_zip--> 
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> 
+        <!--END: req_shipping_zip-->
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="comments">Comments</label>
+        <textarea name="comments"></textarea>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="accountRegForm pad10 boxShadow">
+      <div class="header">
+        <h3>[registration_verification]</h3>
+      </div>
+      <!--START: captcha-->
+      <div class="loginField">
+        <label for="randomWord">[registration_verification]:</label>
+        <div class="captcha"><img src="admin/image_pw.asp" width="148" />
+          <div class="captcha-text">[registration_verification_message]</div>
+          <input type="text" name="randomWord" id="randomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="14" class="txtBoxStyle" />
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="loginField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="required error"><div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div> = Required</div>
+      <div class="submit-button">
+        <button type="button" onclick="javascript:doRegister(this.form);" class="btn"><i class="icon-ok"></i> [registration_submitbutton]</button>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <!--START: CATEGORY_FOOTER-->
+      <div class="category-footer" id="registrationFooter">[CONTENT]</div>
+    <!--END: CATEGORY_FOOTER-->
+  </form>
+</section>
+
+<input type="hidden" name="hdnAddrressValidatorResult" id="hdnAddrressValidatorResult" value="" />
+<div id="divAddrressValidator" style="display:none;"> 
+  <!--START: AddressValidatorBlock-->
+  <div style="background-color: #FFF; padding: 30px;"> 
+    <!--START: AddressValidatorBlock_ValidationFailed-->
+    <div>[result_msg]</div>
+    <!--END: AddressValidatorBlock_ValidationFailed--> 
+    <!--START: AddressValidatorBlock_ValidationSuggestion-->
+    <div> [result_msg] 
+      <!--START: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+      <br />
+      <br />
+      <strong>[checkout1_AddressValidator_SuggestedAddress]</strong> <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:selectAddress('[AddrressValidator_address1]', '[AddrressValidator_address2]', '[AddrressValidator_city]', '[AddrressValidator_state]', '[AddrressValidator_zip]', 'shipping_address', 'shipping_address2', 'shipping_city', 'shipping_state', 'shipping_zip');doRegister(document.registrationform);">[AddrressValidator_address], [AddrressValidator_city], [AddrressValidator_state], [AddrressValidator_zip]</a> 
+      <!--END: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+    </div>
+    <!--END: AddressValidatorBlock_ValidationSuggestion--> 
+    <!--START: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br />
+    <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:addressValidatorContinue('[AddrressValidator_addresstype]');">[checkout1_AddressValidator_Continue]</a> <br />
+    <!--END: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br />
+    <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:closeAddressValidatorModal();"><i class="icon-cancel"></i>[checkout1_AddressValidator_Close]</a></div>
+  <!--END: AddressValidatorBlock--> 
+</div>
+
+<script type="text/javascript">
+    initCountry('[defaultCountry]', '', 'shipping_state', 'shipping_country');
+
+    function doRegister(objForm) {
+        var strMsg = "";
+
+        if (emailReq == 1) {
+            if (objForm.email.value.trim() == "" || !validateEmail(objForm.email.value.trim()))
+                strMsg += " - Please enter a valid [CustomerInfo_email*script].\n";
+            if (objForm.email.value.length > 50)
+                strMsg += " - Max length for [CustomerInfo_email*script] is 50.\n";
+        }
+
+        if (passwordReq == 1) {
+            if (objForm.pass.value.trim() == "")
+                strMsg += " - Please enter your [CustomerInfo_password*script].\n";
+            else if (objForm.pass.value.length < 8)
+                strMsg += " - Mininimum length for [CustomerInfo_password*script] is 8.\n";
+            else if (objForm.pass.value.length > 16)
+                strMsg += " - Max length for [CustomerInfo_password*script] is 16.\n";
+            else if (!objForm.pass.value.match(/(?=^.{8,16}$)(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/) && '[verifystrongpassword]' == '1')
+                strMsg += " - [CustomerInfo_password_policy*script] does not match the password policy.\n";
+        }
+
+        if (objForm.shipping_firstname.value.trim() == "")
+            strMsg += " - Please enter your [CustomerInfo_firstname*script].\n";
+        if (objForm.shipping_firstname.value.length > 20)
+            strMsg += " - Max length for [CustomerInfo_firstname*script] is 20.\n";
+
+        if (objForm.shipping_lastname.value.trim() == "")
+            strMsg += " - Please enter your [CustomerInfo_lastname*script].\n";
+        if (objForm.shipping_lastname.value.length > 20)
+            strMsg += " - Max length for [CustomerInfo_lastname*script] is 20.\n";
+
+        if (objForm.shipping_phone.value.trim() == "")
+            strMsg += " - Please enter your [CustomerInfo_phone*script].\n";
+        if (objForm.shipping_phone.value.length > 18)
+            strMsg += " - Max length for [CustomerInfo_phone*script] is 18.\n";
+
+        if (objForm.shipping_address.value.trim() == "")
+            strMsg += " - Please enter your [CustomerInfo_address*script].\n";
+        if (objForm.shipping_address.value.length > 50)
+            strMsg += " - Max length for [CustomerInfo_address*script] is 50.\n";
+
+        if (objForm.shipping_city.value.trim() == "")
+            strMsg += " - Please enter your [CustomerInfo_city*script].\n";
+        if (objForm.shipping_city.value.length > 50)
+            strMsg += " - Max length for [CustomerInfo_city*script] is 50.\n";
+
+        if (objForm.shipping_state.value.trim() == "")
+            strMsg += " - Please enter your [CustomerInfo_state*script].\n";
+        if (objForm.shipping_state.value.length > 50)
+            strMsg += " - Max length for [CustomerInfo_state*script] is 50.\n";
+
+        if (objForm.shipping_zip.value.trim() == "")
+            strMsg += " - Please enter your [CustomerInfo_zip*script].\n";
+        if (objForm.shipping_zip.value.length > 20)
+            strMsg += " - Max length for [CustomerInfo_zip*script] is 20.\n";
+
+        if (objForm.randomWord && objForm.randomWord.value.trim() == "")
+            strMsg += " - Please enter the [registration_verification*script].\n";
+
+        if (strMsg != "") {
+            alert(strMsg);
+            return false;
+        }
+
+        var company = get_Element('shipping_company').value;
+        var address1 = get_Element('shipping_address').value;
+        var address2 = get_Element('shipping_address2').value;
+        var city = get_Element('shipping_city').value;
+        var state = get_Element('shipping_state').value;
+        var country = get_Element('shipping_country').value;
+        var zip = get_Element('shipping_zip').value;
+
+        if (useAddressValidator == "1" && country == "US"){
+            verify_address(address1, address2, city, state, country, zip, company, 'register');
+        }
+        else {
+            objForm.submit();
+        }
+    }
+
+    function submitCheckoutFormPos() {
+        objForm = document.registrationform;
+        if (jQuery('#hdnAddrressValidatorResult').val() == '1') {
+            objForm.submit();
+            return;
+        }
+        else {
+            jQuery('#divAddrressValidator').modal({ containerCss: { borderWidth: '1px', width: '602px', height: '212px' } });
+            document.body.style.cursor = '';
+        }
+    }
+
+    function addressValidatorContinue(type) {
+        useAddressValidator = '';
+        doRegister(document.registrationform);
+        jQuery.modal.close();
+    }
+
+    String.prototype.trim = function () {
+        return this.replace(/^\s+|\s+$/g, "");
+    }
+    function IsNumeric(strString) {
+        var strValidChars = "0123456789.-";
+        var strChar;
+        var blnResult = true;
+
+        if (strString.length == 0) return false;
+        //  test strString consists of valid characters listed above
+        for (i = 0; i < strString.length && blnResult == true; i++) {
+            strChar = strString.charAt(i);
+            if (strValidChars.indexOf(strChar) == -1) {
+                blnResult = false;
+            }
+        }
+        return blnResult;
+    }
+</script>

@@ -1,0 +1,117 @@
+<style type="text/css">
+html, body {
+	width: 100%;
+	height: 100% !important;
+    padding: 0;
+}
+</style>
+<script type="text/javascript" src="assets/templates/common-html5/js/jquery.min.js"></script>
+<script type="text/javascript">
+function closeWindow() {
+	try {
+		window.parent.hs.close();
+	}
+	catch(err) {
+		window.close();
+	}
+}
+$(document).ready(function() {
+   $('#productQa_List .button a').addClass('icon-btn icon-btn-close'); 
+});
+</script>
+<!--START: qaScript-->
+<script type="text/javascript">
+
+    function updateQAStats(id, spn, vote) {
+
+        var url = '';
+        var params = '';
+
+        params = 'id=' + id;
+        params += '&vote=' + vote;
+
+        url = 'productqaVote_ajax.asp?' + params + '&no-cache=' + Math.random();
+
+        //window.location = url;
+
+        jQuery.ajax({
+            url: url,
+            dataType: 'html',
+            type: 'GET',
+            cache: false,
+            success: function (strResult) {
+                if (strResult == '') {
+                    alert('[productqa_helpful-notupdated]');
+                }
+                else {
+                    jQuery('#spn' + spn).html(strResult);
+                    alert('[productqa_update-helpful]');
+                }
+
+            },
+            error: reportQAError
+        });
+
+    }
+
+    function reportQAError(jqXHR, textStatus) {
+        if (jqXHR.status > 0) {
+            alert("Error processing request, please try again.");
+            //alert(jqXHR.responseText);
+            //alert(jqXHR.status + " - " + jqXHR);
+        }
+    }
+
+</script>
+<!--END: qaScript-->
+
+<section id="productQa_List">
+<!--START: qa-->
+<h1 class="page_headers">[name]</h1>
+  <div class="header">
+    <h3>[productqa_header]</h3>
+    <div class="button right">[qa_link]</div>
+    <div class="clear"></div>
+  </div>
+  <div class="qaBlock pad10 boxShadow"> 
+    <!--START: qa_list-->
+      <div class="qa_list"> <span class="q">[productqa_q]</span>&nbsp;<strong itemprop="name">[question]</strong>
+        <div class="q-author"> <em>[productqa_question-submit-by]:&nbsp;<span itemprop="author">[q_user_name]</span> 
+          <!--START: q_user_email--> 
+          <a href="mailto:[q_user_email]">[q_user_email]</a> 
+          <!--END: q_user_email--> 
+          - [q_date_added]</em> 
+          <!--START: qa_answers-->
+          <div class="qa_answers"> <span class="a">[productqa_a]</span>&nbsp;[answer] 
+            <!--START: qa_allowratings-->
+            <div class="qa_allowratings"> <strong>[productqa_answer-helpful]</strong>&nbsp;
+              <input type="button" id="btnYes" value="[productqa_helpyes]" onclick="updateQAStats('[ans_id]', [a_id], 1)" />
+              <input type="button" id="btnNo" value="[productqa_helpno]" onclick="	updateQAStats('[ans_id]', [a_id], -1)" />
+              <em><strong><span id="spn[a_id]">[a_helpful]&nbsp;[productqa_of]&nbsp;[a_votes]</span></strong>&nbsp;[productqa_found-helpful]</em> </div>
+            <!--END: qa_allowratings--> 
+            <em>[productqa_answer-submit-by]: &nbsp;<span itemprop="author">[a_user_name] ([a_date_added])</span></em> </div>
+          <!--END: qa_answers--> 
+          <!--START: qa_noanswers-->
+          <div class="qa_noanswers">[productqa_no-answers]</div>
+          <!--END: qa_noanswers-->
+          <div class="clear"></div>
+          <!--START: qa_allowuserresponse--> 
+          <div class="button right"><a rel="nofollow" onclick="javascript:popup('productqa.asp?action=newAns&catalogid=[catalogid]&qa_id=[qa_id]',650,550,false);" class="icon-btn icon-btn-edit">([productqa_submit-answer])</a></div>
+          <!--END: qa_allowuserresponse--> 
+        </div>
+        <div class="clear"></div>
+      </div> 
+    <!--END: qa_list-->
+    <div class="clear"></div>
+  </div>
+<!--END: qa-->
+  <!--START: errorMsg-->
+  <div class="errorMsg pad10 boxShadow">[errorMsg]
+    <div class="review-close-button">
+      <input type="button" value='Click here to continue' class="btn" onclick="history.back(1);" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+  </div>
+  <!--END: errorMsg--> 
+</section>
+</body>
+</html>

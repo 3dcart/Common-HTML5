@@ -1,0 +1,172 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	.giftreg-purchasedList td:nth-of-type(1):before { content: "[giftregistry_view-header-items]"; }
+	.giftreg-purchasedList td:nth-of-type(2):before { content: "[giftregistry_view-header-desired]"; }
+	.giftreg-purchasedList td:nth-of-type(3):before { content: "[giftregistry_view-header-received]"; }
+    .giftreg-purchasedList td.view-emptypurchasedlist:nth-of-type(1):before { content: ""; }
+}
+</style>
+
+<section id="viewGiftregistryList">
+  <h1 class="page_headers">[giftregistry_view-title]</h1>
+  <!--START: GFT_REG_INFO-->
+  <div class="header">
+    <h3>[regName]</h3>
+  </div>
+  <div class="reg-message">[regMessage]</div>
+  <!--END: GFT_REG_INFO--> 
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="viewGiftregistryListHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="view_giftregistry.asp?id=[custid]" method="post" name="frmForm">
+    <input type="hidden" name="action" id="action"	value="" />
+    <input type="hidden" name="wsiId" id="wsiId" value="" />
+    <!--START: GFT_REG_ITEM_ADDED_TO_CART-->
+    <div class="giftreg-item-added">[giftregistry_view-item-added-to-the-cart]</div>
+    <!--END: GFT_REG_ITEM_ADDED_TO_CART-->
+    <div class="giftreg-productList">
+      <div class="titles2">
+        <div class="view-items">[giftregistry_view-header-items]</div>
+        <div class="view-desired">[giftregistry_view-header-desired]</div>
+        <div class="view-received">[giftregistry_view-header-received]</div>
+        <div class="view-price">[giftregistry_view-header-price]</div>
+        <div class="view-subtotal">[giftregistry_view-header-subtotal]</div>
+        <div class="clear"></div>
+      </div>
+      <!--START: GFT_REG_NO_ITEM-->
+      <div class="view-emptylist">[giftregistry_view-emptylist]</div>
+      <!--END: GFT_REG_NO_ITEM--> 
+      <!--START: GFT_REG_ITEM-->
+      <div class="row">
+        <div class="view-items">
+          <div class="img"><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" height="55" width="55" /></a></div>
+          <div class="name"><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a><br />
+            <!--START: itemoptions--> 
+            <a href='#' onclick="toggle('opt[ITEM_ID]')">View/Hide options</a><br />
+            <div id=opt[ITEM_ID] name=opt[ITEM_ID] style="display:none;">[OPTIONS]</div>
+            <!--END: itemoptions--></div>
+          <div class="clear"></div>
+        </div>
+        <div class="view-desired"><!--START: GFT_REG_ITEM_QUANTITY_FIXED--> 
+          [ITEM_QUANTITY] 
+          <!--END: GFT_REG_ITEM_QUANTITY_FIXED--> 
+          <!--START: GFT_REG_ITEM_QUANTITY_EDITABLE-->
+          <input type="text" name="txtQty[ITEM_ID]" id="txtQty[ITEM_ID]" size="2" maxlength="4" value="[ITEM_QUANTITY]" class="txtBoxStyle" />
+          <!--END: GFT_REG_ITEM_QUANTITY_EDITABLE--> 
+          <!--START: GFT_REG_REMOVE-->
+          <div class="button giftreg-remove-item"><a href="#" onclick="javascript:removeItem([ITEM_ID]);" class="icon-btn icon-btn-close"></a></div>
+          <a href="#" onclick="javascript:removeItem([ITEM_ID]);"><i class="icon-cancel"></i></a>
+          <!--END: GFT_REG_REMOVE--></div>
+        <div class="view-received">[ITEM_RECEIVED]</div>
+        <div class="view-price">[ITEM_PRICE]</div>
+        <div class="view-subtotal">[ITEM_SUBTOTAL]</div>
+        <div class="view-actions"><!--START: GFT_REG_ITEM_NOT_AVLB--> 
+          [giftregistry_view-prod-not-available] <br />
+          <!--END: GFT_REG_ITEM_NOT_AVLB--> 
+          <!--START: GFT_REG_ITEM_PURCHASED--> 
+          [giftregistry_view-prod-purchased] 
+          <!--END: GFT_REG_ITEM_PURCHASED--> 
+          <!--START: GFT_REG_ITEM_ADDCART--> 
+          Qty:
+          <select id="drpItems[ITEM_ID]" name="drpItems[ITEM_ID]">
+            <!--START: GFT_REG_DRPITEMS-->
+            <option value="[j]">[j]</option>
+            <!--END: GFT_REG_DRPITEMS-->
+          </select>
+          <input type="button" value="[product_addtocart]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" onclick="javascript:addToCart([ITEM_ID]);" />
+          <br />
+          <!--END: GFT_REG_ITEM_ADDCART--> 
+          <!--START: GFT_REG_SAVE-->
+          <input type="button" value="Save" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" onclick="javascript:saveItem([ITEM_ID]);" />
+          <!--END: GFT_REG_SAVE--></div>
+        <div class="clear"></div>
+      </div>
+      <!--END: GFT_REG_ITEM--> 
+    </div>
+    <!--START: GFT_REG_PURCHASED_ITEM-->
+    <div class="header">
+      <h3>[giftregistry_view-header-purchaseditems]</h3>
+    </div>
+    <div class="giftreg-purchasedList">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="view-items">[giftregistry_view-header-items]</th>
+			<th class="view-desired">[giftregistry_view-header-desired]</th>
+			<th class="view-received">[giftregistry_view-header-received]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: GFT_REG_NO_PURCHASED_ITEM-->
+		<tr class="row">
+            <td colspan="5" class="view-emptypurchasedlist">[giftregistry_view-emptypurchasedlist]</td>
+        </tr>
+		<!--END: GFT_REG_NO_PURCHASED_ITEM-->
+		<!--START: GFT_REG_PURCHASED_ITEM_DETAIL-->
+		<tr class="row">
+			<td class="view-items">
+              <div class="img"><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" height="55" width="55" /></a></div>
+              <div class="name"><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a><br />
+                <!--START: itemoptions--> 
+                <a href='#' onclick="toggle('opt[ITEM_ID]')">View/Hide options</a><br />
+                <div id="Div2" name=opt[ITEM_ID] style="display:none;">[OPTIONS]</div>
+                <!--END: itemoptions--></div>
+              <div class="clear"></div>
+            </td>
+			<td class="view-desired">[ITEM_QUANTITY]</td>
+			<td class="view-received">[ITEM_RECEIVED]</td>
+		</tr>
+		<!--END: GFT_REG_PURCHASED_ITEM_DETAIL-->
+		</tbody>
+	</table>
+    </div>
+    <!--END: GFT_REG_PURCHASED_ITEM-->
+    <!--START: GFT_REG_BACK-->
+    <div class="giftreg-back-button">
+      <input type="button" value="Back to My Gift Registry" class="btn" onclick="javascript:location.href='giftregistry_edit.asp?action=view';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+    <!--END: GFT_REG_BACK-->
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="viewGiftregistryListFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+function submitForm(strAction)
+{
+	window.document.body.style.cursor = 'wait';
+	if(window.document.activeElement){window.document.activeElement.style.cursor='wait'; }
+	
+	document.frmForm.action.value = strAction;
+	document.frmForm.submit();
+}
+	  
+function removeItem(intWsiId)
+{
+	var rep;
+	rep = confirm("[giftregistry_view-message-removeitem]");
+	if (!rep)
+		return false;
+	
+	document.frmForm.wsiId.value = intWsiId;
+	submitForm('removeItem');
+}
+
+function saveItem(intWsiId)
+{
+	document.frmForm.wsiId.value = intWsiId;
+	submitForm('saveItem');
+}
+
+function addToCart(intWsiId)
+{
+	var rep;
+	rep = confirm("[wishlist_viewwishlist-message-addtocart]");
+	if (!rep)
+		return false;
+	
+	document.frmForm.wsiId.value = intWsiId;
+	submitForm('addToCart');
+}
+</script>

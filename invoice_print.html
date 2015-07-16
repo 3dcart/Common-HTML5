@@ -1,0 +1,231 @@
+<!--START: PAGEHEAD-->
+<!doctype html>
+<html>
+<head>
+<title>[company]</title>
+<link rel="stylesheet" href="/assets/templates/common-html5/css/layout.css" type="text/css" media="all" />
+</head>
+<body>
+<!--END: PAGEHEAD--> 
+<!--START: pagebreak-->
+<div style="page-break-after: always;"> 
+  <!--END: pagebreak-->
+<section id="invoicePrint"> 
+  <!------ START: Confirmation ------> 
+  <!--START: order_details-->
+  <div class="customerInfoBlock"> 
+    <!--start customer info block-->
+    <div class="left-col"> 
+      <!--START: invoicelogo-->
+      <div class="invoice-logo"><img src="../[invoicelogo]" alt="[company]" /></div>
+      <!--END: invoicelogo-->
+      <p>[company]</p>
+      <p>[address1]</p>
+      <!--START: address2-->
+      <p>[address2]</p>
+      <!--END: address2-->
+      <p>[city], [state] [zip]</p>
+      <!--START: phone1-->
+      <p>[phone1]</p>
+      <!--END: phone1--> 
+    </div>
+    <!--end customer info block--> 
+    <!--start invoice info block-->
+    <div class="right-col">
+      <div class="label">Order Date:</div>
+      <div class="text">[odate_month]/[odate_day]/[odate_year]</div>
+      <div class="clear"></div>
+      <div class="label">Order Number #:</div>
+      <div class="text">[invoicenum_prefix][invoicenum]</div>
+      <div class="clear"></div>
+      <!--START: salesperson-->
+      <div class="label">Sales Person:</div>
+      <div class="text">[salesperson]</div>
+      <div class="clear"></div>
+      <!--END: salesperson--> 
+    </div>
+    <!--end invoice info block-->
+    <div class="clear"></div>
+  </div>
+  <div class="billingBlock"> 
+    <!--start billing block-->
+    <div class="left-col">
+      <p><strong>BILLING ADDRESS</strong></p>
+      <p>[ofirstname] [olastname]</p>
+      <!--START: ocompany-->
+      <p>[ocompany]</p>
+      <!--END: ocompany-->
+      <p>[oaddress]</p>
+      <!--START: oaddress2-->
+      <p>[oaddress2]</p>
+      <!--END: oaddress2-->
+      <p>[ocity], [ostate] [ozip] - [ocountry]</p>
+      <!--START: ophone-->
+      <p>[ophone]</p>
+      <!--END: ophone--> 
+      <!--START: oemail-->
+      <p>[oemail]</p>
+      <!--END: oemail--> 
+    </div>
+    <!--end billing block--> 
+    <!--start shipping block-->
+    <div class="right-col">
+      <p><strong>SHIPPING ADDRESS</strong></p>
+      <!--START: shipping_address-->
+      <p>[oshipfirstname] [oshiplastname]</p>
+      <!--START: oshipcompany-->
+      <p>[oshipcompany]</p>
+      <!--END: oshipcompany-->
+      <p>[oshipaddress]</p>
+      <!--START: oshipaddress2-->
+      <p>[oshipaddress2]</p>
+      <!--END: oshipaddress2-->
+      <p>[oshipcity], [oshipstate] [oshipzip] - [oshipcountry]</p>
+      <!--END: shipping_address--> 
+      <!--START: shipping_multiple--> 
+      <!--START: shipment-->
+      <p>Shipment #[num] - [oshipfirstname] [oshiplastname]</p>
+      <!--END: shipment--> 
+      <!--END: shipping_multiple--> 
+    </div>
+    <!--end shipping block-->
+    <div class="clear"></div>
+  </div>
+  <div class="shippingInfoBlock"> 
+    <!--START: shipping_info-->
+    <div class="label">Shipping Method:</div>
+    <div class="text">[oshipmethod]</div>
+    <div class="clear"></div>
+    <!--START: trackingcode-->
+    <div class="label">Tracking Number:</div>
+    <div class="text">[trackingcode]</div>
+    <div class="clear"></div>
+    <!--END: trackingcode--> 
+    <!--START: oshippeddate-->
+    <div class="label">Shipped on:</div>
+    <div class="text">[oshippeddate]</div>
+    <div class="clear"></div>
+    <!--END: oshippeddate--> 
+    <!--END: shipping_info--> 
+    <!--START: opaymethod-->
+    <div class="label">Payment Type:</div>
+    <div class="text">[opaymethod]</div>
+    <div class="clear"></div>
+    <!--END: opaymethod--> 
+  </div>
+  <div class="right">
+    <div class="label">Total Items:</div>
+    <div class="text">[numberofitems]</div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <!--END: order_details-->
+  <div class="invoiceTable">
+    <div class="titles2">
+      <div class="invoice-id">Item ID</div>
+      <div class="invoice-items">Descriptions and Options</div>
+      <div class="invoice-price">Price</div>
+      <div class="invoice-qty">Qty</div>
+      <div class="invoice-total">Total</div>
+      <div class="clear"></div>
+    </div>
+    <!--START: shipment_header-->
+    <div class="shipmentTable">
+      <div class="ship-num">Shipment #[num]</div>
+      <div class="ship-info"><span>[oshipfirstname] [oshiplastname]<!--START: oshipcompany-->[oshipcompany]<!--END: oshipcompany--></span> <span>[oshipaddress] [oshipaddress2] [oshipcity], [oshipstate] [oshipzip] [oshipcountry]</span></div>
+      <div class="ship-method"><span><!--START: oshipmethod--><strong>Shipping Method:</strong> [oshipmethod]<!--END: oshipmethod--></span> <span><!--START: trackingcode--><strong>Tracking Number:</strong> [trackingcode]<!--END: trackingcode--></span></div>
+      <div class="clear"></div>
+    </div>
+    <!--END: shipment_header--> 
+    <!--START: items-->
+    <div class="row">
+      <div class="invoice-id">[id]</div>
+      <div class="invoice-items">[itemname]</div>
+      <div class="invoice-price">[unitprice]</div>
+      <div class="invoice-qty">[numitems]</div>
+      <div class="invoice-total">[subtotal]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: items-->
+    <div class="orderDetailsBlock">
+      <div class="left-col"> 
+        <!--START: ocomment-->
+        <div class="ocomment"><strong>Order Comments:</strong>
+          <p>[ocomment]</p>
+        </div>
+        <!--END: ocomment--> 
+        <!--START: invoice_terms-->
+        <div class="invoice_terms">[invoice_terms]</div>
+        <!--END: invoice_terms--> 
+      </div>
+      <div class="right-col">
+        <div class="label">SubTotal:</div>
+        <div class="text">[subtotal]</div>
+        <div class="clear"></div>
+        <div class="label">Discount:</div>
+        <div class="text">[discounts]</div>
+        <div class="clear"></div>
+        <!--START: TAX-->
+        <div class="label">Tax:</div>
+        <div class="text">[TAX]</div>
+        <div class="clear"></div>
+        <!--END: TAX--> 
+        <!--START: TAX2-->
+        <div class="label">Tax 2:</div>
+        <div class="text">[TAX2]</div>
+        <div class="clear"></div>
+        <!--END: TAX2--> 
+        <!--START: TAX3-->
+        <div class="label">Tax 3:</div>
+        <div class="text">[TAX3]</div>
+        <div class="clear"></div>
+        <!--END: TAX3-->
+        <div class="label">Shipping:</div>
+        <div class="text">[shipping]</div>
+        <div class="clear"></div>
+        <div class="label">Total:</div>
+        <div class="text">[total]</div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <!------ END: Confirmation ------>
+  <div class="clear"></div>
+  <!--START: discounts_block-->
+  <div class="discountsBlock"> <strong>Discount(s):</strong> 
+    <!--START: discounts-->
+    <div>[promotion_name]: [discount_amount]</div>
+    <!--END: discounts--> 
+  </div>
+  <!--END: discounts_block--> 
+  <!--START: certificates_block-->
+  <div class="certificatesBlock"> <strong>Gift Certificate(s) used:</strong> 
+    <!--START: certificates-->
+    <div>[certificate_name]: [discount_amount] &nbsp;&nbsp;&nbsp; Balance: [certificate_balance]</div>
+    <!--END: certificates--> 
+  </div>
+  <!--END: certificates_block-->
+  <div class="checkoutquestionsBlock"> 
+    <!--START: checkoutquestions1--> 
+    <strong>Checkout Questions</strong> 
+    <!--START: question1-->
+    <div>[question]: [answer]</div>
+    <!--END: question1--> 
+    <!--END: checkoutquestions1--> 
+    <!--START: checkoutquestions2--> 
+    <!--START: question2-->
+    <div>[question]: [answer]</div>
+    <!--END: question2--> 
+    <!--END: checkoutquestions2--> 
+    <!--START: checkoutquestions3--> 
+    <!--START: question3-->
+    <div>[question]: [answer]</div>
+    <!--END: question3--> 
+    <!--END: checkoutquestions3--> 
+  </div>
+  <div class="clear"></div>
+</section>
+</div>
+</body>
+</html>

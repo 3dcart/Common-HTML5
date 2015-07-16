@@ -1,0 +1,64 @@
+<section id="home">
+<!--START: home_carousel-->
+<link rel="stylesheet" href="/assets/templates/common-html5/css/flexslider.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/assets/templates/common-html5/js/jquery.flexslider-min.js"></script>
+
+<div id="homeCarousel" class="flexslider">
+  <ul class="slides">
+    <!--START: carousel-->
+    <li><a href="[link]"><img src="[image]" alt="" /></a></li>
+    <!--END: carousel-->
+  </ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    jQuery(document).ready(function () {
+        jQuery('#homeCarousel').flexslider({
+            animation: "[hc_effect]",
+            slideshowSpeed: [hc_delay],
+            controlNav: false,
+            keyboard: false
+        });
+    });
+</script>
+<!--END: home_carousel-->
+<!--START: CATEGORY_HEADER-->
+<div class="category-header" id="homeHeader">[CONTENT]</div>
+<!--END: CATEGORY_HEADER--> 
+<!--START: FEATURE_MENU-->
+<h2 class="header-specials">[category_Header-specials]</h2>
+<!--START: CATEGORY_ITEMS--> 
+<!--START: ITEM_TEMPLATE_0--> 
+<div class="product-item alternative">
+    <div class="img"><a href="product.asp?itemid=[catalogid]"><img src="[THUMBNAIL]" alt="[name]" id="qv_[catalogid]" /></a></div>
+    <div class="name"><a href="product.asp?itemid=[catalogid]">[name]</a></div>
+    <div class="stars">
+    <!--START: product_review--> 
+    <!--START: product_review_average-->
+        <img src="assets/templates/common-html5/images/star[review_average].png" alt="Average Rating" /><span>([review_count])</span>
+        <div class="clear"></div>
+    <!--END: product_review_average--> 
+    <!--END: product_review-->
+    </div>
+    <div class="price"><!--START: ITEMPRICE--> 
+    <span class="hidden">[product_yourprice]&nbsp;</span>[ITEMPRICE]
+    <!--END: ITEMPRICE--> 
+    <!--START: SALEPRICE-->
+    <del class="price2">[ITEMPRICE]&nbsp;</del>
+    <span class="hidden">[product_onsale]&nbsp;</span>[ITEMSALEPRICE]
+    <div class="on-sale">[product_sale]</div>
+    <!--END: SALEPRICE--></div>
+    <div class="status"><!--START: product_availability-->[availability] <!--END: product_availability--><!--START: freeshippingblock-->[freeshipping]<!--END: freeshippingblock--></div>
+    <div class="action">
+        <input type="button" value="[category_buyitlink]" onclick="window.location = 'add_cart.asp?quick=1&amp;item_id=[catalogid]'" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+    <div class="clear"></div>
+</div>
+<!--END: ITEM_TEMPLATE_0--> 
+<!--END: CATEGORY_ITEMS--> 
+<!--END: FEATURE_MENU-->
+<div class="clear"></div>
+<!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="homeFooter">[CONTENT]</div>
+<!--END: CATEGORY_FOOTER-->
+</section>

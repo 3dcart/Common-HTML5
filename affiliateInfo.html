@@ -1,0 +1,85 @@
+<section id="affiliateInfo">
+  <h1 class="page_headers">[affiliate_become-affiliate]</h1>
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="affiliateInfoHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER--> 
+  <!--START: loginForm-->
+  <div class="loginForm pad10 boxShadow">
+    <h3>[login_Header-login]</h3>
+    <form action="login.asp?ordertracking=[otrack]&returnurl=register_affiliate.asp" method="post">
+      <p>[login_Header-loginmessage]</p>
+      <div class="loginField">
+        <label for="email">[CustomerInfo_email]:</label>
+        <input type="text" size="30" name="email" value="" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="loginField">
+        <label for="password">[CustomerInfo_password]:</label>
+        <input type="password" autocomplete="off" size="12" name="password" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="loginField">
+        <label for="randomWord">[registration_verification]:</label>
+        <div class="captcha"><img src="admin/image_pw.asp?cache=[now]" width="148" />
+          <div class="captcha-text">[registration_verification_message]</div>
+          <input type="text" name="randomWord" id="randomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="3" class="txtBoxStyle" />
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="loginField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="login-button">
+        <input type="submit" value="[login_button]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+    </form>
+  </div>
+  <div class="createnewaccountForm pad10 boxShadow">
+    <h3>[registration_Header-createnewaccount]</h3>
+    <p>[affiliate_create-account]</p>
+    <div class="register-button">
+      <input type="button" value="[registration_button-createaccount]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" onclick="window.location='affiliateInfo.asp?action=register';" />
+    </div>
+  </div>
+  <!--END: loginForm--> 
+  <!--START: continue-->
+  <div class="continue-button">
+    <input type="button" value="Continue" onclick="javascript:location.href='register_affiliate.asp'" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+  </div>
+  <!--END: continue-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="affiliateInfoFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+function HighlightAll(theField) {
+	var tempval=eval("document."+theField);
+	tempval.focus();
+	tempval.select();
+	
+	if (document.all&&copytoclip==1)
+	{
+		therange=tempval.createTextRange();
+		therange.execCommand("Copy");
+		window.status="Contents highlighted and copied to clipboard!";
+		setTimeout("window.status=''",1800);
+	}
+}
+</script>

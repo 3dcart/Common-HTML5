@@ -1,0 +1,161 @@
+<script type="text/javascript">
+function closeWindow() {
+	try {
+		window.parent.hs.close();
+	}
+	catch(err) {
+		window.close();
+	}		
+}
+jQuery(function () {
+    jQuery('body').addClass('modal-bg');
+});
+</script>
+<style type="text/css">
+html, body {
+	width: 100%;
+	max-height: 100% !important;
+}
+@media only screen and (max-width: 480px) {
+
+html, body {
+    width: auto !important;
+    max-width: 90% !important;
+    padding: 0px;
+    border: none;
+}
+
+}
+</style>
+
+<section id="productMakeanofferNew">
+  <h1 class="page_headers">[makeanoffer_new-offer-title]</h1>
+  <form name="makeanoffer" method="post" action="makeanoffer.asp?action=create&catalogid=[catalogid]">
+    <div class="header">
+      <h3>[name]</h3>
+    </div>
+      <!--START: newOfferForm-->
+    <div class="product-img"><img src="thumbnail.asp?file=[image1]&maxx=0&maxy=80" alt="[name]" /></div>
+    <div class="product-info"> 
+      <!--START: pricing-->
+      <div class="pricing">
+      <strong>[product_yourprice]</strong> 
+      <!--START: ITEMPRICE-->
+      <div id="price" style="display:inline" class="price">[price]</div>
+      <!--END: ITEMPRICE--> 
+      <!--START: SALEPRICE--> 
+      <s>[price]</s><br />
+      <strong class="price">[product_onsale]:&nbsp;</strong>
+      <div id="price" style="display:inline" class="price">[saleprice]</div>
+      <!--END: SALEPRICE-->
+      </div> 
+      <!--END: pricing--> 
+      <!--START: newOfferAmount-->
+      <div class="offerField">
+        <label for="offer_amount">[makeanoffer_your-offer]:</label>
+        <input type="text" value="" name="offer_amount" id="offer_amount" maxlength="10" class="txtBoxStyle" size="8" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        <div class="clear"></div>
+      </div>
+      <!--START: newOfferAmount--> 
+    </div>
+    <div class="clear"></div>
+    <div class="newOfferForm boxShadow">
+      <div class="offerField left">
+        <label for="user_name">[makeanoffer_name]:</label>
+        <!--START: nameTxt-->
+        <input type="text" value="[custName]" name="user_name" maxlength="100" class="txtBoxStyle" size="20" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        <!--END: nameTxt--> 
+        <!--START: nameHdn-->
+        <div class="text">[custName]</div>
+        <!--END: nameHdn-->
+        <div class="clear"></div>
+      </div>
+      <div class="offerField left">
+        <label for="user_email">[makeanoffer_email]:</label>
+        <!--START: emailTxt-->
+        <input type="text" value="[custEmail]" name="user_email" maxlength="100" class="txtBoxStyle" size="20" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        <!--END: emailTxt--> 
+        <!--START: emailHdn-->
+        <div class="text">[custEmail]</div>
+        <!--END: emailHdn-->
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="offerField">
+        <label for="comments">[makeanoffer_comments]:</label>
+        <textarea cols="38" rows="5" class="txtBoxStyle" name="comments"></textarea>
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="offerField">
+        <label for="randomWord">[makeanoffer_captcha]:</label>
+        <div class="captcha"><img src="admin/image_pw.asp" width="148" />
+          <div class="captcha-text">Type the word above...</div>
+          <input type="text" name="randomWord" id="randomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="3" class="txtBoxStyle" />
+          <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="offerField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="required error"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> = Required</div>
+      <div class="offer-submit-button">
+        <input type="submit" value="[makeanoffer_submit-offer]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: newOfferForm--> 
+    <!--START: newOfferThankyou-->
+    <div class="newOfferThankyou pad10 boxShadow">[offerReceivedMsg]
+      <div class="offer-close-button">
+        <input type="button" value='[makeanoffer_click-to-close-button]' class="btn" onclick="javascript:parent.closeModal();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: newOfferThankyou--> 
+    <!--START: errorMsg-->
+    <div class="errorMsg pad10 boxShadow">[errorMsg]
+      <div class="offer-close-button">
+        <input type="button" value='[makeanoffer_click-to-continue-button]' class="btn" onclick="history.back(1);" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <!--END: errorMsg-->
+  </form>
+</section>
+<script type="text/javascript">
+//You should create the validator only after the definition of the HTML form
+var frmvalidator = new Validator("makeanoffer");
+
+bolCheckSubmitted_validation = false;//Global variable defined in utilities.js
+frmvalidator.setAddnlValidationFunction("submitForm");
+
+frmvalidator.addValidation("offer_amount","req","Please enter the amount of your offer.");
+
+<!--START: validateNameEmail-->
+frmvalidator.addValidation("user_name","req","Please enter your First and Last Name.");
+frmvalidator.addValidation("user_name","maxlen=40","Max length for Name is 40.");
+frmvalidator.addValidation("user_email","maxlen=50","Max length for Email is 50.");
+frmvalidator.addValidation("user_email","email");
+frmvalidator.addValidation("user_email","req","Please enter your E-mail.");
+<!--END: validateNameEmail-->
+
+<!--START: captchascript-->
+frmvalidator.addValidation("ramdomWord","maxlen=20");
+frmvalidator.addValidation("ramdomWord","req","Please enter the [makeanoffer_captcha].");	
+<!--END: captchascript-->
+</script>

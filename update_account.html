@@ -1,0 +1,328 @@
+<script type="text/javascript" src="state_countryjs.asp"></script>
+<script type="text/javascript">
+	var emailReq = 1;
+</script>
+
+<section id="updateAccount"> 
+  <!--START: upd_message-->
+  <div class="error pad10 boxShadow">[update_message]</div>
+  <!--END: upd_message-->
+  <h1 class="page_headers">[account_header-update-account]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="updateAccountHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="myaccount.asp?action=updacc" method="post" name="form1" id="form1">
+    <input type="hidden" name="tknio" value="[tknio]">
+    <input type="hidden" name="contactid" value="[contactid]" />
+    <input type="hidden" name="update" value="1" />
+    <div class="loginInfo pad10 boxShadow">
+      <div class="header">
+        <h3>Login Information</h3>
+      </div>
+      <div class="updaccField">
+        <label for="email">Email</label>
+        <input size="40" name="email" value="[email]" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="pass_old">Old Password</label>
+        <input type="password" autocomplete="off" size="40" name="pass_old" value="" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="pass">New Password</label>
+        <input type="password" autocomplete="off" size="40" name="pass" value="" tabindex="3" class="txtBoxStyle" [CallFunctionVerifyStrongPass] />
+        <div class="clear"></div>
+      </div>
+      <!--START: StrongPasswordBar-->
+      <div class="updaccField">
+        <div class="strong-pass-bar" style="background-image: linear-gradient(to left, #86e01e 0%, #f63a0f 100%);">
+            <div id="divStrong"></div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <!--END: StrongPasswordBar-->
+        <!--START: PasswordMSG-->
+      <div class="PasswordMSG">
+        <p>[CustomerInfo_password_policy]</p>
+      </div>
+      <!--END: PasswordMSG-->
+      <div class="updaccField">
+        <label for="pass_new">Confirm New Password</label>
+        <input type="password" autocomplete="off" size="40" name="pass_new" value="" tabindex="4" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="billingInfo pad10 boxShadow">
+      <div class="header">
+        <h3>Billing Information</h3>
+      </div>
+      <div class="updaccField">
+        <label for="billing_company">Company</label>
+        <input size="40" name="billing_company" value="[billing_company]" tabindex="5" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_firstname">First Name</label>
+        <input size="40" name="billing_firstname" value="[billing_firstname]" tabindex="6" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_lastname">Last Name</label>
+        <input size="40" name="billing_lastname" value="[billing_lastname]" tabindex="7" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_address">Address</label>
+        <input size="40" name="billing_address" value="[billing_address]" tabindex="8" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_address2">Address 2</label>
+        <input size="40" name="billing_address2" value="[billing_address2]" tabindex="9" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_city">City</label>
+        <input size="40" name="billing_city" value="[billing_city]" tabindex="10" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_state">State</label>
+        <select id="billing_state" name="billing_state" tabindex="11" class="txtBoxStyle">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_zip">Zip Code</label>
+        <input size="40" name="billing_zip" value="[billing_zip]" tabindex="12" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_country">Country</label>
+        <select id='billing_country' name='billing_country' onchange="populateState('billing_state','billing_country')" tabindex="13" class="txtBoxStyle">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="billing_phone">Phone</label>
+        <input size="40" name="billing_phone" value="[billing_phone]" tabindex="14" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="shippingInfo pad10 boxShadow">
+      <div class="header">
+        <h3>Shipping Information</h3>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_company">Company</label>
+        <input size="40" name="shipping_company" value="[shipping_company]" tabindex="15" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_firstname">First Name</label>
+        <input size="40" name="shipping_firstname" value="[shipping_firstname]" tabindex="16" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_lastname">Last Name</label>
+        <input size="40" name="shipping_lastname" value="[billing_lastname]" tabindex="17" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_address">Address</label>
+        <input size="40" name="shipping_address" value="[shipping_address]" tabindex="18" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_address2">Address 2</label>
+        <input size="40" name="shipping_address2" value="[shipping_address2]" tabindex="19" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_city">City</label>
+        <input size="40" name="shipping_city" value="[shipping_city]" tabindex="20" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_state">State</label>
+        <select id="shipping_state" name="shipping_state" tabindex="21" class="txtBoxStyle">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_zip">Zip Code</label>
+        <input size="40" name="shipping_zip" value="[shipping_zip]" tabindex="22" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_country">Country</label>
+        <select id="shipping_country" name="shipping_country" onchange="populateState('shipping_state','shipping_country')" tabindex="23" class="txtBoxStyle">
+        </select>
+        <div class="clear"></div>
+      </div>
+      <div class="updaccField">
+        <label for="shipping_phone">Phone</label>
+        <input size="40" name="shipping_phone" value="[shipping_phone]" tabindex="24" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <!--START: addressType-->
+      <div class="updaccField">
+        <label for="shipping_addresstype">[CustomerInfo_address_type]</label>
+        <select name="shipping_addresstype" id="shipping_addresstype" tabindex="25" class="txtBoxStyle">
+          [addressTypeDropDown]
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--END: addressType--> 
+    </div>
+    <div class="clear"></div>
+    <div class="otherInfo pad10 boxShadow">
+      <div class="header">
+        <h3>Other Information</h3>
+      </div>
+      <div class="updaccField">
+        <div class="mailist-chk">
+          <input type="checkbox" name="maillist" value="1" tabindex="26" [maillist] />
+        </div>
+        <div class="mailist-subscribe">I would like to receive updates and promotions by email</div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="update-btn">
+      <input type="button" onclick="doUpdate:doUpdate(this.form);" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" value="Update My Information" />
+    </div>
+    <div class="clear"></div>
+    <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="updateAccountFooter">[CONTENT]</div>
+    <!--END: CATEGORY_FOOTER-->
+  </form>
+</section>
+<script type="text/javascript">
+    initCountry('[billing_country]', '[billing_state_script]', 'billing_state', 'billing_country');
+    initCountry('[shipping_country]', '[shipping_state_script]', 'shipping_state', 'shipping_country');
+
+    function doUpdate(objForm) {
+
+        String.prototype.trim = function () {
+            return this.replace(/^\s+|\s+$/g, "");
+        }
+
+        function IsNumeric(strString) {
+            var strValidChars = "0123456789.-";
+            var strChar;
+            var blnResult = true;
+
+            if (strString.length == 0) return false;
+            //  test strString consists of valid characters listed above
+            for (i = 0; i < strString.length && blnResult == true; i++) {
+                strChar = strString.charAt(i);
+                if (strValidChars.indexOf(strChar) == -1) {
+                    blnResult = false;
+                }
+            }
+            return blnResult;
+        }
+
+
+        var strMsg = "";
+
+        if (emailReq == 1) {
+            if (objForm.email.value.trim() == "")
+                strMsg += " - Please enter a valid Email.\n";
+            if (objForm.email.value.length > 50)
+                strMsg += " - Maximum length for this field is 50.\n";
+        }
+
+        //BILLING INFO
+        if (objForm.billing_firstname.value.trim() == "")
+            strMsg += " - Please enter your Billing [CustomerInfo_firstname].\n";
+        if (objForm.billing_firstname.value.length > 20)
+            strMsg += " - Maximum length for this field is 20 characters.\n";
+
+        if (objForm.billing_lastname.value.trim() == "")
+            strMsg += " - Please enter your Billing [CustomerInfo_lastname].\n";
+        if (objForm.billing_lastname.value.length > 20)
+            strMsg += " - Maximum length for this field is 20 characters.\n";
+
+        if (objForm.billing_phone.value.trim() == "")
+            strMsg += " - Please enter your Billing [CustomerInfo_phone].\n";
+        if (objForm.billing_phone.value.length > 18)
+            strMsg += " - Maximum length for this field is 18 characters.\n";
+
+        if (objForm.billing_address.value.trim() == "")
+            strMsg += " - Please enter your Billing [CustomerInfo_address].\n";
+        if (objForm.billing_address.value.length > 50)
+            strMsg += " - Maximum length for this field is 50 characters.\n";
+
+        if (objForm.billing_city.value.trim() == "")
+            strMsg += " - Please enter your Billing [CustomerInfo_city].\n";
+        if (objForm.billing_city.value.length > 50)
+            strMsg += " - Maximum length for this field is 50 characters.\n";
+
+        if (objForm.billing_state.value.trim() == "")
+            strMsg += " - Please enter your Billing [CustomerInfo_state].\n";
+        if (objForm.billing_state.value.length > 50)
+            strMsg += " - Maximum length for this field is 50 characters.\n";
+
+        if (objForm.billing_zip.value.trim() == "")
+            strMsg += " - Please enter your Billing [CustomerInfo_zip].\n";
+        if (objForm.billing_zip.value.length > 20)
+            strMsg += " - Maximum length for this field is 20 characters.\n";
+
+
+        //SHIPPING INFO
+        if (objForm.shipping_firstname.value.trim() == "")
+            strMsg += " - Please enter your Shipping [CustomerInfo_firstname].\n";
+        if (objForm.shipping_firstname.value.length > 20)
+            strMsg += " - Maximum length for this field is 20 characters.\n";
+
+        if (objForm.shipping_lastname.value.trim() == "")
+            strMsg += " - Please enter your Shipping [CustomerInfo_lastname].\n";
+        if (objForm.shipping_lastname.value.length > 20)
+            strMsg += " - Maximum length for this field is 20 characters.\n";
+
+        if (objForm.shipping_phone.value.trim() == "")
+            strMsg += " - Please enter your Shipping [CustomerInfo_phone].\n";
+        if (objForm.shipping_phone.value.length > 18)
+            strMsg += " - Maximum length for this field is 18 characters.\n";
+
+        if (objForm.shipping_address.value.trim() == "")
+            strMsg += " - Please enter your Shipping [CustomerInfo_address].\n";
+        if (objForm.shipping_address.value.length > 50)
+            strMsg += " - Maximum length for this field is 50 characters.\n";
+
+        if (objForm.shipping_city.value.trim() == "")
+            strMsg += " - Please enter your Shipping [CustomerInfo_city].\n";
+        if (objForm.shipping_city.value.length > 50)
+            strMsg += " - Maximum length for this field is 50 characters.\n";
+
+        if (objForm.shipping_state.value.trim() == "")
+            strMsg += " - Please enter your Shipping [CustomerInfo_state].\n";
+        if (objForm.shipping_state.value.length > 50)
+            strMsg += " - Maximum length for this field is 50 characters.\n";
+
+        if (objForm.shipping_zip.value.trim() == "")
+            strMsg += " - Please enter your Shipping [CustomerInfo_zip].\n";
+        if (objForm.shipping_zip.value.length > 20)
+            strMsg += " - Maximum length for this field is 20 characters.\n";
+
+
+        if (strMsg != "") {
+            alert(strMsg);
+            return false;
+        }
+
+        objForm.submit();
+    }
+</script>

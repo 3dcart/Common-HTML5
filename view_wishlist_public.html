@@ -1,0 +1,91 @@
+<section id="viewWishlistPublic">
+  <h1 class="page_headers">[wishlist_my-wishlist]</h1>
+  <div class="clear"></div>
+  <!--START: WISHLIST_CREATOR_NAME-->
+  <div class="left public-wishlist-creator"><strong>Created by:</strong> [wishlist-public-creator-FirstName] [wishlist-public-creator-LastName]</div>
+  <div class="clear"></div>
+  <div class="social-bookmarking">[product_social-bookmarking]</div>
+  <!--END: WISHLIST_CREATOR_NAME-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="viewWishlistPublicHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="wishlistView">
+    <div class="titles2">
+      <div class="wl-items">[wishlist_viewwishlist-header-items]</div>
+      <div class="wl-quantity">[wishlist_viewwishlist-header-quantity]</div>
+      <div class="wl-price">[wishlist_viewwishlist-header-price]</div>
+      <div class="wl-total">[wishlist_viewwishlist-header-total]</div>
+      <div class="wl-details">&nbsp;</div>
+      <div class="clear"></div>
+    </div>
+    <!--START: WSH_LIST_NO_ITEM-->
+    <div class="emptylist">[wishlist_viewwishlist-emptylist]</div>
+    <!--END: WSH_LIST_NO_ITEM--> 
+    <!--START: WSH_LIST_ITEM-->
+    <div class="row">
+      <div class="wl-items">
+        <div class="img"><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" height="55" width="55" /></a></div>
+        <div class="product-name-options">
+        <div class="name"><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a></div>
+        <!--START: itemoptions--> 
+        <a href='#' onClick="toggle('opt[ITEM_ID]')">View/Hide options</a><br>
+        <div id="opt[ITEM_ID]" name="opt[ITEM_ID]" style="display:none;">[OPTIONS]</div>
+        <!--END: itemoptions-->
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="wl-quantity">
+        <input type="text" name="txtQty[ITEM_ID]" id="txtQty[ITEM_ID]" size="2" maxlength="4" value="[ITEM_QUANTITY]" />
+      </div>
+      <div class="wl-price">[ITEM_PRICE]</div>
+      <div class="wl-total">[ITEM_SUBTOTAL]</div>
+      <div class="wl-details">
+        <!--START: WSH_LIST_ITEM_NOT_AVLB-->
+        <div class="left center">[wishlist_viewwishlist-prod-not-available]</div>
+        <!--END: WSH_LIST_ITEM_NOT_AVLB--> 
+        <!--START: WSH_LIST_ITEM_ADDCART-->
+        <div class="left">
+          <input type="button" value="Add to Cart" height="5" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" onclick="javascript:addToCart([ITEM_ID], [LIST_ID]);" />
+        </div>
+        <!--END: WSH_LIST_ITEM_ADDCART-->
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--END: WSH_LIST_ITEM-->
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="viewWishlistPublicFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<form action="view_wishlist.asp" method="post" name="frmForm" id="frmForm">
+	<input type="hidden" name="action"	id="action"	value="" />
+	<input type="hidden" name="wsiId"	id="wsiId"	value="" />
+	<input type="hidden" name="qty"	id="qty"	value="" />
+	<input type="hidden" name="k"	id="intListId"	value="" />
+</form>
+<script type="text/javascript">
+function submitForm(strAction)
+{
+	window.document.body.style.cursor = 'wait';
+	if(window.document.activeElement){window.document.activeElement.style.cursor='wait'; }
+	
+	document.frmForm.action.value = strAction;
+	document.frmForm.submit();
+}
+	 
+function addToCart(intWsiId, intListId)
+{
+	var rep;
+	rep = confirm("[wishlist_viewwishlist-message-addtocart]");
+	if (!rep)
+		return false;
+	
+	document.frmForm.wsiId.value = intWsiId;
+	document.frmForm.k.value = intListId;
+	submitForm('addToCart');
+}
+</script>

@@ -1,0 +1,639 @@
+<style type="text/css">
+#simplemodal-overlay { background-color: #000; }
+#simplemodal-container { padding: 0 !important; }
+</style>
+
+<script type="text/javascript" src="state_countryjs.asp"></script>
+<script type="text/javascript" src="prototype.js"></script>
+<script type="text/javascript">
+	if (typeof jQuery == 'undefined') {
+	    document.write("<script type=\"text/javascript\" src=\"assets/templates/common/js/jquery.min.js\"></" + "script>");
+	}
+</script>
+<script type="text/javascript" src="assets/templates/common-html5/js/jquery.simplemodal.min.js"></script>
+
+<section id="checkoutStep1">
+  <h1 class="page_headers">Checkout</h1>
+  <div class="steps right"><span class="steps_on">[checkout1_step]</span> [checkout2_step] [checkout3_step] [checkout4_step]</div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+  <div class="category-header" id="checkoutStep1Header">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form action="checkout2.asp?step=2" method="post" name="checkoutform">
+    <input type="hidden" name="tknio" value="[tknio]">
+    <!--START: paypalexpress-->
+    <div class="paypalExpress left"> 
+		<a href="paypal_express.asp?ch=1" title="Check out with PayPal"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-small.png" alt="Check out with PayPal" /></a>
+	</div>
+    <!--START: paypalcredit-->
+    <div class="paypalExpress left" style="width:150px;"> 
+		<a href="paypal_express.asp?ch=1&ppc=1" title="PayPal Credit"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/ppcredit-logo-small.png" alt="PayPal Credit" /></a>
+		<a href="https://www.securecheckout.billmelater.com/paycapture-content/fetch?hash=AU826TU8&content=/bmlweb/ppwpsiw.html" alt="PayPal Credit" target="_blank"><img src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_bml_text.png" /></a>
+	</div>
+    <!--END: paypalcredit-->
+    <div class="clear"></div>
+    <!--END: paypalexpress--> 
+    <div class="rightCol">
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_Header-shoppingcart]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="chkShoppingCart pad10 boxShadow"> 
+        <!--START: SHOPPING_CART_ITEM-->
+        <div class="row">
+          <div class="product-image">
+			<!--START: itemthumbnail--><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" border="0" height="40" width="40" id="tl" /></a><!--END: itemthumbnail-->
+			<!--START: thumbnailnolink--><img src="thumbnail.asp?file=[THUMBNAIL]" border="0" height="40" width="40" id="tnl" /><!--END: thumbnailnolink-->
+            <!--START: itemnamelink--><span><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a></span><!--END: itemnamelink--> 
+			<!--START: itemnamenolink--><span id="spnItemName">[ITEM_NAME]</span><!--END: itemnamenolink-->
+            <div class="clear"></div>
+          </div>
+          <div class="product-info">[ITEM_PRICE] X [ITEM_QUANTITY]<span>[ITEM_SUBTOTAL]</span></div>
+          <div class="clear"></div>
+        </div>
+        <!--END: SHOPPING_CART_ITEM--> 
+        <!--START: DISCOUNTS-->
+        <div class="total_discount-detail">[shoppingcart_subtotal]:</div>
+        <div class="total_discount">[CARTSUBTOTAL]</div>
+        <div class="total_discount-detail">[checkout1_discounts]:</div>
+        <div class="total_discount">[DISCOUNTS]</div>
+        <div class="clear"></div>
+        <!--END: DISCOUNTS--> 
+        <!--START: BUYSAFE-->
+        <div class="total_buysafe-logo"><img src="assets/templates/common/images/buysafe.gif" alt="" /></div>
+        <div class="total_buysafe">[buysafe_totalbondcost]</div>
+        <div class="clear"></div>
+        <!--END: BUYSAFE-->
+        <div class="total_cart-total">[shoppingcart_total]</div>
+        <div class="total_total price">[CARTTOTAL]</div>
+        <div class="clear"></div>
+        <!--START: GIFTCERTS-->
+        <div class="total_cart-giftcerts">[shoppingcart_giftcertificate]:</div>
+        <div class="total_giftcerts">[GIFTCERTS]</div>
+        <div class="clear"></div>
+        <!--END: GIFTCERTS--> 
+      <div class="button right"><a href="view_cart.asp" class="icon-btn icon-btn-incart">Update Cart</a></div>
+    <div class="clear"></div>
+      </div>
+    </div>
+    <div class="leftCol"> 
+      <!--START: account_login-->
+      <div class="account_login pad10 boxShadow">
+        <div class="loginmessage">[checkout1_loginmessage]</div>
+        <div class="loginmessage2">[checkout1_loginmessage2]</div>
+        <div class="login1-button">
+          <button type="button" class="btn" onclick="document.location='checkout.asp?step=log-in';"><i class="icon-login"></i> [checkout1_login]</button>
+        </div>
+        <!--START: fbconnect-->
+        <div class="fbconnect"><a onclick="popup('social_login.asp?p=fl&return=checkout',1000,550)" href="#" title="Sign in with Facebook"><img src="assets/templates/common/images/facebook_signin.png" alt="Sign in with Facebook" width="150" height="22" /></a></div>
+        <!--END: fbconnect-->
+        <div class="clear"></div>
+      </div>
+      <!--start create account block-->
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_Header-createnewaccount]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="createNewAccount pad10 boxShadow">
+        <div class="chkField">
+          <label for="createnewaccount_email">[CustomerInfo_email]</label>
+          <input type="text" size="25" name="email" id="email" value="[email]" tabindex="1" class="txtBoxStyle" />
+          <!--START: emailrequired--> 
+          <!--START: req_email--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_email--> 
+          <!--END: emailrequired-->
+          <div class="clear"></div>
+        </div>
+        <!--START: confirm_email-->
+        <div class="chkField">
+          <label for="billing_confirmemail">[CustomerInfo_confirmemail]</label>
+          <input type="text" size="25" name="billing_confirmemail" id="billing_confirmemail" value="[email]" tabindex="2" class="txtBoxStyle" />
+          <!--START: emailrequired--> 
+          <!--START: req_email--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_email--> 
+          <!--END: emailrequired-->
+          <div class="clear"></div>
+        </div>
+        <!--END: confirm_email-->
+        <div class="chkField">
+          <label for="pass">[CustomerInfo_password]</label>
+          <input type="password" size="12" name="pass" id="pass" autocomplete="off" tabindex="3" class="txtBoxStyle" [CallFunctionVerifyStrongPass] />
+          <!--START: passwordrequired--> 
+          <!--START: req_pass--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_pass--> 
+          <!--END: passwordrequired-->
+          <div class="clear"></div>
+        </div>
+        <!--START: StrongPasswordBar-->
+        <div class="chkField">
+            <div class="strong-pass-bar" style="background-image: linear-gradient(to left, #86e01e 0%, #f63a0f 100%);">
+                <div id="divStrong"></div>
+            </div>
+            <div class="clear"></div>
+            </div>
+            <!--END: StrongPasswordBar-->
+            <!--START: PasswordMSG-->
+        <div class="PasswordMSG">
+            <p>[CustomerInfo_password_policy]</p>
+        </div>
+        <!--END: PasswordMSG-->
+        <!--START: recurmessage-->
+        <div class="chkField">
+          <em class="error">[recurringorders_login-required]</em>
+          <div class="clear"></div>
+        </div>
+        <!--END: recurmessage-->
+      </div>
+      <!--end create account block-->
+      <!--END: account_login-->
+      <!--START: GIFT_REGISTRY_SHIPPING-->
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_Header-giftreg]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="giftregInstructions pad10 boxShadow">[checkout1_Header-giftreg-instructions]
+        <div class="select-giftreg-button">
+          <input type="button" id="cmdRegShip" onclick="javascript:selectGiftRegAddress();" name="cmdRegShip" value="Select Registry Address" class="btn" />
+        </div>
+      </div>
+      <!--END: GIFT_REGISTRY_SHIPPING-->
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_Header-shippinginformation]</h3>
+        <div class="clear"></div>
+      </div>
+      <!--START: required_fields-->
+      <div class="required-fields pad10 boxShadow"><img src="assets/templates/common/images/error.gif" alt="" /> <span class="error">ERROR: PLEASE CHECK THE REQUIRED FIELDS BELOW!</span></div>
+      <!--END: required_fields-->
+      <div id="shipping_info" class="pad10 boxShadow"> 
+        <!--START: SAVE_ADDRESSES-->
+        <div class="chkField">
+          <label for="save_address">[checkout1_address-book]</label>
+          <select name="save_address" onchange="javascript:filladdress(this);" id="save_address" tabindex="5" class="txtBoxStyle">
+          [address_list]
+          </select>
+          <div class="clear"></div>
+        </div>
+        <!--END: SAVE_ADDRESSES-->
+        <div class="chkField">
+          <label for="shipping_firstname">[CustomerInfo_firstname]</label>
+          <input name="shipping_firstname" type="text" id="shipping_firstname" value="[shipping_firstname]" size="15" tabindex="6" class="txtBoxStyle" />
+          <!--START: req_shipping_firstname--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_firstname-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_lastname">[CustomerInfo_lastname]</label>
+          <input name="shipping_lastname" type="text" id="shipping_lastname" value="[shipping_lastname]" size="15" tabindex="7" class="txtBoxStyle" />
+          <!--START: req_shipping_lastname--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_lastname-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_company">[CustomerInfo_company]</label>
+          <input name="shipping_company" type="text" id="shipping_company" value="[shipping_company]" size="25" tabindex="8" class="txtBoxStyle" />
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_phone">[CustomerInfo_phone]</label>
+          <input name="shipping_phone" type="text" id="shipping_phone" value="[shipping_phone]" size="25" tabindex="9" class="txtBoxStyle" />
+          <!--START: req_shipping_phone--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_phone-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_address">[CustomerInfo_address]</label>
+          <input name="shipping_address" type="text" id="shipping_address" value="[shipping_address]" size="25" tabindex="10" class="txtBoxStyle" />
+          <!--START: req_shipping_address--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_address-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_address2">[CustomerInfo_address2]</label>
+          <input name="shipping_address2" type="text" id="shipping_address2" value="[shipping_address2]" size="25" tabindex="11" class="txtBoxStyle" />
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_city">[CustomerInfo_city]</label>
+          <input name="shipping_city" type="text" id="shipping_city" value="[shipping_city]" size="25" tabindex="12" class="txtBoxStyle" />
+          <!--START: req_shipping_city--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_city-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_country">[CustomerInfo_country]</label>
+          <select name="shipping_country" onchange="document.checkoutform.action='checkout2.asp?step=2&return=1';document.checkoutform.submit();" tabindex="13" class="txtBoxStyle" id="shipping_country"><!--START: req_shipping_country-->*<!--END: req_shipping_country-->[CountryDropDown]</select>
+          <!--START: req_shipping_country--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_country-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_state">[CustomerInfo_state]</label>
+          [state] 
+          <!--START: req_shipping_state--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_state-->
+          <div class="clear"></div>
+        </div>
+        <div class="chkField">
+          <label for="shipping_zip">[CustomerInfo_zip]</label>
+          <input name="shipping_zip" maxlength="15" type="text" id="shipping_zip" value="[shipping_zip]" size="10" tabindex="15" class="txtBoxStyle" />
+          <!--START: req_shipping_zip--> 
+          <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          <!--END: req_shipping_zip-->
+          <div class="clear"></div>
+        </div>
+        <!--START: addressType-->
+        <div class="chkField">
+          <label for="shipping_addresstype">[CustomerInfo_address_type]</label>
+          <select name="shipping_addresstype" tabindex="16" class="txtBoxStyle">
+            [addressTypeDropDown]
+          </select>
+          <div class="clear"></div>
+        </div>
+        <!--END: addressType-->
+		<!--START: ADD_ADDRESSBOOK-->
+        <div id="rowAddAddress" style="display:none;" class="chkField">
+		  <label for="addressbook"><b>Add&nbsp;to&nbsp;Address&nbsp;Book</b></label>
+		  <input type="checkbox" name="addressbook" id="addressbook" value="1">
+        </div>
+		<!--END: ADD_ADDRESSBOOK-->
+        <div class="chkField">
+            <div class="checkbox-format">
+                <label for="maillist">[checkout1_joinmailinglist]</label>
+                <input type="checkbox" value="1" name="maillist" [maillist] tabindex="4" />
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="clear"></div>
+
+      </div>
+      <!--START: checkout_questions-->
+      <div class="header">
+        <h3 class="checkout-headers">[checkout1_checkoutquestions]</h3>
+        <div class="clear"></div>
+      </div>
+      <div class="chkQuestions pad10 boxShadow"> 
+        <!--START: questions-->[questions]<!--END: questions-->
+        <div class="clear"></div>
+      </div>
+      <!--END: checkout_questions-->
+      <div id="divCheckoutButton">
+        <button type="button" name="btnCheckout" class="btn" onclick="javascript:submitCheckoutForm();"><i class="icon-basket"></i> [checkout1_submitbutton]</button>
+      </div>
+    </div>
+    <div class="clear"></div>
+
+  <!--START: checkout_questions_templates-->
+  <div class="chkQuestionsTemplates">
+  <!--START: textarea-format-->
+    <div class="chk-questions-section">
+      <div class="textarea-format">
+          <!--START: req[id]--> 
+          <div class="required"> 
+            <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+          </div>
+          <!--END: req[id]-->
+          <label for="cq[id]">[question]</label>
+          <textarea cols="30" rows="5" name="cq[id]" class="txtBoxStyle">[answer]</textarea>
+          <div class="clear"></div>
+      </div>
+    </div>
+  <!--END: textarea-format--> 
+  <!--START: text-format-->
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+      <input type="text" size="30" name="cq[id]" value="[answer]" class="txtBoxStyle" />
+      <div class="clear"></div>
+    </div>
+  <!--END: text-format--> 
+  <!--START: checkbox-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+        <label class="checkbox">
+            <input type="checkbox" name="cq[id]" class="txtBoxStyle" value="[answer]" [selected] />
+            [question]
+        </label>
+      <div class="clear"></div>
+    </div>
+  <!--END: checkbox-format--> 
+  <!--START: radio-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+      <!--START: option-->
+        <label class="radio">
+        <input type="radio" name="cq[id]" value="[option]" class="txtBoxStyle" [selected] />
+        [option]</label>
+      <!--END: option-->
+      <div class="clear"></div>
+    </div>
+  <!--END: radio-format--> 
+  <!--START: dropdown-format--> 
+    <div class="chk-questions-section">
+      <!--START: req[id]--> 
+      <div class="required"> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+      </div>
+      <!--END: req[id]-->
+      <label for="cq[id]">[question]</label>
+        <label class="select">
+            <select name="cq[id]">
+            <!--START: option-->
+            <option value="[option]" [selected]>[option]</option>
+            <!--END: option-->
+            </select>
+        </label>
+      <div class="clear"></div>
+    </div>
+  <!--END: dropdown-format-->
+  <div class="clear"></div>
+  </div>
+  <!--END: checkout_questions_templates-->
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+  <div class="category-footer" id="checkoutStep1Footer">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<input type="hidden" name="hdnAddrressValidatorResult" id="hdnAddrressValidatorResult" value="" />
+<div id="divAddrressValidator" style="display:none;"> 
+  <!--START: AddressValidatorBlock-->
+  <div style="background-color: #FFF; padding: 30px;"> 
+    <!--START: AddressValidatorBlock_ValidationFailed-->
+    <div>[result_msg]</div>
+    <!--END: AddressValidatorBlock_ValidationFailed--> 
+    <!--START: AddressValidatorBlock_ValidationSuggestion-->
+    <div> [result_msg] 
+      <!--START: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+      <br />
+      <br />
+      <strong>[checkout1_AddressValidator_SuggestedAddress]</strong> <a style="text-decoration:underline;" href="#" onclick="javascript:parent.jQuery.modal.close();selectAddress('[AddrressValidator_address1]', '[AddrressValidator_address2]', '[AddrressValidator_city]', '[AddrressValidator_state]', '[AddrressValidator_zip]', '[AddrressValidator_rdi]');">[AddrressValidator_address], [AddrressValidator_city], [AddrressValidator_state], [AddrressValidator_zip]</a> 
+      <!--END: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+      </div>
+    <!--END: AddressValidatorBlock_ValidationSuggestion-->
+    <!--START: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br />
+    <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:parent.jQuery.modal.close();useAddressValidator='';submitCheckoutForm();">[checkout1_AddressValidator_Continue]</a>
+	<br />
+    <!--END: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br /><a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:parent.jQuery.modal.close();"><i class="icon-cancel"></i>[checkout1_AddressValidator_Close]</a></div>
+  <!--END: AddressValidatorBlock-->
+</div>
+
+<script type="text/javascript">
+function confirmationValidation()
+{
+    if (document.checkoutform.billing_confirmemail == null || document.checkoutform.billing_confirmemail == 'undefined')
+        return true;
+
+    if (document.checkoutform.email.value != document.checkoutform.billing_confirmemail.value)
+    {
+        alert('The Email does not match.');
+        return false;
+    }
+
+    return true;
+}
+</script>
+<script type="text/javascript">
+    bolCheckSubmitted_validation = false;
+
+    var useAddressValidator = "[useAddressValidator]";
+
+    var frmvalidator = new Validator("checkoutform");
+    frmvalidator.EnableMsgsTogether();
+
+    function setValidation()
+    {
+        frmvalidator.clearAllValidations();
+
+	    frmvalidator.addValidation("shipping_firstname","req","Please enter your First Name");
+	    frmvalidator.addValidation("shipping_firstname","maxlen=20","Max length for First Name is 20");
+	    frmvalidator.addValidation("shipping_lastname","req","Please enter your Last Name");
+	    frmvalidator.addValidation("shipping_lastname","maxlen=20","Max length for Last Name is 20");
+
+	    frmvalidator.addValidation("shipping_company","maxlen=50","Max length for Company is 50");
+
+	    //<!--START: emailrequiredscript-->
+	    if (document.checkoutform.email != null && document.checkoutform.email != 'undefined')
+	    {
+		    frmvalidator.addValidation("email","maxlen=50","Max length for Email is 50");
+		    frmvalidator.addValidation("email","req","Email is required");
+		    frmvalidator.addValidation("email","email");
+	    }
+		
+		//<!--START: confirmemailscript-->
+		if (document.checkoutform.billing_confirmemail != null && document.checkoutform.billing_confirmemail != 'undefined')
+		{
+			frmvalidator.addValidation("billing_confirmemail","maxlen=50","Max length for Email is 50");
+			frmvalidator.addValidation("billing_confirmemail","req","Please confirm your Email.");
+			frmvalidator.addValidation("billing_confirmemail","email","Please confirm your Email.");
+		}
+		//<!--END: confirmemailscript-->
+		//<!--END: emailrequiredscript-->
+
+		//<!--START: phonerequiredscript-->
+        if (get_Element('shipping_country').value == "US")
+        {
+	        frmvalidator.addValidation("shipping_phone","maxlen=18","Max length for Phone is 18");
+	        frmvalidator.addValidation("shipping_phone","phone","Invalid phone number.");
+	        frmvalidator.addValidation("shipping_phone","req","Please enter your phone number.");
+        }
+		//<!--END: phonerequiredscript-->
+
+	    frmvalidator.addValidation("shipping_address","maxlen=50","Max length for Address is 50");
+	    frmvalidator.addValidation("shipping_address","req","Please enter your address");
+
+	    frmvalidator.addValidation("shipping_address2","maxlen=40","Max length for Suite/Apt# is 40");
+
+	    frmvalidator.addValidation("shipping_city","maxlen=50","Max length for City is 50");
+	    frmvalidator.addValidation("shipping_city","req","Please enter your City");
+
+	    if (get_Element('shipping_country').value == "US" || get_Element('shipping_state').type == 'select-one')
+	    {
+	    	frmvalidator.addValidation("shipping_state","maxlen=50","Max length for State is 50");
+	    	frmvalidator.addValidation("shipping_state","req","Please enter/select your state");
+	    	frmvalidator.addValidation("shipping_zip","maxlen=15","Max length for Zip is 15");
+	    	frmvalidator.addValidation("shipping_zip","req","Please enter your zip code");
+	    }
+
+	    <!--START: addressTypeScript-->
+		    frmvalidator.addValidation("shipping_addresstype","req","Please select [CustomerInfo_address_type]");
+	    <!--END: addressTypeScript-->
+
+        //frmvalidator.setAddnlValidationFunction("confirmationValidation");
+        //frmvalidator.setAddnlValidationFunction("checkreq_questions1");                          
+        frmvalidator.setAddnlValidationFunction("extraValidations");    
+    }
+
+	function selectRegAddress()
+	{	
+		location.href='checkout.asp?step=1&gftRegAdd=1';
+		
+		//Select without refresh:
+		/*
+		var objDrop = window.document.getElementById('save_address');
+		
+		if (objDrop == null)
+		
+		for (var intI = 0; 50; intI++) {
+			if (objDrop.options[intI].innerText.trim() == 'Registry Address') {
+				objDrop.options[intI].selected = true;
+				filladdress(objDrop);
+				return false;
+			}
+		}
+		*/
+	}
+	String.prototype.trim = function() {
+		return this.replace(/^\s+|\s+$/g,"");
+	}
+	var ccNumerNotAllowedMessage = '[ccNumerNotAllowedMessage]';
+	function extraValidations()
+	{
+	    if (!checkreq_questions1())
+	        return false;
+
+	    if (!confirmationValidation())
+	        return false;
+
+	    return true;
+	}
+
+	function submitCheckoutForm()	
+	{
+		var myCountry = "US";
+		if (getElementById_s("shipping_country"))
+		myCountry = getElementById_s("shipping_country").value;
+
+		document.body.style.cursor='wait';
+		if (getElementById_s("btnCheckout")) getElementById_s("btnCheckout").style.cursor='wait';
+
+		objForm = document.checkoutform;
+
+		setValidation();
+
+		if(objForm.onsubmit()) //triggers the form validation
+		{
+			if (useAddressValidator == "1" && myCountry == "US")
+			{   
+				isSubmitComplete = false;
+				getElementById_s("hdnAddrressValidatorResult").value = "";
+				var url = 'addressvalidator.asp?no-cache='+Math.random();
+				var params = 'doaction=verify&ct=multi';
+				params += '&name=' + encodeURIComponent(getElementById_s("shipping_firstname").value) + ' ' + encodeURIComponent(getElementById_s("shipping_lastname").value);
+				if (getElementById_s("shipping_company")) params += '&company=' + encodeURIComponent(getElementById_s("shipping_company").value);
+				params += '&address=' + encodeURIComponent(getElementById_s("shipping_address").value) 
+				params += '&address2=' + encodeURIComponent(getElementById_s("shipping_address2").value) 
+				params += '&city=' + encodeURIComponent(getElementById_s("shipping_city").value);
+				params += '&state=' + encodeURIComponent(getElementById_s("shipping_state").value);
+			
+				var ajax = new Ajax.Updater({success: 'divAddrressValidator'},
+				url,
+				{method: 'post', evalScripts: true, parameters: params, onFailure: reportError});                
+    		}
+			else
+			{
+				document.body.style.cursor='';
+				if (getElementById_s("btnCheckout")) getElementById_s("btnCheckout").style.cursor='';
+				if (getElementById_s("divAddrressValidator") != null && getElementById_s("divAddrressValidator") != 'undefined')
+				getElementById_s("divAddrressValidator").style.display = 'none';
+                
+				objForm.submit();
+			}
+		}
+		else
+		{
+			document.body.style.cursor='';
+			if (getElementById_s("btnCheckout")) getElementById_s("btnCheckout").style.cursor='';
+		}
+	}
+
+    function submitCheckoutFormPos()
+    {
+        objForm = document.checkoutform;
+        if (getElementById_s("hdnAddrressValidatorResult").value == "1")
+        {
+            objForm.submit();
+            return;
+        }
+        else
+        {
+            isSubmitComplete = false;
+
+            jQuery("#divAddrressValidator").modal({containerCss:{borderWidth:'1px',width:'602px',height:'212px'}});
+            document.body.style.cursor='';
+            if (getElementById_s("btnCheckout")) getElementById_s("btnCheckout").style.cursor='';
+        }
+            
+    }
+
+    function selectAddress(AddrressValidator_address1, AddrressValidator_address2, AddrressValidator_city, AddrressValidator_state, AddrressValidator_zip, AddressValidator_RDI)
+    {
+        getElementById_s("shipping_address").value = AddrressValidator_address1;
+        getElementById_s("shipping_address2").value = AddrressValidator_address2;
+        getElementById_s("shipping_city").value = AddrressValidator_city;
+        getElementById_s("shipping_zip").value = AddrressValidator_zip;
+        getElementById_s("shipping_state").value = AddrressValidator_state;
+        useAddressValidator='';
+    	//AddressValidator_RDI
+        if (getElementById_s("shipping_addresstype") && AddressValidator_RDI != ""){
+        	if (AddressValidator_RDI == "R")
+        		getElementById_s("shipping_addresstype").value = "1";
+        	else
+        		getElementById_s("shipping_addresstype").value = "2";
+        }
+        submitCheckoutForm();
+    }
+
+	function reportError(request) {
+        isSubmitComplete = false;
+		//request.responseText
+		alert("Error processing request " + request.responseText);
+	}
+
+	function getElementById_s(id){ 
+		var obj = null; 
+		if(document.getElementById){ 
+			/* Prefer the widely supported W3C DOM method, if 
+			available:- 
+			*/ 
+			obj = get_Element(id); 
+		}else if(document.all){ 
+			/* Branch to use document.all on document.all only 
+			browsers. Requires that IDs are unique to the page 
+			and do not coincide with NAME attributes on other 
+			elements:- 
+			*/ 
+			obj = document.all[id]; 
+		} 
+		/* If no appropriate element retrieval mechanism exists on 
+		this browser this function always returns null:- 
+		*/ 
+		return obj; 
+	}
+</script>

@@ -1,0 +1,675 @@
+<style type="text/css">
+	#simplemodal-container { border: none !important; background: none !important; overflow-y:visible; }
+#divBusy{ display:none; background-image:url(admin/templates/images/ajax-loader.gif); width:32px; height:32px; margin:auto;z-index:999; position: absolute; top: 40px; left: 50%; }
+</style>
+<script type="text/javascript">
+	var parentid = '';
+	if (typeof jQuery == 'undefined') {
+		document.write("<script type=\"text/javascript\" src=\"assets/templates/common/js/jquery.min.js\"></" + "script>");
+	}
+
+
+	jQuery(document).ready(function () {
+		jQuery("#divGiftWrap").hide();
+	});
+
+	jQuery.getScript('assets/templates/common/js/simplemodal.js');
+
+	function cmdGWCancel_Click() {		
+		jQuery.modal.close();
+	}
+
+
+	function buySAFEOnClick(wantsbond)
+	{ 
+		document.location.href='view_cart.asp?wantsbond=' + wantsbond;
+	}
+
+	function showGiftWrap(itemid)
+	{
+	//used to display the modal box
+		var url = '';
+		var params = '';
+
+		params = 'id=' + itemid + '&action=1';
+		//SAVE THE ID OF HE ITEM BEING GIFTWRAPPED 
+		parentid = itemid;
+		
+		url = 'giftwrap_ajax.asp?' + params + '&no-cache='+Math.random();
+
+		//window.location = url;
+
+		jQuery("#divGiftWrap").modal({ containerCss: { borderWidth: "0px" } });
+		jQuery("#divGiftWrap").fadeIn();
+		
+		jQuery.ajax({
+			url: url,
+			dataType: 'html',
+			type: 'GET',
+			cache: false,
+			success: function (strResult) {
+				if (strResult == '') {
+					//alert('[productqa_helpful-notupdated]');
+				}
+				else {
+					
+					jQuery('#divGiftWrap').html(strResult);
+				}
+			},
+			error: reportGWError
+		});		
+	}
+
+	function updateGiftWrapOption()
+	{
+	//USED TO UPDATE THE MIDDLE div with the option selected from the giftwrap dropdown.
+		var url = '';
+		var params = '';
+
+		params = 'id=' + document.getElementById('giftwrap_id').value + '&action=2';
+
+		url = 'giftwrap_ajax.asp?' + params + '&no-cache=' + Math.random();
+
+		//window.location = url;
+
+		jQuery.ajax({
+			url: url,
+			dataType: 'html',
+			type: 'GET',
+			cache: false,
+			success: function (strResult) {
+				if (strResult == '') {
+					//alert('[productqa_helpful-notupdated]');
+				}
+				else {
+					jQuery('#divGiftwrapItem').html(strResult);
+				}
+			},
+			error: reportGWError
+		});
+
+	}
+
+	function cmdGWAdd_Click() {
+		var url = '';
+		var params = '';
+		var id = document.getElementById('giftwrap_id').value;
+
+		if (id == '')
+		{
+			alert('[giftwrap_pleaseselect]');
+			return (false);
+		}
+
+		params = 'parentid=' + parentid;
+		params += '&id=' + id;
+		params += '&action=3';
+		params += '&giftwrap_message=' + document.getElementById('giftwrap_message').value;
+
+		url = 'giftwrap_ajax.asp?' + params + '&no-cache=' + Math.random();
+
+		//window.location = url;
+
+		jQuery.ajax({
+			url: url,
+			dataType: 'html',
+			type: 'GET',
+			cache: false,
+			success: function (strResult) {
+				jQuery("#divGiftWrap").fadeOut();
+				window.location = 'view_cart.asp';
+			},
+			error: reportGWError
+		});
+	}
+
+	function countChar(val)
+	{
+		var len = val.value.length;
+		if (len >= 400)
+		{
+			val.value = val.value.substring(0, 400);
+		}
+		else
+		{
+			jQuery('#spnChars').text(400 - len);
+		}
+	}
+
+	function reportGWError(jqXHR, textStatus) {
+		if (jqXHR.status > 0)
+		{
+			alert("Error processing request, please try again."); 
+			//alert(jqXHR.responseText);
+			//alert(jqXHR.status + " - " + jqXHR);
+		}
+	}
+
+	jQuery(function () {
+		//submits the form in case the user presses enter
+		jQuery("#calculate_shipping_zip").keyup(function (event) {
+			if (event.keyCode == 13) {
+				jQuery("#calculate_button_go").click();
+			}
+			 });
+		});
+</script>
+<section id="viewCart">
+  <h1 class="page_headers">[viewcart_header]</h1>
+  <!--START: CATEGORY_HEADER-->
+  <div class="category-header" id="viewCartHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="chk-buttons">
+    <a href="[continue_url]"><i class="icon-left-open"></i> [viewcart_continue-shopping]</a>
+    <button type="button" onclick="window.location='checkout.asp?step=1'" id="vc_ChkButton1" class="btn"><i class="icon-basket"></i> [viewcart_checkout-button]</button>
+    <div class="clear"></div>
+  </div>
+  <form action="shipquote.asp" method="post" name="shipquote" onSubmit="return submitForm();">
+    <input type="hidden" name="thispage" value="" />
+    <input type="hidden" name="shipping_zip" value="[shipping_zip]" />
+    <script type="text/javascript">document.shipquote.thispage.value = window.location.href;</script>
+  </form>
+  <form action="recalculate.asp" method="post" name="recalculate" id="recalculate">
+    <!--START: SHOPPING_CART_SHIPMENT_INFO-->
+    <div class="cart-shipment-info"><span>Ship To [name] [address]</span> 
+      <!--START: EDITADDRESS-->
+      <div class="button left"><a href='edit_shipment.asp?shipmentid=[shipmentid]&action=editaddresses' class="icon-btn icon-btn-edit">Edit Address</a></div>
+      <!--END: EDITADDRESS-->
+      <div class="clear"></div>
+    </div>
+    <!--END: SHOPPING_CART_SHIPMENT_INFO-->
+    <div class="shoppingCartItems" id="divshoppingCartItems">
+      <div class="titles2">
+        <div class="item-info">[shoppingcart_items]</div>
+        <div class="item-qty">[shoppingcart_quantity]</div>
+        <div class="item-price">[shoppingcart_price]</div>
+        <div class="item-total">[shoppingcart_total]</div>
+        <div class="item-remove">&nbsp;</div>
+        <div class="clear"></div>
+      </div>
+      <!--START: SHOPPING_CART_ITEM-->
+      <div class="row">
+        <div class="item-info">
+          <div class="product-image"><!--START: itemthumbnail--><a href="product.asp?itemid=[ITEM_CATALOGID]"><img src="thumbnail.asp?file=[THUMBNAIL]" height="55" width="55" /></a><!--END: itemthumbnail--><!--START: thumbnailnolink--><img src="thumbnail.asp?file=[THUMBNAIL]" height="55" width="55" id="tnl" /><!--END: thumbnailnolink--></div>
+          <div class="product-name-options"> 
+            <!--START: itemnamelink--><a href="product.asp?itemid=[ITEM_CATALOGID]">[ITEM_NAME]</a><!--END: itemnamelink--> 
+            <!--START: itemnamenolink--><span id="spnItemName">[ITEM_NAME]</span><!--END: itemnamenolink--> 
+            <!--START: itemoptions--> 
+            <br />
+            <a href='#' onclick="toggle('opt[ITEM_ID]')">View/Hide options</a><br />
+            <div id=opt[ITEM_ID] name=opt[ITEM_ID] style="display:none;">[OPTIONS]</div>
+            <!--END: itemoptions--> 
+            <!--START: recurring_frequency-->
+            <div class="recurring_frequency">This item will Autoship every <strong>[recurring_frequency]</strong></div>
+            <!--END: recurring_frequency--> 
+            <!--START: giftwraplink-->
+            <div class="giftwraplink"> <a onclick="showGiftWrap('[ITEM_ID]')"><i class="icon-gift"></i> [giftwrap_link]</a> </div>
+            <!--END: giftwraplink--></div>
+          <div class="clear"></div>
+        </div>
+        <div class="item-qty">
+          <input type="text" name="qtyitemnum" value="[ITEM_QUANTITY]" size="3" maxlength="5" class="txtBoxStyle" />
+          <input type="hidden" name="coliditemnum" value="[ITEM_ID]" size="3" maxlength="5" />
+          <a href="#" onclick="document.forms['recalculate'].submit();return false;" class="update-qty">[shoppingcart_updatecart]</a>
+        </div>
+        <div class="item-price">[ITEM_PRICE]</div>
+        <div class="item-total">[ITEM_SUBTOTAL]</div>
+        <div class="item-remove"><a href="#" onclick="document.recalculate.qtyitemnum.value=0;document.recalculate.submit();"><i class="icon-cancel"></i></a></div>
+        <div class="clear"></div>
+      </div>
+      <!--END: SHOPPING_CART_ITEM-->
+      <div class="shoppingCartTotal">
+        <div class="clear">&nbsp;</div>
+        <div class="item-total">[CARTSUBTOTAL]</div>
+        <div class="item-price">[shoppingcart_subtotal]</div>
+        <div class="clear"></div>
+        <!--START: DISCOUNTS-->
+        <div class="clear">&nbsp;</div>
+        <div class="item-total">[DISCOUNTS]</div>
+        <div class="item-price">[checkout1_discounts]</div>
+        <div class="clear"></div>
+        <!--END: DISCOUNTS-->
+        <div class="clear">&nbsp;</div>
+        <div class="item-total"><strong>[CARTTOTAL]</strong></div>
+        <div class="item-price"><strong>[shoppingcart_total]</strong></div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <!--START: apply_coupon-->
+    <div class="applyCoupon pad10 boxShadow">
+      <div class="header">
+        <h3 class="checkout-headers">[viewcart_coupon-header]</h3>
+      </div>
+      <input type="text" name="coupon_code" class="txtBoxStyle" size="14" />
+      <input type="submit" value="Apply" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      <div class="clear"></div>
+      <div class="coupon-msg">[viewcart_coupon-message]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: apply_coupon--> 
+    <!--START: ShipQuote-->
+    <div class="shipQuote pad10 boxShadow">
+      <div class="header">
+        <h3 class="checkout-headers">[viewcart_shipping-header]</h3>
+      </div>
+      <div class="clear"></div>
+      <div class="shipquote-location">
+        <input type="text" name="shipping_zip" size="14" value="[shipping_zip]" class="txtBoxStyle" id="calculate_shipping_zip" />
+        <input type="button" value="Calculate" class="btn" onclick="document.shipquote.shipping_zip.value=document.recalculate.shipping_zip.value;document.shipquote.submit();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" id="calculate_button_go"/>
+      </div>
+      <div class="clear"></div>
+      <div class="shipquote-msg">[viewcart_shipping-message]</div>
+      <div class="clear"></div>
+      <!--START: viewcart_ship-->
+      <div class="shipquote-result-location">[shipping_city] [shipping_state] [shipping_zip]</div>
+      <div class="clear"></div>
+      <div class="shipquoteint-action">
+        <ul>
+          <!--START: Shippers-->
+          <li><i class="icon-angle-right"></i> <strong>[OPTION-SHIPPER]</strong> <em>[OPTION-DESCRIPTION]</em> [OPTION-PRICE]</li>
+          <!--END: Shippers-->
+        </ul>
+        <input type="button" class="btn" value="Clear" onclick="document.shipquote.action='shipquote.asp?action=clean';document.shipquote.submit();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+      <!--END: viewcart_ship--> 
+    </div>
+    <!--END: ShipQuote--> 
+    <!--START: ShipQuoteInternational-->
+    <div class="shipQuoteInt pad10 boxShadow">
+      <div class="header">
+        <h3 class="checkout-headers">[viewcart_shipping-header]</h3>
+      </div>
+      <div class="clear"></div>
+      <script type="text/javascript" src="state_countryjs.asp"></script> 
+      <script type="text/javascript">
+		function get_Element(i) {
+			return document.getElementById(i) || document.getElementsByName(i).item(0);
+		}								
+		function getInternationalQuote() {
+			var strAction = "shipquote.asp?shipping_country=" + get_Element("shipping_country").value;
+			strAction = strAction + "&shipping_state=" + get_Element("shipping_state").value;
+			document.shipquote.action = strAction;
+			
+			document.shipquote.shipping_zip.value = document.recalculate.shipping_zip.value
+			document.shipquote.submit();
+		}
+	  </script>
+      <div class="shipquoteint-location">
+        <select name="shipping_country" onchange="this.form.shipping_zip.value='';populateState('shipping_state','shipping_country');" class="txtBoxStyle" id="shipping_country">
+        </select>
+        <select id="shipping_state" onchange="this.form.shipping_zip.value='';" name="shipping_state" class="txtBoxStyle">
+        </select>
+      </div>
+        <div class="clear"></div>
+      <div class="shipquoteint-action">
+        <input type="text" name="shipping_zip" size="14" value="[shipping_zip]" class="txtBoxStyle" id="calculate_shipping_zip" />
+        <input type="button" value="Calculate" class="btn" onclick="getInternationalQuote();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" id="calculate_button_go" />
+      </div>
+      <div class="shipquoteint-msg">[viewcart_shipping-message]</div>
+      <div class="clear"></div>
+      <!--START: viewcart_ship-->
+      <div class="shipquoteint-result-location">[shipping_city] [shipping_state] [shipping_zip]</div>
+      <div class="shipquoteint-action">
+        <select class="txtBoxStyle">
+          <!--START: Shippers-->
+          <option><strong>[OPTION-SHIPPER]</strong> <em>[OPTION-DESCRIPTION]</em> [OPTION-PRICE]</option>
+          <!--END: Shippers-->
+        </select>
+        <input type="button" class="btn" value="Clear" onclick="document.shipquote.action='shipquote.asp?action=clean';document.shipquote.submit();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+      <!--END: viewcart_ship--> 
+    </div>
+    <!--END: ShipQuoteInternational-->
+    <div class="clear"></div>
+    <div class="chk-buttons"> 
+      <!--START: savecart-->
+      <a href="myaccount.asp?action=save_cart"><i class="icon-export"></i> [viewcart_save-cart]</a>
+      <!--END: savecart-->
+      <a href="[continue_url]"><i class="icon-left-open"></i> [viewcart_continue-shopping]</a>
+      <!--<button type="submit" name="Add" class="btn"><i class="icon-cw"></i> [shoppingcart_updatecart]</button>-->
+      <button type="button" onclick="window.location='checkout.asp?step=1'" id="vc_ChkButton" class="btn"><i class="icon-basket"></i> [viewcart_checkout-button]</button>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <!--START: BUYSAFE_CONTROL-->
+    <fieldset class="buysafe-bond">
+        <legend>BuySafe</legend>
+        <div class="left">
+        <p>[buysafe_bondingsignal]</p>
+        </div>
+        <div class="right">
+        <!--START: BUYSAFE_BONDCOST-->
+        <div class="center"><strong>[buysafe_bondcostdisplaytext]</strong></div>
+        <!--END: BUYSAFE_BONDCOST-->
+        <!--START: BUYSAFE_LEARNMORE-->
+        <p><a href="[buysafe_cartdetailsurl]" target="_buySAFE">[buysafe_cartdetailsdisplaytext]</a></p>
+        <!--END: BUYSAFE_LEARNMORE-->
+        </div>
+        <div class="clear"></div>
+    </fieldset>
+    <!--END: BUYSAFE_CONTROL-->
+    <fieldset class="third-party-payment">
+        <legend>Or Checkout with:</legend>
+        <div id="thirdPartyPayment">
+        <!--START: checkoutMasterPass-->
+        <div class="masterpass-button">
+            <a href="masterpass.asp?ac=token" title="Checkout with MasterPass&trade;"><img id="imgMasterPass" src="https://www.mastercard.com/mc_us/wallet/img/mcpp_wllt_btn_chk_147x034px.png" alt="Checkout with MasterPass&trade;" /></a>
+            <a href="javascript:void(0);" title="Learn more about MasterPass&trade;" onclick="window.open('http://www.mastercard.com/mc_us/wallet/learnmore/en/','','scrollbars=no,width=700,height=700'); return false;"><i class="icon-info-circled"></i>Learn more</a>
+        </div>
+		<br />&nbsp;
+        <!--END: checkoutMasterPass--> 
+		<!--START: checkout_visacheckout-->
+		<div id="divBusy" class="center"><img src='../assets/templates/common/images/ajax-loader.gif'><br /></div>
+		<!--START: visacheckout_jscript-->
+		<!--START: visacheckoutclickjack-->
+		<style id="antiClickjack">
+		body {
+			display: none;
+		}
+		</style>
+		<script type="text/javascript">
+			if (self === top) {
+				var antiClickjack = document.getElementById("antiClickjack");
+				if (antiClickjack)
+					antiClickjack.parentNode.removeChild(antiClickjack);
+			} else {
+				top.location = self.location;
+			}
+		</script>
+		<!--END: visacheckoutclickjack-->
+		<script type="text/javascript">
+			function onVmeReady() {
+				//alert(apiKey);
+				var apiKey = '[visacheckout_api_key]';
+				var dataq = '';
+
+				V.init({
+					apikey: apiKey,
+					externalClientId: '[visacheckout_externalclientid]',
+					sourceId: "",
+					settings: {
+						locale: "[visacheckout_locale]",
+						countryCode: "[visacheckout_country]",
+						displayName: "[storename]",
+						logoUrl: "[visacheckout_logourl]",
+						websiteUrl: "[visacheckout_domainname]",
+						shipping: {
+							acceptedRegions: [[visacheckout_shippingcountries]],
+							collectShipping: "[visacheckout_collectshipping]"
+						},
+						payment: {
+							cardBrands: [[cardsaccepted]],
+							acceptCanadianVisaDebit: "[visacheckout_acceptcanadadebitcard]"
+						},
+						review: {
+							buttonAction: "Continue"
+						},
+						dataLevel: "FULL"
+					},
+					paymentRequest: {
+						merchantRequestId: "[visacheckout_orderid]",
+						currencyCode: "[currency_code]",
+						subtotal: "[visacheckout_amount]",
+						total: "[visacheckout_amount]"
+					}
+				}
+				);
+				V.on("payment.success", function (payment) {
+
+					dataq = JSON.stringify(payment);
+					//document.write(dataq);
+					jQuery('#divBusy').show();
+
+					jQuery.ajax({
+						url: 'visacheckout.asp',
+						data: 'jdata=' + dataq + '&ac=unpackdata',
+						dataType: 'json',
+						type: 'post',
+						cache: false,
+						error: reportRuleError
+					})
+					.done(function (response) {
+						if (response.k == null)
+							alert('No response from VISA Checkout.  Try again or use another payment method.');
+						else {
+							window.location = 'checkout_one.asp?k=' + response.k + '&wid=' + response.wid;
+						}
+					})
+						.fail(function (strResult) {
+							jQuery("#divBusy").hide();
+							alert('VISA Checkout Process call failed');
+						});
+
+				});
+
+				V.on("payment.cancel", function (payment) {
+					jQuery("#divBusy").hide();
+					alert("VISA Checkout Payment method selection canceled.");
+				});
+
+				V.on("payment.error", function (payment, error) {
+					jQuery("#divBusy").hide();
+					alert("Problem encountered with VISA Checkout service");
+				});
+
+			}
+
+			function reportRuleError(jqXHR, textStatus) {
+				if (jqXHR.status > 0) {
+					alert("Error processing VISA Checkout request ");
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			function getElementById_s(id) {
+				var obj = null;
+				if (document.getElementById) {
+					obj = document.getElementById(id);
+				} else if (document.all) {
+					obj = document.all[id];
+				}
+				return obj;
+			}
+
+			function remove_overlay(panel) {
+				var objBody = getElementById_s('overlay_' + panel);
+				if (objBody != null && objBody != 'null' && objBody != undefined && objBody != 'undefined')
+					objBody.style.display = 'none';
+			}
+
+			function add_vme_overlay(panel) {
+				var objBody = getElementById_s(panel);
+				var objOverlay = document.createElement("div");
+
+				objOverlay.setAttribute('id', 'overlay_' + panel);
+				objOverlay.className = 'overlay';
+				objOverlay.style.position = 'absolute';
+				objOverlay.style.textAlign = 'center';
+				objOverlay.style.width = objBody.clientWidth + "px";
+				objOverlay.style.height = objBody.clientHeight + "px";
+				objBody.insertBefore(objOverlay, objBody.firstChild);
+				objOverlay.style.display = 'block';
+
+				get_Element('overlay_' + panel).innerHTML = '<table border=\"0\" width=\"100%\"><tr><td style=\"text-align: left;\"><div style=\"margin:10px 0px 0px 0px;\"><img src=\"assets/templates/common/images/loading.gif\"></div></td></tr></table>';
+			}
+		</script>
+		<!--END: visacheckout_jscript-->
+		<div class="visacheckout-button">
+			<img alt="Visa Checkout" class="v-button" role="button"
+			src="[visacheckout_button]"/>
+			<script type="text/javascript"	src="[visacheckout_jscriptsdk]"></script>
+			<br />&nbsp;
+        </div>
+		<!--END: checkout_visacheckout-->
+        <!--START: paypalexpress-->
+        <div class="ppale-button"><a href="paypal_express.asp?ch=1" title="Check out with PayPal"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-small.png" alt="Check out with PayPal" /></a></div>
+        <!--END: paypalexpress--> 
+        <!--START: paypalcredit-->
+        <div class="ppale-button">
+			<a href="paypal_express.asp?ch=1&ppc=1" title="PayPal Credit"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/ppcredit-logo-small.png" alt="PayPal Credit" /></a>
+			<a href="https://www.securecheckout.billmelater.com/paycapture-content/fetch?hash=AU826TU8&content=/bmlweb/ppwpsiw.html" alt="PayPal Credit" target="_blank"><img src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_bml_text.png" /></a>
+		</div>
+        <!--END: paypalcredit--> 
+        <!--START: INTERNATIONAL_CHECKOUT-->
+        <div class="intchk-button"><a href="internationalcheckout.asp" title="International Checkout"><img src="assets/templates/common/images/international_checkout.gif" alt="International Checkout" /></a></div>
+        <!--END: INTERNATIONAL_CHECKOUT-->
+        <!--START: BONGO_INTERNATIONAL-->
+        <div class="bongoint-button"><a href="bongointernational.asp"><img style="cursor:pointer;" src="https://bongous.com/partner/images/Bongo_Checkout_Button.png" alt="Bongo International" /></a></div>
+        <!--END: BONGO_INTERNATIONAL--> 
+        <!--START: checkoutByAmazon-->
+        <div class="chkamazon-button">[amazon_cba_form]</div>
+        <!--END: checkoutByAmazon--> 
+        <!--START: shopatron-->
+        <div class="shopatron-button">
+          <input type="button" value="Checkout with Shopatron" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" onclick="window.location='shopatron.asp'" />
+        </div>
+        <!--END: shopatron-->
+        </div>
+    </fieldset>
+    <div class="clear"></div>
+  </form>
+  <script type="text/javascript">
+	//You should create the validator only after the definition of the HTML form
+	var frmvalidator = new Validator("recalculate");
+	
+	frmvalidator.setAddnlValidationFunction("submitForm");
+	
+	//<!--START: apply_coupon_validation-->
+	frmvalidator.addValidation("coupon_code","maxlen=20","Maximun Coupon Length is 20");
+	//<!--END: apply_coupon_validation-->
+	</script> 
+  <!--START: PROMOTIONS-->
+  <div class="displayPromotions pad10 boxShadow">
+    <div class="header">
+      <h3 class="checkout-headers">[viewcart_discounts-header]</h3>
+    </div>
+    <!--START: DISPLAY_PROMOS-->
+    <form method="post" action="recalculate.asp?apply_coupon=2" name="couponapply" class="couponapply">
+      <input type="hidden" name="coupon" value="[id]" />
+      <div class="promo-name">[promotion_name]</div>
+      <div class="promo-desc">[promotion_description]<strong>Valid from: [promotion_start] - [promotion_end]</strong></div>
+      <div class="promo-remove"><!--START: REMOVE_PROMO-->
+        <input type="submit" value="Remove" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        <!--END: REMOVE_PROMO--></div>
+      <div class="clear"></div>
+    </form>
+    <!--END: DISPLAY_PROMOS--> 
+  </div>
+  <!--END: PROMOTIONS--> 
+  <!--START: GIFTCERTIFICATES-->
+  <div class="displayGiftCertificates pad10 boxShadow"> 
+    <div class="header">
+      <h3 class="checkout-headers">[viewcart_giftcertificates-header]</h3>
+    </div>
+    <!--START: DISPLAY_GIFTCERTIFICATES-->
+    <form method="post" action="recalculate.asp?apply_coupon=2" name="couponapply" class="couponapply">
+      <input type="hidden" name="coupon" value="[id]" />
+      <div class="cert-name">[certificate_name]</div>
+      <div class="cert-amount"><strong>Amount:</strong> [discount_amount]</div>
+      <div class="cert-remove">
+        <input type="submit" value="Remove" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+    </form>
+    <!--END: DISPLAY_GIFTCERTIFICATES--> 
+  </div>
+  <!--END: GIFTCERTIFICATES--> 
+  <!--START: FEATURE_MENU-->
+  <div class="header">
+    <h3 class="checkout-headers">[viewcart_feature-header]</h3>
+  </div>
+  <!--START: CATEGORY_ITEMS--> 
+  <!--START: ITEM_TEMPLATE_0--> 
+    <div class="product-item alternative">
+        <div class="img"><a href="product.asp?itemid=[catalogid]"><img src="[THUMBNAIL]" alt="[name]" id="qv_[catalogid]" /></a></div>
+        <div class="name"><a href="product.asp?itemid=[catalogid]">[name]</a></div>
+        <div class="stars">
+        <!--START: product_review--> 
+        <!--START: product_review_average-->
+            <img src="assets/templates/common-html5/images/star[review_average].png" alt="Average Rating" /><span>([review_count])</span>
+            <div class="clear"></div>
+        <!--END: product_review_average--> 
+        <!--END: product_review-->
+        </div>
+        <div class="price"><!--START: ITEMPRICE--> 
+        <span class="hidden">[product_yourprice]&nbsp;</span>[ITEMPRICE]
+        <!--END: ITEMPRICE--> 
+        <!--START: SALEPRICE-->
+        <del class="price2">[ITEMPRICE]&nbsp;</del>
+        <span class="hidden">[product_onsale]&nbsp;</span>[ITEMSALEPRICE]
+        <div class="on-sale">[product_sale]</div>
+        <!--END: SALEPRICE--></div>
+        <div class="status"><!--START: product_availability-->[availability] <!--END: product_availability--><!--START: freeshippingblock-->[freeshipping]<!--END: freeshippingblock--></div>
+        <div class="action">
+            <input type="button" value="[category_buyitlink]" onclick="window.location = 'add_cart.asp?quick=1&amp;item_id=[catalogid]'" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        </div>
+    <div class="clear"></div>
+    </div>
+  <!--END: ITEM_TEMPLATE_0--> 
+  <!--END: CATEGORY_ITEMS--> 
+  <!--END: FEATURE_MENU-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+  <div class="category-footer" id="viewCartFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+
+<script type="text/javascript">
+    //Show/Hide 3rd Party Payment Options section.
+    jQuery(function () {
+        if (jQuery('#thirdPartyPayment').has('div').length == 0) {
+            jQuery('.third-party-payment').hide();
+        }
+        else {
+            jQuery('.third-party-payment').show();
+        }
+    });
+</script>
+
+<!--START: GIFTWRAP_OPTIONS-->
+<div id="divGiftWrap">
+  <form method="post" name="frmGiftWrap" id="frmGiftWrap">
+    <div class="header">
+      <h3>[giftwrap_title]</h3>
+      <div class="clear"></div>
+    </div>
+    <label for="giftwrap_id">[giftwrap_select-text]:</label>
+    <select id="giftwrap_id" name="giftwrap_id" class="txtBoxStyle" onchange="updateGiftWrapOption()">
+      <option value="">-- [giftwrap_select-text] --</option>
+      [giftwrap_options]
+    </select>
+    <div class="clear"></div>
+    <div id="divGiftwrapItem"> 
+      <!--START: giftwrapitem-->
+      <div class="gw-image"><img src="thumbnail.asp?file=[giftwrap_thumbnail]" height="55" width="55" /></div>
+      <div class="gw-id">[giftwrap_catalogid]</div>
+      <div class="gw-name">[giftwrap_name]</div>
+      <div class="clear"></div>
+      <div class="gw-desc">[giftwrap_description]</div>
+      <div class="clear"></div>
+      <!--END: giftwrapitem--> 
+    </div>
+    <div id="divGiftwrapMsg">
+      <label for="giftwrap_message">[giftwrap_message-text]:</label>
+      <textarea name="giftwrap_message" id="giftwrap_message" onkeyup="countChar(this)" rows="6" cols="45">[giftwrap_message]</textarea>
+      <div class="chars-left"><span id="spnChars"><!--START: giftwrapcount-->400<!--END: giftwrapcount--></span>&nbsp;[giftwrap_charsleft]</div>
+      <div class="clear"></div>
+    </div>
+    <input type="button" name="cmdGWCancel" id="cmdGWCancel" value="[giftwrap_cancel]" onclick="cmdGWCancel_Click()" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    <input type="button" name="cmdGWAdd" id="cmdGWAdd" value="[giftwrap_add]" onclick="cmdGWAdd_Click()" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+  </form>
+</div>
+<!--END: GIFTWRAP_OPTIONS--> 
+
+<!--START: ShipQuoteInternationalScript--> 
+<script type="text/javascript">
+initCountry("[shipping_country]","[shipping_state]","shipping_state","shipping_country");
+</script> 
+<!--END: ShipQuoteInternationalScript--> 
+
+<!--START: kount-->
+<iframe width="1" height="1" frameborder="0" scrolling="no" src="/logo_k.htm?m=[kount_merchantid]&s=[kount_sessionid]"> <img width="1" height="1" src="/logo_k.gif?m=[kount_merchantid]&s=[kount_sessionid]" alt="" /> </iframe>
+<!--END: kount-->

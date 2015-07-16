@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<title>[store_name] | [notify_header]</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="assets/templates/common-html5/css/layout.css" type="text/css" media="all" />
+<link rel="StyleSheet" href="assets/templates/common-html5/css/responsive.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/[template]/css/[stylesheet]" type="text/css" media="screen" />
+<style type="text/css">
+html, body {
+	max-height: 100%;
+	width: 100%;
+}
+@media only screen and (max-width: 480px) {
+
+html, body {
+    width: auto !important;
+    /*max-width: 90% !important;*/
+    padding: 0px;
+    border: none;
+}
+
+}
+</style>
+<script type="text/javascript" src="assets/templates/common-html5/js/utilities.js"></script>
+</head>
+<body>
+<section id="notify">
+  <h1 class="page_headers">[notify_header]</h1>
+  <form method="post" action="notify.asp?action=send" name="form1">
+	<input type="hidden" name="catalogid" value="[catalogid]" />
+    <p>[notify_message]</p>
+    <div class="clear"></div>
+    <div class="header">
+    	<h3>[notify_information]</h3>
+    </div>
+    <!--START: notifyBlock-->
+    <div class="notifyBlock pad10 boxShadow">
+      <!--START: thumbnail-->
+      <div class="thumbnail"><img src="thumbnail.asp?file=[thumbnail]&maxx=100&maxy=100" alt="[name]" /><span>[name]</span></div>
+      <!--END: thumbnail-->
+      <div class="notiField">
+        <label for="name">Name:</label>
+        <input name="name" value="[firstname]" type="text" size="25" tabindex="1" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="notiField">
+        <label for="phone">Phone:</label>
+        <input name="phone" value="[phone]" type="text" size="25" tabindex="2" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="notiField">
+        <label for="email">Email:</label>
+        <input name="email" value="[email]" type="text" size="25" tabindex="3" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="notiField">
+        <label for="ramdomWord">Verification:</label>
+        <div class="captcha"><img src="admin/image_pw.asp" width="148" />
+          <div class="captcha-text">Type the word above...</div>
+          <input type="text" name="ramdomWord" id="ramdomWord" value="" size="25" maxlength="30" tabindex="4" class="txtBoxStyle" />
+          <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+	  <!--START: recaptcha-->
+      <div class="notiField">
+        <label>Verification:</label>
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        <div class="clear"></div>
+      </div>
+
+	  <!--END: recaptcha-->
+
+      <div class="notify-submit-button">
+        <input type="submit" name="submit" value="[notify_button]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+    </div>
+    <script type="text/javascript">
+        //You should create the validator only after the definition of the HTML form
+        var frmvalidator = new Validator("form1");
+
+        bolCheckSubmitted_validation = false;//Global variable defined in utilities.js
+        frmvalidator.setAddnlValidationFunction("submitForm");
+
+        frmvalidator.addValidation("name", "req", "Please enter your Name.");
+
+        frmvalidator.addValidation("email", "email");
+        frmvalidator.addValidation("email", "req", "Please enter your Email.");
+
+        //<!--START: captchascript-->
+        frmvalidator.addValidation("ramdomWord", "maxlen=20");
+        frmvalidator.addValidation("ramdomWord", "req", "Please enter the verification word.");
+        //<!--END: captchascript-->
+    </script>
+    <!--END: notifyBlock--> 
+    <!--START: errorMsg-->
+    <div class="errorMsg pad10 boxShadow">[errorMsg]
+      <div class="notify-close-button">
+		<!--START: errBackButton-->
+        <input type="button" value="Click here to continue" class="btn" onclick="history.back(1);" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+		<!--END: errBackButton-->
+		<!--START: errCloseButton-->
+        <input type="button" value="Close" class="btn" onclick="javascript: location.href = '[errCloseButton]';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+		<!--END: errCloseButton-->
+      </div>
+    </div>
+    <!--END: errorMsg-->
+  </form>
+</section>
+</body>
+</html>

@@ -41,3 +41,26 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.png
+*.gif
+*.cur
+*.jpg
+js/checkoutValidate.js
+*.js
+js/quick_view_tabs.css
+*.css
+zoomify/zoomifyViewer.swf
+zoomify/zoomify_image.html
+zoomify/zoomify_flash.html
+3dzoom/parameters.html
+3dfeedback/feedback_thankyou.html
+*.eot
+font/flexslider-icon.svg
+*.woff
+*.svg
+gallery/gallery.swf
+*.xml
+gallery/player.html
+*.ttf
+3dfeedback/feedback.html
+3dfeedback/feedback_contact.html

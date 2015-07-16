@@ -1,0 +1,231 @@
+<script type="text/javascript" src="state_countryjs.asp"></script>
+<script type="text/javascript" src="assets/templates/common/js/address_validator.js"></script>
+<script type="text/javascript">
+    useAddressValidator = "[useAddressValidator]";
+</script>
+
+<section id="addAddresses">
+  <h1 class="page_headers">[account_Update-Address]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="addAddressesHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="addUpdateAddress pad10 boxShadow">
+    <form action="myaccount.asp?action=updateaddress&reqPage=[reqPage]&shipmentid=[shipmentid]" method="post" name="checkoutform" id="checkoutform">
+      <input type="hidden" name="tknio" value="[tknio]">
+      <input type="hidden" name="id" value="[id]" />
+      <input type="hidden" name="update" value="1" />
+      <!--START: SAVE_ADDRESSES-->
+      <div class="frmField">
+        <label for="address_alias">[account_Address-Alias]</label>
+        <input name="address_alias" type="text" id="address_alias" value="[address_alias]" size="25" tabindex="1" class="txtBoxStyle" />
+        <!--START: req_shipping_alias--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_alias-->
+        <div class="clear"></div>
+      </div>
+      <!--END: SAVE_ADDRESSES-->
+      <div class="frmField">
+        <label for="shipping_firstname">[CustomerInfo_firstname]</label>
+        <input name="shipping_firstname" type="text" id="shipping_firstname" value="[shipping_firstname]" size="15" tabindex="2" class="txtBoxStyle" />
+        <!--START: req_shipping_firstname--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <!--END: req_shipping_firstname-->
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="shipping_lastname">[CustomerInfo_lastname]</label>
+        <input name="shipping_lastname" type="text" id="shipping_lastname" value="[shipping_lastname]" size="15" tabindex="3" class="txtBoxStyle" />
+        <!--START: req_shipping_lastname--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_lastname-->
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="shipping_company">[CustomerInfo_company]</label>
+        <input name="shipping_company" type="text" id="shipping_company" value="[shipping_company]" size="25" tabindex="4" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="">[CustomerInfo_phone]</label>
+        <input name="shipping_phone" type="text" id="shipping_phone" value="[shipping_phone]" size="25" tabindex="5" class="txtBoxStyle" />
+        <!--START: req_shipping_phone--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_phone-->
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="shipping_address">[CustomerInfo_address]</label>
+        <input name="shipping_address" type="text" id="shipping_address" value="[shipping_address]" size="25" tabindex="6" class="txtBoxStyle" />
+        <!--START: req_shipping_address--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_address-->
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="shipping_address2">[CustomerInfo_address2]</label>
+        <input name="shipping_address2" type="text" id="shipping_address2" value="[shipping_address2]" size="25" tabindex="7" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="shipping_city">[CustomerInfo_city]</label>
+        <input name="shipping_city" type="text" id="shipping_city" value="[shipping_city]" size="25" tabindex="8" class="txtBoxStyle" />
+        <!--START: req_shipping_city--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_city-->
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="">[CustomerInfo_country]</label>
+        <select id='shipping_country' name='shipping_country' onchange="populateState('shipping_state','shipping_country');" tabindex="9" class="txtBoxStyle">
+        </select>
+        <!--START: req_shipping_country--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_country-->
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="shipping_state">[CustomerInfo_state]</label>
+        <select id="shipping_state" name="shipping_state" tabindex="10" class="txtBoxStyle">
+        </select>
+        <!--START: req_shipping_state--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_state-->
+        <div class="clear"></div>
+      </div>
+      <div class="frmField">
+        <label for="shipping_zip">[CustomerInfo_zip]</label>
+        <input name="shipping_zip" type="text" id="shipping_zip" value="[shipping_zip]" size="10" tabindex="11" class="txtBoxStyle" />
+        <!--START: req_shipping_zip--> 
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> 
+        <!--END: req_shipping_zip-->
+        <div class="clear"></div>
+      </div>
+      <!--START: addressType-->
+      <div class="frmField">
+        <label for="shipping_addresstype">[CustomerInfo_address_type]</label>
+        <select name="shipping_addresstype" id="shipping_addresstype" class="txtBoxStyle">
+          [addressTypeDropDown]
+        </select>
+        <div class="clear"></div>
+      </div>
+      <!--END: addressType-->
+      <div class="back-add-address-button">
+        <input type="button" name="back" onclick="javascript:history.back(1);" value="Back" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" id="Submit1"/>
+        <input type="button" onclick="javascript:doAddAddress(this.form);" value="[account_Update-Address]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+    </form>
+  </div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="addAddressesFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+
+<input type="hidden" name="hdnAddrressValidatorResult" id="hdnAddrressValidatorResult" value="" />
+<div id="divAddrressValidator" style="display:none;"> 
+  <!--START: AddressValidatorBlock-->
+  <div style="background-color: #FFF; padding: 30px;"> 
+    <!--START: AddressValidatorBlock_ValidationFailed-->
+    <div>[result_msg]</div>
+    <!--END: AddressValidatorBlock_ValidationFailed--> 
+    <!--START: AddressValidatorBlock_ValidationSuggestion-->
+    <div> [result_msg] 
+      <!--START: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+      <br />
+      <br />
+      <strong>[checkout1_AddressValidator_SuggestedAddress]</strong> <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:selectAddress('[AddrressValidator_address1]', '[AddrressValidator_address2]', '[AddrressValidator_city]', '[AddrressValidator_state]', '[AddrressValidator_zip]', 'shipping_address', 'shipping_address2', 'shipping_city', 'shipping_state', 'shipping_zip');doAddAddress(document.checkoutform);">[AddrressValidator_address], [AddrressValidator_city], [AddrressValidator_state], [AddrressValidator_zip]</a> 
+      <!--END: AddressValidatorBlock_ValidationSuggestion_SingleAddressBlock--> 
+    </div>
+    <!--END: AddressValidatorBlock_ValidationSuggestion--> 
+    <!--START: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br />
+    <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:addressValidatorContinue('[AddrressValidator_addresstype]');">[checkout1_AddressValidator_Continue]</a> <br />
+    <!--END: AddressValidatorBlock_ValidationSuggestion_ContinueWithEnteredAddress--> 
+    <br />
+    <a style="text-decoration:underline;" href="javascript:void(0);" onclick="javascript:closeAddressValidatorModal();"><i class="icon-cancel"></i>[checkout1_AddressValidator_Close]</a></div>
+  <!--END: AddressValidatorBlock--> 
+</div>
+
+<script type="text/javascript">
+	initCountry('[shipping_country]','[shipping_state]','shipping_state','shipping_country'); 
+</script> 
+<script type="text/javascript">
+
+    function doAddAddress(objForm) {
+
+	    //You should create the validator only after the definition of the HTML form
+	    var frmvalidator = new Validator("checkoutform");
+	
+	    frmvalidator.setAddnlValidationFunction("submitForm");
+	
+	    frmvalidator.addValidation("address_alias","req","Please enter a address alias. Example: My address");
+	    frmvalidator.addValidation("address_alias","maxlen=25","Max length for Shipping Alias is 25");
+	
+	
+	    frmvalidator.addValidation("shipping_firstname","req","Please enter your First Name");
+	    frmvalidator.addValidation("shipping_firstname","maxlen=20","Max length for First Name is 20");
+	
+	
+	    frmvalidator.addValidation("shipping_lastname","req","Please enter your Last Name");
+	    frmvalidator.addValidation("shipping_lastname","maxlen=20","Max length for Last Name is 20");
+	
+	
+	    frmvalidator.addValidation("shipping_phone","maxlen=18","Max length for Phone is 18");
+	    frmvalidator.addValidation("shipping_phone","req","Please enter your phone");
+	
+	    frmvalidator.addValidation("shipping_address","maxlen=50","Max length for Address is 50");
+	    frmvalidator.addValidation("shipping_address","req","Please enter your address");
+	
+	    frmvalidator.addValidation("shipping_address2","maxlen=40","Max length for Suite/Apt# is 40");
+	
+	    frmvalidator.addValidation("shipping_city","maxlen=50","Max length for City is 50");
+	    frmvalidator.addValidation("shipping_city","req","Please enter your City");
+	
+	    frmvalidator.addValidation("shipping_country","maxlen=50");
+	    frmvalidator.addValidation("shipping_country","req",0);
+	
+	    frmvalidator.addValidation("shipping_state","maxlen=50","Max length for State is 50");
+	    frmvalidator.addValidation("shipping_state","req",0);
+	
+	    frmvalidator.addValidation("shipping_zip","maxlen=15","Max length for Zip is 15");
+	    frmvalidator.addValidation("shipping_zip", "req", "Please enter your zip code");
+
+	    var company = get_Element('shipping_company').value;
+	    var address1 = get_Element('shipping_address').value;
+	    var address2 = get_Element('shipping_address2').value;
+	    var city = get_Element('shipping_city').value;
+	    var state = get_Element('shipping_state').value;
+	    var country = get_Element('shipping_country').value;
+	    var zip = get_Element('shipping_zip').value;
+
+	    if (useAddressValidator == "1" && country == "US"){
+	        verify_address(address1, address2, city, state, country, zip, company, 'addressbook');
+	    }
+	    else {
+	        objForm.submit();
+	    }
+	}
+
+	function submitCheckoutFormPos() {
+	    objForm = document.checkoutform;
+	    if (jQuery("#hdnAddrressValidatorResult").val() == "1") {
+	        objForm.submit();
+	        return;
+	    }
+	    else {
+	        jQuery("#divAddrressValidator").modal({ containerCss: { borderWidth: '1px', width: '602px', height: '212px' } });
+	        document.body.style.cursor = '';
+	    }
+	}
+
+	function addressValidatorContinue(type) {
+	    useAddressValidator = '';
+	    doAddAddress(document.checkoutform);
+	    jQuery.modal.close();
+	}
+</script>

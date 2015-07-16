@@ -1,0 +1,81 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+	#tntTracking td:nth-of-type(1):before { content: "Date / Time"; }
+	#tntTracking td:nth-of-type(2):before { content: "Activity"; }
+	#tntTracking td:nth-of-type(3):before { content: "Location"; }
+}
+</style>
+
+<section id="tntTracking">
+  <div class="header">
+    <h3>TNT - Track Shipments</h3>
+    <div class="button right"><a href="http://www.tnt.com" class="icon-btn icon-btn-rightover" target="_blank">Track on TNT</a></div>
+    <div class="clear"></div>
+  </div>
+  <!--START: results-->
+  <div class="titles2">
+    <div class="detail-results">Detailed Results</div>
+  </div>
+  <div class="left-col"> 
+    <!--START: trackno-->
+    <div class="label">Consigment Number:</div>
+    <div class="text">[trackno]</div>
+    <div class="clear"></div>
+    <!--END: trackno--> 
+    <!--START: ShipDate-->
+    <div class="label">Collection Date:</div>
+    <div class="text">[ShipDate]</div>
+    <div class="clear"></div>
+    <!--END: ShipDate--> 
+    <!--START: EstimatedDeliveryDate-->
+    <div class="label">Estimated Delivery:</div>
+    <div class="text">[EstimatedDeliveryDate]</div>
+    <div class="clear"></div>
+    <!--END: EstimatedDeliveryDate--> 
+    <!--START: service_description-->
+    <div class="label">Service type:</div>
+    <div class="text">[service_description]</div>
+    <div class="clear"></div>
+    <!--END: service_description--> 
+    <!--START: package_count-->
+    <div class="label">Pieces:</div>
+    <div class="text">[package_count]</div>
+    <div class="clear"></div>
+    <!--END: package_count--> 
+    <!--START: Weight-->
+    <div class="label">Weight:</div>
+    <div class="text">[Weight]</div>
+    <div class="clear"></div>
+    <!--END: Weight--> 
+  </div>
+  <div class="right-col"> 
+    <!--START: shipto_address-->
+    <div class="label">Destination:</div>
+    <div class="text">[shipto_address]</div>
+    <div class="clear"></div>
+    <!--END: shipto_address--> 
+  </div>
+  <div class="clear"></div>
+  <div class="trackingStatus pad10 boxShadow">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="date-time">Date / Time</th>
+			<th class="desc">Activity</th>
+			<th class="loc">Location</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: activity-->
+		<tr class="row">
+			<td class="date-time">[date_time]</td>
+			<td class="desc">[description]</td>
+			<td class="loc">[location]&nbsp;</td>
+		</tr>
+		<!--END: activity-->
+		</tbody>
+	</table> 
+  </div>
+  <!--END: results-->
+  <div class="clear"></div>
+</section>

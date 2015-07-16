@@ -1,0 +1,28 @@
+<section id="redeem">
+  <h1 class="page_headers">[rewards_details-detail]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="redeemHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="titles">[rewards_redeem-redeemItem]</div>
+  <p><strong>You are about to redeem:</strong></p>
+  <p>[name]</p>
+  <p><strong>for [points] points.</strong></p>
+  <p>Your current point balance is [user_points]</p>
+  <!--START: redeem_true-->
+  <p>Your balance  after this purchase will be [user_pointsafter].</p>
+  <div class="action">
+    <input type=button value="Click here to Redeem" onclick="location.href = 'redeem.asp?action=redeemitem&item_id=[catalogid]';" class="btn"  onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+  </div>
+  <!--END: redeem_true--> 
+  <!--START: redeem_false-->
+  <div class="redeem-false error">Currently you do not  have enough points to redeem this item.</div>
+  <!--END: redeem_false-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="redeemFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

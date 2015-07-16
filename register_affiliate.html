@@ -1,0 +1,70 @@
+<section id="registerAffiliate">
+  <form action="register_affiliate.asp" method="post" name="frmForm">
+    <input type="hidden" name="action" id="action" value="" />
+    <h1 class="page_headers">[affiliate_register]</h1>
+    <div class="clear"></div>
+    <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="registerAffiliateHeader">[CONTENT]</div>
+    <!--END: CATEGORY_HEADER-->
+    <div class="regAffiliate pad10 boxShadow">
+      <div class="affField">
+        <label for="txtWebsite">Website Address:</label>
+        <input name="txtWebsite" type="text" id="txtWebsite" size="45" value="[strWebsite]" maxlength="100" tabindex="1" class="txtBoxStyle" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+      </div>
+      <div class="affField">
+        <label for="txtTaxId">Tax ID#:</label>
+        <input name="txtTaxId" type="text" id="txtTaxId" size="15" value="[strTaxId]" maxlength="12" tabindex="2" class="txtBoxStyle" />
+        <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> (SSN# or EIN#)
+        <div class="clear"></div>
+      </div>
+      <div class="affField">
+        <label for="txtTerms">Terms and Conditions:</label>
+        <textarea rows="12" cols="40" id="txtTerms" name="txtTerms" readonly="readonly">[affiliate_register-terms-condition]</textarea>
+        <div class="clear"></div>
+        <input type="checkbox" id="chkAcceptTerms" name="chkAcceptTerms" value="1" [bolAccept] />
+        I accept the terms and conditions <img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" />
+        <div class="clear"></div>
+      </div>
+      <div class="submit-button"><input type="button" name="cmdProceed" value="Proceed" onclick="javascript:proceed();" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /></div>
+    </div>
+    <div class="clear"></div>
+    <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="registerAffiliateFooter">[CONTENT]</div>
+    <!--END: CATEGORY_FOOTER-->
+  </form>
+</section>
+<script type="text/javascript">
+var addReplyClick = 0;
+
+function submitForm(strAction)
+{
+	window.document.body.style.cursor = 'wait';
+	if(window.document.activeElement){window.document.activeElement.style.cursor='wait'; }
+	
+	document.frmForm.action.value = strAction;
+	document.frmForm.submit();
+}
+function proceed()
+{
+	var strMsg = "";
+	if (document.frmForm.txtWebsite.value.trim() == "")
+		strMsg += " - Website address cannot be blank.\n"
+	if (document.frmForm.txtTaxId.value.trim() == "")
+		strMsg += " - Tax ID cannot be blank.\n"
+	if (!document.frmForm.chkAcceptTerms.checked)
+		strMsg += " - You must read and accept Terms and Conditions before proceed.\n"
+	if (strMsg != ""){
+		alert(strMsg);
+		return false;
+	}
+	if (addReplyClick == 0){
+		addReplyClick = 1;
+		submitForm('register');
+	}
+}
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+</script>

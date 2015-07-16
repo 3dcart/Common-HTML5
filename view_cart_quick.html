@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<title>Quick Cart</title>
+<script type="text/javascript" src="/assets/templates/common-html5/js/utilities.js"></script>
+<link rel="stylesheet" href="/assets/templates/common-html5/css/layout.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/common-html5/css/responsive.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/templates/[template]/css/[stylesheet]" type="text/css" media="screen" />
+<script type="text/javascript" src="assets/templates/common-html5/js/jquery.min.js"></script>
+<script type="text/javascript">
+/* Equal heights on product dispays. */
+var currentTallest = 0,
+    currentRowStart = 0,
+    rowDivs = new Array(),
+    $el,
+    topPosition = 0;
+
+if (jQuery('.product-item .name').length > 0) {
+
+    jQuery('.product-item .name').each(function () {
+
+        $el = jQuery(this);
+        topPostion = $el.position().top;
+
+        if (currentRowStart != topPostion) {
+
+            for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                rowDivs[currentDiv].height(currentTallest);
+            }
+
+            rowDivs.length = 0;
+            currentRowStart = topPostion;
+            currentTallest = $el.height();
+            rowDivs.push($el);
+
+        } else {
+
+            rowDivs.push($el);
+            currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+        }
+
+        for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+            rowDivs[currentDiv].height(currentTallest);
+        }
+
+    });
+}
+</script>
+</head>
+<body id="viewCartQuick">
+<section>
+  <div class="header hidden-mobile">
+    <h3>[viewcart_quick-header]</h3>
+    <div class="clear"></div>
+  </div>
+  <div class="quickCartCheckout pad10 boxShadow">
+    <h1 class="page_headers">[viewcart_quick-title]</h1>
+    <div class="header hidden-mobile">
+      <h3>[viewcart_quick-itemsincart]</h3>
+      <div class="clear"></div>
+    </div>
+    <div class="quick-subtotal">Subtotal: <span class="price">[CARTSUBTOTAL]</span></div>
+    <div class="quick-chkbuttons">
+      <input type="button" value="[viewcart_continue-shopping]" onclick="parent.location.href = '[continue_url]';" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      <input type="button" onclick="parent.location.href = 'view_cart.asp';" value="[viewcart_checkout-button]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="quickCartItems">
+    <div class="titles2">
+      <div class="item-info">[shoppingcart_items]</div>
+      <div class="item-qty">[shoppingcart_quantity]</div>
+      <div class="item-price">[shoppingcart_price]</div>
+      <div class="item-total">[shoppingcart_total]</div>
+      <div class="item-remove">&nbsp;</div>
+      <div class="clear"></div>
+    </div>
+    <div class="quickCartRows"> 
+      <!--START: SHOPPING_CART_ITEM-->
+      <div class="row">
+        <div class="item-info">
+          <div class="product-image"><!--START: itemthumbnail--><a href="product.asp?itemid=[ITEM_CATALOGID]" target="_parent"><img src="thumbnail.asp?file=[THUMBNAIL]" height="50" width="50" /></a><!--END: itemthumbnail--></div>
+          <div class="product-name-options"><a href="product.asp?itemid=[ITEM_CATALOGID]" target="_parent">[ITEM_NAME]</a> 
+            <!--START: itemoptions--> 
+            <br />
+            <a href='#' onclick="toggle('opt[ITEM_ID]')">View/Hide options</a><br />
+            <div id="opt[ITEM_ID]" name=opt[ITEM_ID] style="display:none;">[OPTIONS]</div>
+            <!--END: itemoptions--> 
+            <!--START: recurring_frequency-->
+            <div>This item will Autoship every <strong>[recurring_frequency]</strong></div>
+            <!--END: recurring_frequency--></div>
+          <div class="clear"></div>
+        </div>
+        <div class="item-qty">[ITEM_QUANTITY]</div>
+        <div class="item-price">[ITEM_PRICE]</div>
+        <div class="item-total">[ITEM_SUBTOTAL]</div>
+        <div class="clear"></div>
+      </div>
+      <!--END: SHOPPING_CART_ITEM--> 
+    </div>
+  </div>
+  <div class="clear"></div>
+  <!--START: FEATURE_MENU-->
+  <div class="quickCartRelated">
+  <div class="header">
+    <h3>[viewcart_feature-header]</h3>
+    <div class="clear"></div>
+  </div>
+  <!--START: CATEGORY_ITEMS--> 
+  <!--START: ITEM_TEMPLATE_0-->
+  <div class="product-item alternative">
+    <div class="img"><a href="product.asp?itemid=[catalogid]" target="_parent"><img src="thumbnail.asp?file=[THUMBNAIL]&maxx=80&maxy=80" alt="[name]" /></a></div>
+    <div class="name"><a href="product.asp?itemid=[catalogid]" target="_parent">[name]</a></div>
+    <div class="price"><!--START: ITEMPRICE--> 
+      [product_yourprice] [ITEMPRICE] 
+      <!--END: ITEMPRICE--> 
+      <!--START: SALEPRICE--> 
+      [product_onsale] [ITEMSALEPRICE]
+      <div class="on-sale">[product_sale]</div>
+      <!--END: SALEPRICE--></div>
+    <div class="clear"></div>
+  </div>
+  <!--END: ITEM_TEMPLATE_0--> 
+  <!--END: CATEGORY_ITEMS-->
+  </div>
+  <!--START: FEATURE_MENU-->
+  <div class="clear"></div>
+</section>
+</body>
+</html>

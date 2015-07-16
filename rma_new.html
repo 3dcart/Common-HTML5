@@ -1,0 +1,224 @@
+<style type="text/css">
+@media only screen and (max-width: 767px) {
+    /* Order Items */
+	.viewRma td:nth-of-type(1):before { content: "[rma_header-rmaorder-item-id]"; }
+	.viewRma td:nth-of-type(2):before { content: "[rma_header-rmaorder-item-description]"; }
+	.viewRma td:nth-of-type(3):before { content: "[rma_header-rmaorder-item-unitprice]"; }
+	.viewRma td:nth-of-type(4):before { content: "[rma_header-rmaorder-item-qty]"; }
+	.viewRma td:nth-of-type(5):before { content: "[rma_header-rmaorder-item-qtyrtn]"; }
+    /* Order Return Options */
+	.viewRmaOption td:nth-of-type(1):before { content: "[rma_header-rmaorder-rtn-reason]"; }
+	.viewRmaOption td:nth-of-type(2):before { content: "[rma_header-rmaorder-rtn-method]"; }
+	.viewRmaOption td:nth-of-type(3):before { content: "[rma_header-rmaorder-rtn-status]"; }
+}
+</style>
+
+<section id="rmaNew">
+  <h1 class="page_headers"><!--START: RMANumber-->[rma_header-rmanumber] [RmaNumber]<!--END: RMANumber--><!--START: NewRMA-->[rma_header-new]<!--END: NewRMA--></h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="rmaNewhHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER--> 
+  <!--START: NEW-->
+  <form name="formu" id="formu" method="post" action="">
+    <input type="hidden" name="r" id="r" value="[RmaNumber]" />
+    <!--START: form-->
+    <div class="header">
+      <h3>[rma_header-rmaorderitems]</h3>
+    </div>
+    <div class="viewRma">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="rma-id">[rma_header-rmaorder-item-id]</th>
+			<th class="rma-desc">[rma_header-rmaorder-item-description]</th>
+			<th class="rma-unitprice">[rma_header-rmaorder-item-unitprice]</th>
+			<th class="rma-qty">[rma_header-rmaorder-item-qty]</th>
+			<th class="rma-qtyrtn">[rma_header-rmaorder-item-qtyrtn]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: items-->
+		<tr class="row">
+			<td class="rma-id">[Id]
+              <input type="hidden" name="Item[idx]" id="Hidden1" value="[IdItem]" />
+            </td>
+			<td class="rma-desc">[Description]</td>
+			<td class="rma-unitprice">[uPrice]</td>
+			<td class="rma-qty">[Qty]</td>
+			<td class="rma-qtyrtn">
+              <select name="QR[idx]" id="Select1" class="txtBoxStyle">
+                [qr]
+              </select>
+              <input type="hidden" name="QRE[idx]" id="Hidden2" value="0" class="item" />
+              <input type="hidden" name="QRS[idx]" id="Hidden3" value="0" class="item" />
+            </td>
+		</tr>
+		<!--END: items-->
+		</tbody>
+	</table>
+    </div>
+    <div class="header">
+      <h3>[rma_header-rmaorder-rtn-option]</h3>
+    </div>
+    <div class="viewRmaOption">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="rma-reason">[rma_header-rmaorder-rtn-reason]</th>
+			<th class="rma-method">[rma_header-rmaorder-rtn-method]</th>
+			<th class="rma-status">[rma_header-rmaorder-rtn-status]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: options-->
+		<tr class="row">
+			<td class="rma-reason">
+              <select name="Reason" id="Select3" class="txtBoxStyle">
+                [Reason]
+              </select>
+            </td>
+			<td class="rma-method">
+              <select name="Method" id="Select2" class="txtBoxStyle">
+                [Method]
+              </select>
+            </td>
+			<td class="rma-status">Open
+              <input type="hidden" name="Status" id="Hidden4" value="1" />
+            </td>
+		</tr>
+		<!--END: options-->
+		</tbody>
+	</table>
+    </div>
+    <div class="header">
+      <h3>[rma_header-rmacomments]</h3>
+    </div>
+    <!--START: comments-->
+    <div class="rmaComments">
+      <textarea name="comments" id="comments" class="item" rows="4" cols="100">[comments]</textarea>
+    </div>
+    <!--END: comments-->
+    <div class="add-mod-button">
+    <!--START: Add-->
+    <input type="button" class="btn" onclick="sendReturn(1);" value="[rma_header-rma-btn-saverma]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    <!--END: Add--> 
+    <!--START: Mody-->
+    <input type="button" class="btn" onclick="sendReturn([oid]);" value="[rma_header-rma-btn-returntoorder]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    <!--END: Mody-->
+    </div>
+    <!--END: form-->
+  </form>
+<script type="text/javascript">
+    var length, sw, sw2;
+    sw = false;
+    sw2 = false;
+
+    function evaluate(less) {
+
+        length = ((document.formu.length - less) / 4);
+
+        for (i = 1; i <= length; i++) {
+            if (parseFloat(eval("document.formu.QR" + i + ".value")) > 0) {
+                sw = true;
+                break;
+            }
+            else {
+                sw = false;
+                j = i;
+            }
+
+        }
+
+        return sw;
+    }
+
+    function sendReturn(action) {
+
+        var less, i, j;
+        j = 0;
+        switch (action) {
+            case 1: {
+                less = 6;
+                sw = evaluate(less);
+                break;
+            }
+            case 2: {
+                less = 7;
+                sw = evaluate(less);
+                break;
+            }
+            case 3: {
+                if (confirm("[rma_header-rma-alert-delete]")) sendRMA(length, action);
+                return void (0);
+            }
+            default: {
+                window.location.href = "ordertracking.asp?action=view&id=" + action;
+                return;
+            }
+        }
+
+        if (ExistsCreditCard(jQuery('#comments').val())) {
+        	alert("[ccNumerNotAllowedMessage]");
+        	return void (0);
+        }
+
+        if (document.formu.Status.value == 1) {
+            if (sw) {
+                if (confirm("[rma_header-rma-alert-createnew]")) {
+                    sendRMA(length, action);
+                    return void (0);
+                }
+                else {
+                    return void (0);
+                }
+            }
+        }
+
+        if (document.formu.Status.value == 3) {
+            sw = evaluate(7);
+            if (sw) {
+                if (confirm("[rma_header-rma-alert-close]")) {
+                    sendRMA(length, action);
+                    return void (0);
+                }
+                else {
+                    return void (0);
+                }
+            }
+        }
+
+        if (sw) {
+            sendRMA(length, action);
+            return void (0);
+        }
+        else {
+            if (j == 0) j = 1;
+            alert("[rma_header-rma-alert-qty]");
+            eval("document.formu.QR1.focus()");
+            return void (0);
+        }
+    }
+
+    function sendRMA(length, action) {
+        document.formu.action = "rma_new.asp?oid=[oid]&op=1&fl=" + length + "&action=" + action;
+        document.formu.submit();
+    }
+
+</script>
+  <!--END: NEW--> 
+  <!--START: NOTNEW-->
+  <div class="notnewRma pad10 boxShadow">[rma_header-cant-create-new-rma]
+    <div class="notnew-button">
+      <input type="button" class="btn" onclick="javascript:history.back(1);" value="Go Back" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+  </div>
+  <!--END: NOTNEW-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="rmaNewFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

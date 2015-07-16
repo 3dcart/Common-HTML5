@@ -1,0 +1,189 @@
+<section id="giftregistryView">
+  <h1 class="page_headers">[giftregistry_create]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="giftregistryViewHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="header">
+    <h3>[giftregistry_create-giftinfo]</h3>
+    <div class="button right"><a href="giftregistry_edit.asp?action=delete" class="icon-btn icon-btn-minus">Delete</a></div>
+    <div class="button right"><a href="giftregistry_edit.asp" class="icon-btn icon-btn-edit">Edit</a></div>
+    <div class="clear"></div>
+  </div>
+  <div class="giftregistryGiftInfo pad10 boxShadow">
+    <div class="label">[giftregistry_create-name]</div>
+    <div class="text">[regname]</div>
+    <div class="clear"></div>
+    <div class="label">[giftregistry_create-eventdate]</div>
+    <div class="text">[month]/[day]/[year]</div>
+    <div class="clear"></div>
+    <div class="label">[giftregistry_create-password]</div>
+    <div class="text">[regpassword]</div>
+    <div class="clear"></div>
+    <div class="label">[giftregistry_create-message]</div>
+    <div class="text">[regmessage]</div>
+    <div class="clear"></div>
+    <div class="giftreg-url">
+      <div class="label">[giftregistry_url]</div>
+      <div class="text"><a href="[regurl]" target="_blank">[regurl]</a></div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="header">
+    <h3>[giftregistry_create-yourinfo]</h3>
+    <div class="clear"></div>
+  </div>
+  <div class="giftregistryYourInfo pad10 boxShadow">
+    <div class="label">[giftregistry_create-firstname]</div>
+    <div class="text">[firstname]</div>
+    <div class="clear"></div>
+    <div class="label">[giftregistry_create-lastname]</div>
+    <div class="text">[lastname]</div>
+    <div class="clear"></div>
+    <div class="label">[giftregistry_create-email]</div>
+    <div class="text">[email]</div>
+    <div class="clear"></div>
+  </div>
+  <div class="header">
+    <h3>[giftregistry_create-shippingoptions]</h3>
+    <div class="clear"></div>
+  </div>
+  <div class="giftregistryShipOptions pad10 boxShadow">
+    <input type="checkbox" id="regShipMyAddress" name="regShipMyAddress" disabled="disabled" onclick="javascript:controlAddressBtn(this);" value="1" [regShipMyAddressChecked] />
+    <div class="giftreg-ship-address"><span>[giftregistry_create-shiptomyaddress]</span>[giftregistry_create-shiptomyaddressinstructions]</div>
+    <div class="clear"></div>
+    <div id="divSelectedAddress" name="divSelectedAddress" style="display:[divSelectedAddressStyle];"> 
+      <!--START: selectedAddress-->
+      <p><strong>[giftregistry_create-selected-address]</strong></p>
+      <p>[address_alias]</p>
+      <p>[shipping_firstname] [shipping_lastname]</p>
+      <!--START: shipping_address2-->
+      <p>[shipping_address2]</p>
+      <!--END: shipping_address2-->
+      <p>[shipping_city], [shipping_state] [shipping_zip] [shipping_country]</p>
+      <p>[shipping_phone]</p>
+      <div class="clear"></div>
+      <!--END: selectedAddress--> 
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="header">
+    <h3>[giftregistry_header-products]</h3>
+    <div class="clear"></div>
+  </div>
+  <div class="giftregistryProducts pad10 boxShadow">
+    <div class="label">[giftregistry_header-productsdesired]</div>
+    <div class="text">[regDesired]</div>
+    <div class="clear"></div>
+    <div class="label">[giftregistry_header-productspurchased]</div>
+    <div class="text">[regPurchased]</div>
+    <div class="clear"></div>
+    <div class="view-productlist-button">
+      <input type="button" name="cmdViewList" onclick="javascript:location.href='view_giftregistry.asp?id=[custid]';" class="btn" value="[giftregistry_view-productlist]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+    <div class="clear"></div>
+  </div>
+  <form action="giftregistry_edit.asp?action=view" name="frmForm" id="frmForm" method="post">
+    <input type="hidden" id="action2" name="action2" value="sendemail" />
+    <div class="header">
+      <h3>[giftregistry_header-invitation-emails]</h3>
+      <div class="clear"></div>
+    </div>
+    <div class="giftregistrySendEmails pad10 boxShadow">
+      <p>[giftregistry_header-invitation-emailsinstructions]</p>
+      <div class="giftregField">
+        <label for="txtEmail1">[giftregistry_header-invitation-emailaddress]</label>
+        <input type="text" id="txtEmail1" name="txtEmail1" maxlength="100" size="50" value="" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="txtEmail1">[giftregistry_header-invitation-emailaddress]</label>
+        <input type="text" id="txtEmail2" name="txtEmail2" maxlength="100" size="50" value="" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="txtEmail1">[giftregistry_header-invitation-emailaddress]</label>
+        <input type="text" id="txtEmail3" name="txtEmail3" maxlength="100" size="50" value="" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="txtEmail1">[giftregistry_header-invitation-emailaddress]</label>
+        <input type="text" id="txtEmail4" name="txtEmail4" maxlength="100" size="50" value="" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="giftregField">
+        <label for="txtEmail1">[giftregistry_header-invitation-emailaddress]</label>
+        <input type="text" id="txtEmail5" name="txtEmail5" maxlength="100" size="50" value="" class="txtBoxStyle" />
+        <div class="clear"></div>
+      </div>
+      <div class="send-email-button">
+        <input type="button" name="cmdViewList" onclick="javascript:previewMessage();" class="btn" value="[giftregistry_header-invitation-previewmessage]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        <input type="button" name="cmdViewList" onclick="javascript:sendEmail();" class="btn" value="[giftregistry_header-invitation-sendemail]" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" id="Button3" />
+      </div>
+    </div>
+  </form>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="giftregistryViewFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+<script type="text/javascript">
+var addReplyClick=0;
+function submitForm(strAction)
+{
+	window.document.body.style.cursor = 'wait';
+	if(window.document.activeElement){window.document.activeElement.style.cursor='wait'; }
+	
+	document.frmForm.action2.value = strAction;
+	document.frmForm.submit();
+}
+
+function sendEmail()
+{
+	var strMsg = "";
+	var strEmail1 = document.frmForm.txtEmail1.value.trim();
+	var strEmail2 = document.frmForm.txtEmail2.value.trim();
+	var strEmail3 = document.frmForm.txtEmail3.value.trim();
+	var strEmail4 = document.frmForm.txtEmail4.value.trim();
+	var strEmail5 = document.frmForm.txtEmail5.value.trim();
+	
+	//Empty
+	if (strEmail1 == "" && strEmail2 == "" && strEmail3 == "" && strEmail4 == "" && strEmail5 == "")
+		strMsg += " - You need to fill at least one [giftregistry_header-invitation-emailaddress].\n"
+	
+	//Valid E-mail
+	if (strEmail1 != "" && !isValidEmail(strEmail1))
+		strMsg += " - The 1st [giftregistry_header-invitation-emailaddress] is invalid.\n"
+	if (strEmail2 != "" && !isValidEmail(strEmail2))
+		strMsg += " - The 2nd [giftregistry_header-invitation-emailaddress] is invalid.\n"
+	if (strEmail3 != "" && !isValidEmail(strEmail3))
+		strMsg += " - The 3rd [giftregistry_header-invitation-emailaddress] is invalid.\n"
+	if (strEmail4 != "" && !isValidEmail(strEmail4))
+		strMsg += " - The 4th [giftregistry_header-invitation-emailaddress] is invalid.\n"
+	if (strEmail5 != "" && !isValidEmail(strEmail5))
+		strMsg += " - The 5th [giftregistry_header-invitation-emailaddress] is invalid.\n"
+
+			
+	if (strMsg != ""){
+		alert(strMsg);
+		return false;
+	}
+	if (addReplyClick == 0){
+		addReplyClick = 1;
+		submitForm('sendEmail');
+	}
+}
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+function isValidEmail(str) {
+   return (str.indexOf(".") > 2) && (str.indexOf("@") > 0);
+}
+function previewMessage()
+{
+	window.open('giftregistry_edit.asp?action=previewemail','PreviewMessage','width=730px, location=no, menubar=no, status=no, toolbar=no, scrollbars=yes, resizable=yes');
+}
+</script>

@@ -1,0 +1,697 @@
+<!doctype html>
+<html>
+<head>
+<title>Quick View</title>
+<base target="_top">
+<link rel="stylesheet" href="/assets/templates/common-html5/css/layout.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/templates/[template]/css/[stylesheet]" type="text/css" media="screen" />
+<link rel="stylesheet" href="assets/templates/common-html5/css/fontello.css" />
+<!--[if IE 7]>
+<link rel="stylesheet" href="assets/templates/common-html5/css/fontello-ie7.css" />
+<![endif]-->
+<script type="text/javascript" src="assets/templates/common-html5/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/templates/common-html5/js/utilities.js"></script>
+<script type="text/javascript" src="assets/templates/common-html5/js/listing.js"></script>
+<script type="text/javascript" src="assets/templates/common-html5/3dzoom/magiczoomplus.js"></script>
+<link href="assets/templates/common-html5/3dzoom/magiczoomplus.css" rel="stylesheet" type="text/css" media="screen"/>
+<link rel="stylesheet" href="/assets/templates/common-html5/css/flexslider.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/assets/templates/common-html5/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    MagicZoomPlus.options = {
+        'opacity': '65',
+        'expand-effect': 'linear',
+        'background-opacity': '50',
+        'zoom-fade': true,
+        'zoom-position': 'inner',
+        'zoom-distance': 5,
+        'zoom-height': 300,
+        'zoom-width': 300,
+        'fit-zoom-window': false,
+        'hint': false
+    }
+    function close_modal() {
+        parent.jQuery.modal.close();
+    }
+</script>
+</head>
+<body id="quickView">
+<section id="listing0">
+  <form enctype="multipart/form-data" method="post" action="add_cart.asp" name="add" id="add" target="_top">
+    <input type="hidden" name="item_id" value="[catalogid]" />
+    <input type="hidden" name="itemid" value="[id]" id="itemid" />
+    <input type="hidden" name="category_id" value="[catid]" />
+    <input type="hidden" name="referer" value="[referer]" />
+    <div id="qvTabs">
+        <a href="#" class="quick-close-modal" onclick="close_modal();"></a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="primary">
+      <div id="mediaContainer">
+        <div id="mediaBlock"> 
+          <!--START: image1-->
+          <div class="main-image"><a href="[image1]" class="[3dzoom_class]" id="listing_main_image_link"><img itemprop="image" src="thumbnail.asp?file=[image1]&maxx=[image_medium_w]&maxy=0" align="middle" id="large" name="large" alt="[name]" /></a>
+            <div name="imagecaptiont" id="imagecaptiont" class="item">[imagecaption1]</div>
+          </div>
+          <!--END: image1--> 
+            <div id="realmediaBlock">
+              <iframe id="realmedia" src="[realmedia]" frameborder="0" allowfullscreen></iframe>
+            </div>
+          <div class="addl-images">
+              <div class="carousel">
+                  <ul class="slides">
+                      <!--START: realmedia-->
+                      <li id="showRealMedia"><i class="icon-play"></i> <span>Product Video</span></li>
+                      <!--END: realmedia-->
+                      <!--START: image2-->
+                      <li class="prod-thumb image1"><a href="[image1]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image1]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(1);return false;"><img src="thumbnail.asp?file=[image1]&maxx=50&maxy=0" width="50" alt="" name="pimage1" /></a></li>
+                      <li class="prod-thumb image2"><a href="[image2]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image2]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(2);return false;"><img src="thumbnail.asp?file=[image2]&maxx=50&maxy=0" width="50" alt="" name="pimage2" /></a></li>
+                      <!--START: image3-->
+                      <li class="prod-thumb image3"><a href="[image3]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image3]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(3);return false;"><img src="thumbnail.asp?file=[image3]&maxx=50&maxy=0" width="50" alt="" name="pimage3" /></a></li>
+                      <!--END: image3--> 
+                      <!--START: image4-->
+                      <li class="prod-thumb image4"><a href="[image4]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image4]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(4);return false;"><img src="thumbnail.asp?file=[image4]&maxx=50&maxy=0" width="50" alt="" name="pimage4" /></a></li>
+                      <!--END: image4-->
+                      <!--START: image5-->
+                      <li class="prod-thumb image5"><a href="[image5]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image5]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(5);return false;"><img src="thumbnail.asp?file=[image5]&maxx=50&maxy=0" width="50" alt="" name="pimage5" /></a></li>
+                      <!--END: image5--> 
+                      <!--START: image6-->
+                      <li class="prod-thumb image6"><a href="[image6]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image6]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(6);return false;"><img src="thumbnail.asp?file=[image6]&maxx=50&maxy=0" width="50" alt="" name="pimage6" /></a></li>
+                      <!--END: image6--> 
+                      <!--START: image7-->
+                      <li class="prod-thumb image7"><a href="[image7]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image7]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(7);return false;"><img src="thumbnail.asp?file=[image7]&maxx=50&maxy=0" width="50" alt="" name="pimage7" /></a></li>
+                      <!--END: image7-->
+                      <!--START: image8-->
+                      <li class="prod-thumb image8"><a href="[image8]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image8]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(8);return false;"><img src="thumbnail.asp?file=[image8]&maxx=50&maxy=0" width="50" alt="" name="pimage8" /></a></li>
+                      <!--END: image8-->
+                      <!--START: image9-->
+                      <li class="prod-thumb image9"><a href="[image9]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image9]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(9);return false;"><img src="thumbnail.asp?file=[image9]&maxx=50&maxy=0" width="50" alt="" name="pimage9" /></a></li>
+                      <!--END: image9-->
+                      <!--START: image10-->
+                      <li class="prod-thumb image10"><a href="[image10]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image10]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(10);return false;"><img src="thumbnail.asp?file=[image10]&maxx=50&maxy=0" width="50" alt="" name="pimage10" /></a></li>
+                      <!--END: image10-->
+                      <!--START: image11-->
+                      <li class="prod-thumb image11"><a href="[image11]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image11]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(11);return false;"><img src="thumbnail.asp?file=[image11]&maxx=50&maxy=0" width="50" alt="" name="pimage11" /></a></li>
+                      <!--END: image11-->
+                      <!--START: image12-->
+                      <li class="prod-thumb image12"><a href="[image12]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image12]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(12);return false;"><img src="thumbnail.asp?file=[image12]&maxx=50&maxy=0" width="50" alt="" name="pimage12" /></a></li>
+                      <!--END: image12-->
+                      <!--START: image13-->
+                      <li class="prod-thumb image13"><a href="[image13]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image13]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(13);return false;"><img src="thumbnail.asp?file=[image13]&maxx=50&maxy=0" width="50" alt="" name="pimage13" /></a></li>
+                      <!--END: image13-->
+                      <!--START: image14-->
+                      <li class="prod-thumb image14"><a href="[image14]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image14]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(14);return false;"><img src="thumbnail.asp?file=[image14]&maxx=50&maxy=0" width="50" alt="" name="pimage14" /></a></li>
+                      <!--END: image14-->
+                      <!--START: image15-->
+                      <li class="prod-thumb image15"><a href="[image15]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image15]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(15);return false;"><img src="thumbnail.asp?file=[image15]&maxx=50&maxy=0" width="50" alt="" name="pimage15" /></a></li>
+                      <!--END: image15-->
+                      <!--START: image16-->
+                      <li class="prod-thumb image16"><a href="[image16]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image16]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(16);return false;"><img src="thumbnail.asp?file=[image16]&maxx=50&maxy=0" width="50" alt="" name="pimage16" /></a></li>
+                      <!--END: image16-->
+                      <!--START: image17-->
+                      <li class="prod-thumb image17"><a href="[image17]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image17]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(17);return false;"><img src="thumbnail.asp?file=[image17]&maxx=50&maxy=0" width="50" alt="" name="pimage17" /></a></li>
+                      <!--END: image17-->
+                      <!--START: image18-->
+                      <li class="prod-thumb image18"><a href="[image18]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image18]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(18);return false;"><img src="thumbnail.asp?file=[image18]&maxx=50&maxy=0" width="50" alt="" name="pimage18" /></a></li>
+                      <!--END: image18-->
+                      <!--START: image19-->
+                      <li class="prod-thumb image19"><a href="[image19]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image19]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(19);return false;"><img src="thumbnail.asp?file=[image19]&maxx=50&maxy=0" width="50" alt="" name="pimage19" /></a></li>
+                      <!--END: image19-->
+                      <!--START: image20-->
+                      <li class="prod-thumb image20"><a href="[image20]" rel="thumb-id:listing_main_image_link" rev="thumbnail.asp?file=[image20]&maxx=[image_medium_w]&maxy=0" onclick="javascript:image_click(20);return false;"><img src="thumbnail.asp?file=[image20]&maxx=50&maxy=0" width="50" alt="" name="pimage20" /></a></li>
+                      <!--END: image20-->
+                      <!--END: image2-->
+                  </ul>
+              </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="secondary">
+      <h1 itemprop="name" class="page_headers">[name]</h1>
+      <div class="clear"></div>
+        <!--START: pricing-->
+        <div class="pricingBlock" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <link itemprop="availability" href="http://schema.org/[availability_itemprop]" />
+        <!--START: ITEMPRICE-->
+        <div class="price">[product_yourprice]<span itemprop="price" id="price">[price]</span></div>
+        <div class="clear"></div>
+        <!--END: ITEMPRICE--> 
+        <!--START: SALEPRICE-->
+        <div class="price">[product_yourprice]<span itemprop="price" id="price">[saleprice]</span></div>
+        <div class="clear"></div>
+        <!--END: SALEPRICE-->
+        <div class="clear"></div>
+        </div>
+        <!--END: pricing-->
+        <div class="availabilityInfo"> 
+        <!--START: product_availability-->
+        <div class="product_availability">
+        <h4>[product_Header-availability]</h4>
+        <div id="availability" class="font2">[availability_itemprop]</div>
+        <div class="clear"></div>
+        </div>
+        <!--START: waitinglist-->
+        <div class="waitinglist">
+        <input type="button" value="Put me on the Waiting List" class="btn" onclick="javascript:window.open('notify.asp?catalogid=[catalogid]','popup','height=535,width=540,location=no,' + 'scrollbars=no,menubars=no,toolbars=no,resizable=yes');" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+        </div>
+        <!--END: waitinglist--> 
+        <!--END: product_availability--> 
+        <!--START: freeshippingblock-->
+        <div class="freeshippingblock">[freeshipping]</div>
+        <!--END: freeshippingblock--> 
+        </div>
+      <div class="clear"></div>
+      <div id="prodDetails">
+      <!--START: LOGIN_REQUIRED-->
+      <div class="loginReqBlock">[product_login-message]</div>
+      <!--END: LOGIN_REQUIRED--> 
+      <!--START: PRODUCT_OPTIONS_BLOCK-->
+      <div id="divOptionsBlock"> 
+        <!--START: divOptionsBlock-->
+        <div class="container"> 
+          <!--START: optionstemplate--> 
+          <!--START: textarea-format--> 
+          <label for="textarea[oname]">[value]: [oprice]</label>
+          <textarea cols="30" rows="5" name="textarea[oname]" id="textarea[oname]" maxlength="[option_textlimit]" [option_textarealimit_validation] class="txtAreaStyle"></textarea>
+          <!--START: textlimit_display_validation[oname]-->
+            <div class="textlimit-textarea"><span id="charcount[oname]">[option_textlimit]</span> [product_charsleft]</div>
+          <!--END: textlimit_display_validation[oname]-->
+          <!--END: textarea-format--> 
+          <!--START: text-format--> 
+          <label for="text[oname]">[value]: [oprice]</label>
+          <input type="text" size="30" name="text[oname]" id="text[oname]" maxlength="[option_textlimit]" [option_textlimit_validation] class="txtBoxStyle" />
+          <!--START: textlimit_display_validation[oname]-->
+            <div class="textlimit-text"><span id="charcount[oname]">[option_textlimit]</span> [product_charsleft]</div>
+          <!--END: textlimit_display_validation[oname]--> 
+          <!--END: text-format--> 
+          <!--START: qty-format--> 
+          <label for="text[oname]">[value] [oprice]</label>
+          <input type="text" size="3" name="text[oname]" value="0" />
+          <!--END: qty-format--> 
+          <!--START: file-format--> 
+          <label for="file[oname]">[value]: [oprice]</label>
+          <input type="file" name="file[oname]" />
+          <div class="clear"></div>
+          <!--END: file-format--> 
+          <!--START: title-format--> 
+          <div class="title-format">[feature]</div>
+          <!--END: title-format--> 
+          <!--START: checkbox-format-->
+          <div class="checkbox-format">
+            <input type="checkbox" name="cb[oname]" value="[value]" onclick="validateValues(document.add,1);" [selected] />
+            [feature] [oprice]
+          </div>
+          <!--END: checkbox-format--> 
+          <!--START: radio-format-->
+          <div class="radio-format">
+            <input type="radio" name="[oname]" id="radio-[value]" value="[value]" [selected] />
+			<div class="radio-option" data-group="[oname]" title="[feature]" id="[value]" onclick="document.getElementById('radio-[value]').checked=true;validateValues(document.add,1);selectOption(document.getElementById('radio-[value]'));">
+                <!--START: radio_imagepath-->
+                <img name="img_[oname]" src="[radio_imagepath]" />
+                <!--END: radio_imagepath-->
+                <span>[feature] [oprice]</span>
+			</div>
+            <div class="clear"></div>
+          </div>
+          <!--END: radio-format--> 
+          <!--START: dropdown-format-->
+          <div class="dropdown-format">
+            <select name="[oname]" onchange="validateValues(document.add,1);selectOption(this);" class="txtBoxStyle">
+              <!--START: option-->
+              <option value="[value]" [selected]>[feature] [oprice]</option>
+              <!--END: option-->
+            </select>
+          </div>
+          <!--END: dropdown-format--> 
+          <!--START: dropdownimage-format-->
+          <div class="dropdownimage-format">
+            <select name="[oname]" onchange="validateValues(document.add,1);selectOption(this);" class="txtBoxStyle">
+              <!--START: option-->
+              <option value="[value]" [selected]>[feature] [oprice]</option>
+              <!--END: option-->
+            </select>
+            <div class="dropdown-image"><img name="img_[oname]" width="50" src="assets/templates/common-html5/images/spacer.gif" /></div>
+          </div>
+          <!--END: dropdownimage-format--> 
+          <!--END: optionstemplate--> 
+          
+          <!--START: options--> 
+          <!--START: opt-title-->
+          <div class="opt-title">
+              <span class="label">[OPTIONLABEL]</span>
+              <span>[OPTIONFIELD]</span>
+          </div>
+          <!--END: opt-title--> 
+          <!--START: opt-regular-->
+          <div class="opt-regular">
+            <!--START: required--><span class="required"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></span><!--END: required-->
+            <span class="label">[OPTIONLABEL]</span>
+            <!--START: help--> 
+            <span class="help"><a href="#" onclick="showHelp[optid]();"><img src="assets/templates/common-html5/images/help_icon.gif" alt="help" /></a></span> 
+              <script type="text/javascript">
+                  function showHelp[optid]() {
+                      var src = 'optionhelp.asp?optionid=[optid]';
+                      jQuery.modal('<iframe src="' + src + '" height="200" width="295" style="border:0">', {
+                          closeHTML:"",
+                          containerCss:{
+                              backgroundColor:"#fff", 
+                              borderColor:"#fff", 
+                              height:200, 
+                              padding:0, 
+                              width:300
+                          },
+                          overlayClose:true,
+                          onShow: function(dialog){ 
+                              dialog.wrap.css('overflow','hidden');
+                          }
+                      });
+                  }
+              </script>
+            <!--END: help-->
+            <div class="clear"></div>
+            <div class="opt-field">[OPTIONFIELD]</div>
+            <div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+          <!--END: opt-regular--> 
+          <!--END: options--> 
+        </div>
+        <!--END: divOptionsBlock--> 
+      </div>
+      <!--END: PRODUCT_OPTIONS_BLOCK--> 
+        <!--START: addtocart-->
+        <div class="addToCartBlock"> 
+          <!--START: qtybox-->
+          <div class="qtybox">
+            <label>[product_quantity]</label>
+            <input type="text" size="3" name="qty-0" value="1" onchange="validateValues(document.add,1);" class="txtBoxStyle" />
+          </div>
+          <!--END: qtybox--> 
+          <div class="clear"></div>
+          <div class="addcart-button">
+            <button type="button" onclick="check_and_add(document.add);" id="Add" name="Add" class="btn"><i class="icon-basket"></i> [product_addtocart]</button>
+            <a href="javascript:void(0);" onclick="window.top.location='product.asp?itemid=[catalogid]'"><i class="icon-search"></i> More Details</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--END: addtocart--> 
+      </div>
+    </div>
+  </form>
+</section>
+<script type="text/javascript">
+    jQuery(window).load(function() {
+        jQuery('.carousel').flexslider({
+            animation: "slide",
+            animationLoop: true,
+            slideshow: false,
+            controlNav: false,
+            itemWidth: 50,
+            maxItems: 4,
+            itemMargin: 5,
+            prevText: "",
+            nextText: ""
+        });
+    });
+
+    jQuery(function() {
+    
+        //Switch Main Image/Product Video
+        jQuery('#showRealMedia').on('click', function() {
+            jQuery('#realmediaBlock').fadeIn();
+            jQuery('#mediaBlock .main-image').hide();
+        });
+        jQuery('.prod-thumb a').on('click', function() {
+            jQuery('#realmediaBlock').hide();
+            jQuery('#mediaBlock .main-image').fadeIn();
+        });
+
+        //Radio Button Options
+        jQuery('.radio-format .radio-option').click(function() {
+	
+            //FIRST GET THE GROUP NAME
+            var group = jQuery(this).attr('data-group');
+            var value = jQuery(this).attr('id');
+		
+            jQuery(".opt-field :radio[name='" + group + "']").each(function(i) {
+				
+                if(jQuery(this).attr('value') === value) {	
+                    document.getElementById('radio-' + jQuery(this).attr('value')).checked = true;
+                    jQuery("#" + value).addClass('radio-selected');
+                }
+                else {
+                    document.getElementById('radio-' + jQuery(this).attr('value')).checked = false;
+                    jQuery('#' + jQuery(this).attr('value')).removeClass('radio-selected');
+                }			
+            });
+        });
+    
+    });
+</script>
+<script type="text/javascript">
+		//messagebar.js initialized
+		var reqOptionBar = new MessageBar();
+		reqOptionBar.initialize();
+
+		//Thumbnail script
+		var image1,image2,image3,image4,image5,image6,image7,image8,image9,image10,image11,image12,image13,image14,image15,image16,image17,image18,image19,image20,selectedimage;
+		var imagemaxwidth, imagemaxheight
+
+		imagemaxwidth=[image_medium_w];
+		imagemaxheight=0;
+
+		image1="[image1]";
+		image2="[image2]";
+		image3="[image3]";
+		image4="[image4]";
+		image5="[image5]";
+		image6="[image6]";
+		image7="[image7]";
+		image8="[image8]";
+		image9="[image9]";
+		image10="[image10]";
+		image11="[image11]";
+		image12="[image12]";
+		image13="[image13]";
+		image14="[image14]";
+		image15="[image15]";
+		image16="[image16]";
+		image17="[image17]";
+		image18="[image18]";
+		image19="[image19]";
+		image20="[image20]";
+		imagecaption1="[imagecaption1]";
+		imagecaption2="[imagecaption2]";
+		imagecaption3="[imagecaption3]";
+		imagecaption4="[imagecaption4]";
+		imagecaption5="[imagecaption5]";
+		imagecaption6="[imagecaption6]";
+		imagecaption7="[imagecaption7]";
+		imagecaption8="[imagecaption8]";
+		imagecaption9="[imagecaption9]";
+		imagecaption10="[imagecaption10]";
+		imagecaption11="[imagecaption11]";
+		imagecaption12="[imagecaption12]";
+		imagecaption13="[imagecaption13]";
+		imagecaption14="[imagecaption14]";
+		imagecaption15="[imagecaption15]";
+		imagecaption16="[imagecaption16]";
+		imagecaption17="[imagecaption17]";
+		imagecaption18="[imagecaption18]";
+		imagecaption19="[imagecaption19]";
+		imagecaption20="[imagecaption20]";
+		selectedimage='[image1]'; //pre-load image1
+		zoom_enable=[3dzoom_enabled]; //0 = zoomify | 1 = magiczoom
+
+		function image_click(clicks) {
+			if (document.getElementById('listing_main_image_link')!=undefined) {
+
+				if (zoom_enable==1) {
+					selectedimage=eval('image'+clicks);
+					MagicZoomPlus.update('listing_main_image_link', selectedimage, 'thumbnail.asp?file=' + selectedimage + '&maxx='+imagemaxwidth+'&maxy='+imagemaxheight, 'show-title: false');
+					changecontent("imagecaptiont",eval('imagecaption'+clicks));
+					document.getElementById('listing_main_image_link').href=this.name;
+				}
+				else {
+					selectedimage=eval('image'+clicks);
+					document.getElementById('large').src='thumbnail.asp?file=' + selectedimage + '&maxx='+imagemaxwidth+'&maxy='+imagemaxheight;
+					document.getElementById('listing_main_image_link').href='#';
+					document.getElementById('listing_main_image_link').onclick=zoomify_popup;
+					changecontent("imagecaptiont",eval('imagecaption'+clicks));
+				}
+			}
+		}
+
+		function zoomify_popup() {
+			popupsimple('zoomify.asp?catalogid=[catalogid]&img=' + selectedimage ,500,500);
+		}
+
+		function check_stock(what,partnum) {
+			var soption;
+			var i;
+			var product_availability='[availability]';
+			var backordermode='[allowbackorder]';
+			var avail_instock='[productAvailability-Instock]';
+			var avail_outofstock='[productAvailability-Outofstock]';
+			var avail_backorder='[productAvailability-Backorder]';
+			var optionfound=0;
+
+			var availabilityBar = new MessageBar();
+			availabilityBar.initialize();
+
+			if (inventoryarray[catalogid].length==0) //if there is no advanced options, don't look for stock
+			{
+				return true;
+			}
+			else
+			{
+				for(i=0;i<inventoryarray[catalogid].length;i++)
+				{
+					soption=inventoryarray[catalogid][i];
+					field_array=soption.split("-");
+					//Dynamic Part for advanced options
+					if (typeof((idarray[catalogid])) != "undefined")
+					{
+						soptionid=idarray[catalogid][i];
+						aoprice=aopricearray[catalogid][i];
+						if (field_array[0]==partnum)
+						{
+							if (soptionid != '')
+								changeid(soptionid);
+							if (aoprice != '0')
+								changeprice(aoprice);
+						}
+					}
+
+					if ((field_array[0]==partnum))
+					{
+						changecontent("product_inventory",field_array[1]);
+						if (eval(GetValue(what,"qty-0"))>field_array[1])
+						{
+							optionfound=optionfound+1;
+							if (backordermode==1)
+							{
+								changecontent("availability",avail_backorder);
+								return true;
+								optionfound=optionfound+1;
+							}
+							else
+							{
+								changecontent("availability",avail_outofstock);
+								//alert("The options you selected are not currently available.");
+								availabilityBar.alert('The options you selected are not currently available.');
+								optionfound=optionfound+2;
+								return false;
+							}
+						}
+
+					}
+				}
+
+				if (optionfound==0)
+				{
+					changecontent("availability",product_availability);
+					return true;
+				}
+
+				if (optionfound==1)
+				{
+					changecontent("availability",avail_instock);
+					return true;
+				}
+			}
+		}
+
+		function add_wishlist() {
+
+			if ('[Enabled_Multiple_WishList]' == '1') {
+
+				//window.open('[link_addtolist]','popup','height=300,width=550,location=no,scrollbars=no,menubars=no,toolbars=no,resizable=yes');
+
+				var src = '[link_addtolist]';
+				var intHeight, intWidth;
+				intHeight = 480;
+				intWidth = 495;
+
+				if (document.body.clientWidth < 767) {
+					intHeight = 460;
+					intWidth = 300;
+				}
+				jQuery.modal('<iframe src="' + src + '" height="' + intHeight + '" width="' + intWidth + '" style="border:0">', {
+					closeClass: 'modalCloseImg',
+					closeHTML: '<a href="#">Close</a>',
+					containerCss:{
+						backgroundColor:"#fff",
+						borderColor:"#fff",
+						height:intHeight,
+						padding:0,
+						width:(intWidth+5)
+					},
+					overlayClose:true,
+					onShow: function(dialog){
+						dialog.wrap.css('overflow','hidden');
+					}
+				});
+			}
+			else {
+				document.add.action = "add_cart.asp?action=addWishList";
+				document.add.submit();
+			}
+		}
+
+		function add_giftregistry() {
+			document.add.action = "add_cart.asp?action=addGiftRegistry";
+			document.add.submit();
+		}
+
+		function check_and_add(formx)
+		{
+			var reqOption = validateReqOption(formx);
+			if (reqOption != null) {
+				//alert("Please select all required options.");
+				reqOptionBar.alert('Please select all required options.');
+				varx1 = '[name="' + reqOption.name + '"]';
+				jQuery(varx1).closest('.opt-regular').addClass('option-required');
+				return;
+			}
+
+			if (document.add.std_price==null)
+			{
+				document.add.submit();
+			}
+			else
+			{
+				var readytoadd=validateValues(formx,1)
+				if (readytoadd==true)
+				{
+					document.add.submit();
+				}
+			}
+		}
+
+		function add_wishlistcustom(strListType, intListId, strListName)
+		{
+			document.add.wishListCustomType.value = strListType;
+			document.add.wishListCustomId.value = intListId;
+			document.add.wishListCustomname.value = strListName;
+			document.add.action = "add_cart.asp?action=addWishList";
+			document.add.submit();
+		}
+	</script>
+<script type="text/javascript">
+var currency_symbol='[currency]';
+var prod_decimal_places='[prod_decimal_places]';
+validateValues(document.add,1);
+window.setTimeout("image_click(1)", 1000);
+</script> 
+<script type="text/javascript">
+	function selectOption(objElement) {
+
+		var strElementName = "";
+		var strElementType = "";
+		var intHasRules = "[has_rules]";
+		objElement = null;
+
+		if (intHasRules != "1") {
+		    return;
+		}
+		add_overlay("divOptionsBlock", 1);
+
+		var url = 'prod_options.asp?ajax=1&action=buildOptions&strElementType=' + escape(strElementType) + '&strElementName=' + escape(strElementName) + '&no-cache=' + Math.random();
+
+		jQuery.ajax({
+		    url: url,
+		    dataType: 'html',
+		    type: 'POST',
+		    data: jQuery(add).serialize(),
+		    cache: false,
+		    success: function (strResult) {
+		        jQuery("#divOptionsBlock").html(strResult);
+
+		        jQuery('#add input[type="radio"]:checked').each(function() {
+		            jQuery(this).next('div').addClass('radio-selected');
+		        });
+		    },
+		    complete: afterOptionSelection,
+		    error: reportError
+		});
+	}
+
+	function afterOptionSelection(req) {
+		remove_overlay("divOptionsBlock");
+		return;
+	}
+
+	function getElementById_s(strId) {
+		var obj = null;
+		if (document.getElementById) {
+			obj = get_Element(strId);
+		} else if (document.all) {
+			obj = document.all[strId];
+		}
+		return obj;
+	}
+
+	function remove_overlay(panel) {
+		var objBody = getElementById_s('overlay_' + panel);
+		if (objBody != null && objBody != 'null' && objBody != undefined && objBody != 'undefined')
+			objBody.style.display = 'none';
+	}
+
+	function add_overlay(panel, loading) {
+		var objBody = getElementById_s(panel);
+		var objOverlay = document.createElement("div");
+
+		objOverlay.setAttribute('id', 'overlay_' + panel);
+		objOverlay.className = 'overlay';
+		objOverlay.style.position = 'absolute';
+		objOverlay.style.textAlign = 'center';
+		objOverlay.style.width = objBody.clientWidth + "px";
+		objOverlay.style.height = objBody.clientHeight + "px";
+		//alert(objOverlay.style.height);
+		objBody.insertBefore(objOverlay, objBody.firstChild);
+		objOverlay.style.display = 'block';
+
+		if (loading == 1) {
+			get_Element('overlay_' + panel).innerHTML = '<table border=0 width=100% height=100%><tr><td style="text-align: center;"><img src="assets/templates/common/images/loading.gif"></tr></table>';
+		}
+		else {
+			get_Element('overlay_' + panel).innerHTML = '<table border=0 width=100% height=100%><tr><td align="center"></tr></table>';
+		}
+	}
+
+	function get_Element(i) {
+		return document.getElementById(i) || document.getElementsByName(i).item(0);
+	}
+
+	function reportError(jqXHR, textStatus) {
+	    remove_overlay("divOptionsBlock");
+
+	    //jqXHR.responseText
+	    if (jqXHR.status > 0)
+	        alert("Error processing request " + jqXHR.status + " - " + textStatus);
+	}
+
+	selectOption(null);
+
+	function countChars(countfrom,displayto,countmax) {
+	    var str = document.getElementById(countfrom).value;
+	    var CountBreaks = str.split("\n").length - 1;
+	    
+	    document.getElementById(countfrom).maxLength = (Number(countmax) + Number(CountBreaks*1));
+	    var len = countmax - (document.getElementById(countfrom).value.length);
+	    if (len < 0)
+	    {
+	        document.getElementById(countfrom).value = str.substring(0, str.length - 1)
+	        return false;
+	    }
+	    document.getElementById(displayto).innerHTML = len;
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<style type="text/css">
+@media only screen and (max-width: 480px) {
+	.crmTicketStatus td:nth-of-type(1):before { content: "[crm_user-date]"; }
+	.crmTicketStatus td:nth-of-type(2):before { content: "[crm_message]"; }
+}
+</style>
+<script type="text/javascript">
+	var addReplyClick = 0;
+	
+	function submitForm(strAction)
+	{	    	
+		document.frmForm.action.value = strAction;
+		document.frmForm.submit();
+	}
+	function addReply()
+	{
+		var strMsg = "";
+		if (document.frmForm.reply.value.trim() == "")
+			strMsg += " - [crm_response] cannot be blank.\n";
+		<!--START: captchascript-->
+		if (document.frmForm.ramdomWord.value.trim() == "")
+			strMsg += " - Verification word cannot be blank.\n";
+		<!--END: captchascript-->
+
+		if (ExistsCreditCard(jQuery('#reply').val()))
+			strMsg += "[ccNumerNotAllowedMessage]";
+		
+		if (strMsg != ""){
+			alert(strMsg);
+			return false;
+		}
+		if (addReplyClick == 0){
+			addReplyClick = 1;
+			submitForm('addreply');
+		}
+	}
+	String.prototype.trim = function() {
+		return this.replace(/^\s+|\s+$/g,"");
+	}
+	function isValidEmail(str) {
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		
+		if (str.indexOf(at)==-1)
+		   return false
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr)
+		   return false
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr)
+			return false
+	
+		 if (str.indexOf(at,(lat+1))!=-1)
+			return false
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot)
+			return false
+
+		 if (str.indexOf(dot,(lat+2))==-1)
+			return false
+		
+		 if (str.indexOf(" ")!=-1)
+			return false
+
+		 return true					
+	}
+	
+	function showSavedMessage()
+	{
+		window.setTimeout("alert('[crm_message-request-submitted]');",200);
+	}
+</script>
+
+<section id="crm">
+  <h1 class="page_headers">[crm_header_view_ticket]</h1>
+  <!--START: myAccount-->
+  <div class="button right"><a href="myaccount.asp" class="icon-btn icon-btn-prev">Back to My Account</a></div>
+  <!--END: myAccount-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="crmHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="crmTicketInfo">
+    <div class="header">
+      <h3>[subject]</h3>
+    </div>
+    <div class="label">[crm_status]:</div>
+    <div class="text">[status]</div>
+    <div class="clear"></div>
+    <div class="label">[crm_date-opened]:</div>
+    <div class="text">[datentime]</div>
+    <div class="clear"></div>
+    <div class="label">[crm_department]:</div>
+    <div class="text">[department]</div>
+    <div class="clear"></div>
+    <div class="label">[crm_opened-by]:</div>
+    <div class="text">[sender]</div>
+    <div class="clear"></div>
+    <div class="label">[crm_last-action-date]:</div>
+    <div class="text">[lastactiondatentime]</div>
+    <div class="clear"></div>
+  </div>
+  <div class="crmTicketStatus pad10 boxShadow">
+    <table>
+		<thead>
+		<tr class="titles2">
+			<th class="user-date">[crm_user-date]</th>
+			<th class="message">[crm_message]</th>
+		</tr>
+		</thead>
+		<tbody>
+		<!--START: msgDetail-->
+		<tr class="row">
+			<td class="msg-date"><span>[msgSender]</span><span>[msgDate]</span></td>
+			<td class="msg-message">[msgMessage]</td>
+		</tr>
+		<!--END: msgDetail-->
+		</tbody>
+	</table>
+  </div>
+  <div class="crmTicketForm">
+  <form method="post" action="crm.asp" id="frmForm" name="frmForm">
+    <input type="hidden" name="mk" value="[mk]" />
+    <input type="hidden" name="replyemail" value="[custemail]" />
+    <input type="hidden" name="id" value="[id]" />
+    <input type="hidden" name="action" value="" />
+    <div class="header">
+      <h3>[crm_update]</h3>
+    </div>
+    <div class="crmField">
+      <label for="subject">[crm_subject]:</label>
+      <div class="crm-subject">[subject]</div>
+      <div class="clear"></div>
+    </div>
+    <div class="crmField">
+      <label for="reply">[crm_response]:</label>
+      <textarea name="reply" id="reply"></textarea>
+      <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+      <div class="clear"></div>
+    </div>
+    <!--START: captcha-->
+    <div class="crmField">
+      <label for="Verification">Verification:</label>
+      <div class="captcha"> <img src="admin/image_pw.asp" width="148" alt="" />
+        <div class="captcha-text">Type the word above...</div>
+        <input type="text" name="ramdomWord" id="ramdomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="7" class="txtBoxStyle" />
+      </div>
+      <div class="clear"></div>
+    </div>
+    <!--END: captcha-->
+    <!--START: recaptcha-->
+    <div class="crmField">
+    <label for="recaptcha_challenge_field">Verification:</label>
+    <div class="recaptcha">
+        <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+        <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+        <noscript>
+        <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+        <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+        <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+        </noscript>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <!--END: recaptcha-->
+    <div class="update-request-button">
+      <input type="button" name="btnReply" value="Update" onclick="javascript:addReply();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" class="btn" />
+    </div>
+    <div class="clear"></div>
+  </form>
+  </div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+  <div class="category-footer" id="crmFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

@@ -1,0 +1,175 @@
+<script type="text/javascript">
+function closeWindow() {
+	try {
+		window.parent.hs.close();
+	}
+	catch(err) {
+		window.close();
+	}		
+}
+jQuery(function() {
+    jQuery('body').addClass('modal-bg');
+});
+</script>
+<style type="text/css">
+html, body {
+	width: 100%;
+	max-height: 100% !important;
+}
+@media only screen and (max-width: 480px) {
+
+html, body {
+    width: auto !important;
+    max-width: 90% !important;
+    padding: 0px;
+    border: none;
+}
+
+}
+</style>
+
+<section id="productReviewNew">
+  <h1 class="page_headers">[reviews_add]</h1>
+  <form name="creview" method="post" action="review.asp?action=create&catalogid=[catalogid]">
+    <div class="header">
+      <h3>[name]</h3>
+    </div>
+    <div class="clear"></div>
+    <!--START: newReviewForm-->
+    <div class="newReviewForm boxShadow">
+      <div class="reviewField left">
+        <label for="user_name">Name:</label>
+        <!--START: nameTxt-->
+        <input type="text" value="[custName]" name="user_name" maxlength="100" tabindex="1" class="txtBoxStyle" size="25" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        <!--END: nameTxt--> 
+        <!--START: nameHdn-->
+        <div class="text">[custName]</div>
+        <!--END: nameHdn-->
+        <div class="clear"></div>
+      </div>
+      <div class="reviewField left">
+        <label for="user_email">Email:</label>
+        <!--START: emailTxt-->
+        <input type="text" value="[custEmail]" name="user_email" maxlength="100" tabindex="2" class="txtBoxStyle" size="25" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        <!--END: emailTxt--> 
+        <!--START: emailHdn--><input type="hidden" value="[custEmail]" name="user_email" />
+        <div class="text">[custEmail]</div>
+        <!--END: emailHdn-->
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="reviewField left">
+        <label for="user_city">Location:</label>
+        <input type="text" name="user_city" maxlength="50" id="user_city" tabindex="3" class="txtBoxStyle" size="25" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        <div class="clear"></div>
+      </div>
+      <div class="reviewField left">
+        <label for="short_review">Title:</label>
+        <input type="text" name="short_review" maxlength="100" id="short_review" tabindex="4" class="txtBoxStyle" size="25" />
+        <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="reviewField">
+        <label for="long_review">Review:</label>
+        <textarea cols="38" rows="10" name="long_review" tabindex="5"></textarea>
+        <div class="clear"></div>
+      </div>
+      <div class="reviewField">
+        <label for="rating">Rating:</label>
+        <div class="new-rating">
+        <input type="radio" name="rating" value="1" />
+        <img src="assets/templates/common-html5/images/star1.png" alt="1 Star Rating" />
+        <input type="radio" name="rating" value="2" />
+        <img src="assets/templates/common-html5/images/star2.png" alt="2 Star Rating" />
+        <input type="radio" name="rating" value="3" />
+        <img src="assets/templates/common-html5/images/star3.png" alt="3 Star Rating" />
+        <input type="radio" name="rating" value="4" />
+        <img src="assets/templates/common-html5/images/star4.png" alt="4 Star Rating" />
+        <input type="radio" name="rating" value="5" checked="checked" />
+        <img src="assets/templates/common-html5/images/star5.png" alt="5 Star Rating" />
+        <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--START: captcha-->
+      <div class="reviewField">
+        <label for="ramdomWord">Verification:</label>
+        <div class="captcha"><img src="admin/image_pw.asp" width="148" />
+          <div class="captcha-text">Type the word above...</div>
+          <input type="text" name="ramdomWord" id="ramdomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="6" class="txtBoxStyle" />
+          <div class="error-img"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="reviewField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="required error"><img src="assets/templates/common/images/error2.gif" width="12" height="12" alt="" /> = Required</div>
+      <div class="review-submit-button">
+        <input type="submit" value="Add Review" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </div>
+      <div class="clear"></div>
+    </div>
+    <script type="text/javascript">
+        //You should create the validator only after the definition of the HTML form
+        var frmvalidator = new Validator("creview");
+
+        bolCheckSubmitted_validation = false;//Global variable defined in utilities.js
+        frmvalidator.setAddnlValidationFunction("submitForm");
+
+        <!--START: validateNameEmail-->
+        frmvalidator.addValidation("user_name","req","Please enter your First and Last Name.");
+        frmvalidator.addValidation("user_name","maxlen=40","Max length for Name is 40.");
+        frmvalidator.addValidation("user_email","maxlen=50","Max length for Email is 50.");
+        frmvalidator.addValidation("user_email","email");
+        frmvalidator.addValidation("user_email","req","Please enter your E-mail.");
+        <!--END: validateNameEmail-->
+
+        frmvalidator.addValidation("user_city","req","Please enter your City.");
+        frmvalidator.addValidation("user_city","maxlen=50","Max length for City is 50.");
+        frmvalidator.addValidation("long_review","maxlen=2500","Max length for Review is 2500."); 
+        frmvalidator.addValidation("long_review","req","Please enter your review.");
+        frmvalidator.addValidation("short_review","maxlen=100");
+        frmvalidator.addValidation("short_review","req","Please enter your review.");
+        <!--START: captchascript-->
+        frmvalidator.addValidation("ramdomWord","maxlen=20");
+        frmvalidator.addValidation("ramdomWord","req","Please enter the verification word.");	
+        <!--END: captchascript-->
+    </script>
+    <!--END: newReviewForm--> 
+    <!--START: newReviewThankyou-->
+    <div class="newReviewThankyou pad10 boxShadow">[reviews_thankyou]
+      <div class="review-close-button">
+        <input type="button" value='[reviews_close]' class="btn" onclick="javascript:parent.closeModal();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'">
+      </div>
+    </div>
+    <!--END: newReviewThankyou--> 
+    <!--START: errorMsg-->
+    <div class="errorMsg pad10 boxShadow">[errorMsg]
+      <div class="review-close-button">
+        <!--START: review_back--><input type="button" value='[reviews_continue]' class="btn" onclick="history.back(1);" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /><!--END: review_back-->
+		<!--START: review_close--><input type="button" value='[reviews_close]' class="btn" onclick="javascript:parent.closeModal();" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" /><!--END: review_close-->
+      </div>
+    </div>
+    <!--END: errorMsg-->
+  </form>
+</section>
+</body>
+</html>

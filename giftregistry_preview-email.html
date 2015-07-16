@@ -1,0 +1,61 @@
+<style type="text/css">
+body {
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
+}
+.clear {
+	clear: both;
+}
+#giftregistryPreviewEmail h1 {
+	margin-bottom: 15px;
+}
+.giftregistryPreviewEmail {
+	width: 65%;
+	margin: 15px auto;
+	padding: 10px;
+	-moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+.giftregistryPreviewEmail .label {
+	float: left;
+	width: 150px;
+}
+.giftregistryPreviewEmail .text {
+	float: left;
+}
+.giftregistryPreviewEmail .message {
+	margin-bottom: 10px;
+}
+.giftregistryPreviewEmail .close-button {
+	margin: 10px 0px;
+	text-align: center;
+}
+</style>
+
+<section id="giftregistryPreviewEmail">
+  <h1 class="page_headers">[giftregistry_preview-email]</h1>
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="giftregistryPreviewEmailHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div class="giftregistryPreviewEmail">
+    <div class="label">[giftregistry_preview-email-from]</div>
+    <div class="text">[email]</div>
+    <div class="clear"></div>
+    <div class="label">[giftregistry_preview-email-subject]</div>
+    <div class="text">[subject]</div>
+    <div class="clear"></div>
+    <div class="message">[giftregistry_preview-email-message]</div>
+    <div class="email-body">[emailbody]</div>
+    <div class="clear"></div>
+    <div class="close-button">
+      <input type="button" value="Close" onclick="javascript:window.close();" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="giftregistryPreviewEmailFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

@@ -1,0 +1,151 @@
+<section id="blog"> 
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="blogHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER--> 
+  <div class="blogNav"> 
+    <!--START: blog_topnav-->
+    <div class="top-nav">[blog_topnav]</div>
+    <!--END: blog_topnav-->
+    <div class="blog-home button"><a href="blog.asp" class="icon-btn icon-btn-home">[blog_home]</a></div>
+    <!--START: categories_block-->
+    <div class="blog-categories_block">
+      <div class="menu-headers">[blog_categories]</div>
+      <div class="clear"></div>
+      <ul>
+          <!--START: categories--> 
+          <li><a href="[categorylink]" class="cat">[categorylabel]</a></li>
+          <!--END: categories-->
+      </ul>
+    </div>
+    <!--END: categories_block--> 
+    <!--START: posts_block-->
+    <div class="blog-posts_block">
+      <div class="menu-headers">[blog_recentposts]</div>
+      <div class="clear"></div>
+      <ul>
+          <!--START: posts--> 
+          <li><a href="[postlink]" class="cat">[postlabel]</a></li>
+          <!--END: posts-->
+      </ul>
+    </div>
+    <!--END: posts_block--> 
+    <!--START: archives_block-->
+    <div class="blog-archives_block">
+      <div class="menu-headers">[blog_archives]</div>
+      <div class="clear"></div>
+      <ul>
+          <!--START: archives--> 
+          <li><a href="[archivelink]" class="cat">[archivelabel]</a></li>
+          <!--END: archives-->
+      </ul>
+    </div>
+    <!--END: archives_block--> 
+    <!--START: blog_bottomnav-->
+    <div class="bottom-nav">[blog_topnav]</div>
+    <!--END: blog_bottomnav--> 
+  </div>
+  <!--START: blog_post-->
+  <div class="blogPost">
+    <h1><a href="[pagename]" title="[subject]">[subject]</a></h1>
+    <div class="blog-info">Posted by [post_author] on [post_date] <!--START: POST_CATEGORY-->to <a href="[post_category_link]">[post_category_name]</a><!--END: POST_CATEGORY--></div>
+    <div class="social-bookmarking">[product_social-bookmarking]</div>
+    <div class="clear"></div>
+    <article class="blog-body">
+        <!--START: post_image-->
+        <div class="post_image-container"><img src="[post_image]" alt="[subject]" /></div>
+        <!--END: post_image-->
+        [post]
+    </article>
+    <div class="clear"></div>
+    <div class="blog-comment-num button"><!--START: blog_comments--><a href="[pagename]#comments" class="icon-btn icon-btn-edit">([numcomments]) [blog_total-comments]</a><!--END: blog_comments--></div>
+    <div class="blog-readmore button"><!--START: read-more--><a href="[pagename]" title="[subject]" class="icon-btn icon-btn-rightover">[blog_read-more]</a><!--END: read-more--></div>
+    <div class="clear"></div>
+    <!--START: blog_comments_list-->
+    <h2>[blog_comments-header]<a name="comments" id="comments"></a></h2>
+    <div class="clear"></div>
+    <!--START: comments-->
+    <div class="blogComments">
+      <div class="blog-comment-date"><em>[blog_comments-date]</em> [datentime]</div>
+      <div class="blog-user">[name]</div>
+      <div class="clear"></div>
+      <article class="blog-comment">[comment]</article>
+    </div>
+    <!--END: comments-->
+    <!--END: blog_comments_list-->
+    <!--START: blog_add_comments-->
+    <div class="blogAddComments">
+      <form name="frmForm" action="blog.asp?action=comment&articleid=[id]" method="post">
+            <input type="text" name="info" value="[idenc]" style="display: none;" />
+            <input type="text" name="email" value="" style="display: none;" />
+            <h2>[blog_comments-addcomment]</h2>
+            <div class="blogField">
+                <label for="blog_comment_name">[blog_comments-name]</label>
+                <input name="blog_comment_name" type="text" value="[name]" size="50" class="txtBoxStyle" />
+                <div class="clear"></div>
+            </div>
+            <div class="blogField">
+                <label for="blog_comment_email">[blog_comments-email]</label>
+                <input name="blog_comment_email" type="text" value="[email]" size="50" class="txtBoxStyle" />
+                <div class="clear"></div>
+            </div>
+            <div class="blogField">
+                <label for="blog_comment_comment">[blog_comments-body]</label>
+                <textarea cols="50" rows="8" name="blog_comment_comment" class="txtAreaStyle"></textarea>
+                <div class="clear"></div>
+            </div>
+            <!--START: captcha-->
+            <div class="blogField">
+                <label for="ramdomWord">Verification:</label>
+                <div class="captcha">
+                <img src="admin/image_pw.asp" width="148" alt="" />
+                <div class="captcha-text">Type the word above...</div>
+                <input type="text" name="ramdomWord" id="ramdomWord" autocomplete="off" value="" size="25" maxlength="30" class="txtBoxStyle" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!--END: captcha-->
+            <!--START: recaptcha-->
+            <div class="blogField">
+                <label for="recaptcha_challenge_field">Verification:</label>
+                <div class="recaptcha">
+                    <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+                    <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+                    <noscript>
+                    <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+                    <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+                    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                    </noscript>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!--END: recaptcha-->
+        <input type="submit" value="[blog_comments-submit]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+      </form>
+    </div>
+    <!--END: blog_add_comments-->
+      <!--START: blog_disquscomments-->
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = '[blog_disqusshortname]'; // required: replace example with your forum shortname 
+          var disqus_identifier = '[disqus_url]';
+          var disqus_url = '[store_url]/[disqus_url]';
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function () {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      <!--END: blog_disquscomments-->    
+    <div class="clear"></div>
+  </div>
+  <!--END: blog_post-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="blogFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

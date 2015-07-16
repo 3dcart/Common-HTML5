@@ -1,0 +1,100 @@
+<script type="text/javascript">
+function savePass(objForm) {
+    var strMsg = "";
+    if (objForm.password.value.trim() == "")
+        strMsg += " - New password cannot be blank.\n"
+    if (objForm.password2.value.trim() != objForm.password.value.trim())
+        strMsg += " - Password confirmation doesn't match.\n"
+
+    if (!objForm.password.value.match(/(?=^.{8,16}$)(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/) && '[verifystrongpassword]' == '1')
+        strMsg += " - [CustomerInfo_password_policy*script] does not match the password policy.\n";
+
+    //<!--START: captchascript-->
+    if (objForm.randomWord.value.trim() == "")
+        strMsg += " - Verification word cannot be blank.\n"
+    //<!--END: captchascript-->
+
+    if (strMsg != "") {
+        alert(strMsg);
+        return false;
+    }
+
+    objForm.submit();
+}
+String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, "");
+}
+</script>
+
+<section id="resetpass"> 
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="resetpassHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <h1 class="page_headers">[resetpassword_header]</h1>
+  <div class="header">
+    <h3>[resetpassword_title]</h3>
+  </div>
+  <!--START: resetForm-->
+  <div class="resetPassword pad10 boxShadow">
+    <form action="resetpassword.asp?k=[k]&email=[email]&id=[id]" method="post" autocomplete="off">
+      <input type="hidden" name="doaction" value="save" />
+      <p>[resetpassword_instructions]</p>
+      <div class="resetField">
+        <label for="password">[resetpassword_newpassword]</label>
+        <input type="password" size="12" name="password" value="" class="txtBoxStyle" id="password" autocomplete="off" />
+        <div class="clear"></div>
+      </div>
+      <div class="resetField">
+        <label for="password2">[resetpassword_confirmnewpassword]</label>
+        <input type="password" size="12" autocomplete="off" name="password2" class="txtBoxStyle" id="password2" autocomplete="off" [CallFunctionVerifyStrongPass] />
+        <div class="clear"></div>
+      </div>
+      <!--START: StrongPasswordBar-->
+      <div class="resetField">
+        <div class="strong-pass-bar" style="background-image: linear-gradient(to left, #86e01e 0%, #f63a0f 100%);">
+            <div id="divStrong"></div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        <!--END: StrongPasswordBar-->
+        <!--START: PasswordMSG-->
+      <div class="PasswordMSG">
+        <p>[CustomerInfo_password_policy]</p>
+      </div>
+      <!--END: PasswordMSG-->
+      <!--START: captcha-->
+      <div class="resetField">
+        <label for="randomWord">[registration_verification]:</label>
+        <div class="captcha"><img src="admin/image_pw.asp?p=<%=now()%>" width="148" />
+          <div class="captcha-text">[registration_verification_message]</div>
+          <input type="text" name="randomWord" id="randomWord" autocomplete="off" value="" size="25" maxlength="30" tabindex="3" class="txtBoxStyle" autocomplete="off" />
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: captcha-->
+      <!--START: recaptcha-->
+      <div class="resetField">
+        <label for="recaptcha_challenge_field">Verification:</label>
+        <div class="recaptcha">
+            <script type="text/javascript">var RecaptchaOptions = { theme: '[recaptcha_theme]' };</script>
+            <script type="text/javascript" src="//www.google.com/recaptcha/api/challenge?k=[recaptcha_key]"></script>
+            <noscript>
+            <iframe src="//www.google.com/recaptcha/api/noscript?k=[recaptcha_key]" height="300" width="500" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+            <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+            </noscript>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!--END: recaptcha-->
+      <div class="submit-button">
+        <input type="button" onclick="javascript:savePass(this.form);" value="[resetpassword_savepassword]" class="btn" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" id="savePassword" name="savePassword" />
+      </div>
+    </form>
+  </div>
+  <!--END: resetForm-->
+  <div class="clear"></div>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="resetpassFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>

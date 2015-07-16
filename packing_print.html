@@ -1,0 +1,145 @@
+<!--START: PAGEHEAD-->
+<!doctype html>
+<html>
+<head>
+<title>[company]</title>
+<link rel="stylesheet" href="/assets/templates/common-html5/css/layout.css" type="text/css" media="print" />
+</head>
+<body>
+<!--END: PAGEHEAD--> 
+<!--START: pagebreak-->
+<div style="page-break-after: always;"> 
+<!--END: pagebreak-->
+<section id="packingPrint"> 
+  <!------ START: Confirmation ------> 
+  <!--START: order_details-->
+  <div class="customerInfoBlock"> 
+    <!--start customer info block-->
+    <div class="left-col"> 
+      <!--START: invoicelogo-->
+      <div class="invoice-logo"><img src="../[invoicelogo]" alt="[company]" /></div>
+      <!--END: invoicelogo-->
+      <p>[company]</p>
+      <p>[address1]</p>
+      <!--START: address2-->
+      <p>[address2]</p>
+      <!--END: address2-->
+      <p>[city], [state] [zip]</p>
+    </div>
+    <!--end customer info block--> 
+    <!--start invoice info block-->
+    <div class="right-col">
+      <div class="label">Order Date:</div>
+      <div class="text">[odate_month]/[odate_day]/[odate_year]</div>
+      <div class="clear"></div>
+      <div class="label">Order Number #:</div>
+      <div class="text">[invoicenum_prefix][invoicenum]</div>
+      <div class="clear"></div>
+      <!--START: salesperson-->
+      <div class="label">Sales Person:</div>
+      <div class="text">[salesperson]</div>
+      <div class="clear"></div>
+      <!--END: salesperson--> 
+    </div>
+    <!--end invoice info block-->
+    <div class="clear"></div>
+  </div>
+  <div class="billingBlock"> 
+    <!--start billing block-->
+    <div class="left-col">
+      <p><strong>BILLING ADDRESS</strong></p>
+      <p>[ofirstname] [olastname]</p>
+      <!--START: ocompany-->
+      <p>[ocompany]</p>
+      <!--END: ocompany-->
+      <p>[oaddress]</p>
+      <!--START: oaddress2-->
+      <p>[oaddress2]</p>
+      <!--END: oaddress2-->
+      <p>[ocity], [ostate] [ozip] - [ocountry]</p>
+      <!--START: ophone-->
+      <p>[ophone]</p>
+      <!--END: ophone--> 
+      <!--START: oemail-->
+      <p>[oemail]</p>
+      <!--END: oemail--> 
+    </div>
+    <!--end billing block--> 
+    <!--start shipping block-->
+    <div class="right-col">
+      <p><strong>SHIPPING ADDRESS</strong></p>
+      <!--START: shipping_address-->
+      <p>[oshipfirstname] [oshiplastname]</p>
+      <!--START: oshipcompany-->
+      <p>[oshipcompany]</p>
+      <!--END: oshipcompany-->
+      <p>[oshipaddress]</p>
+      <!--START: oshipaddress2-->
+      <p>[oshipaddress2]</p>
+      <!--END: oshipaddress2-->
+      <p>[oshipcity], [oshipstate] [oshipzip] - [oshipcountry]</p>
+      <!--END: shipping_address--> 
+    </div>
+    <!--end shipping block-->
+    <div class="clear"></div>
+  </div>
+  <div class="shippingInfoBlock"> 
+    <!--START: shipping_info-->
+    <div class="label">Shipping Method:</div>
+    <div class="text">[oshipmethod] ([totalweight]lbs.)</div>
+    <div class="clear"></div>
+    <!--START: trackingcode-->
+    <div class="label">Tracking Number:</div>
+    <div class="text">[trackingcode]</div>
+    <div class="clear"></div>
+    <!--END: trackingcode--> 
+    <!--START: oshippeddate-->
+    <div class="label">Shipped on:</div>
+    <div class="text">[oshippeddate]</div>
+    <div class="clear"></div>
+    <!--END: oshippeddate--> 
+    <!--END: shipping_info-->
+  </div>
+  <div class="right">
+    <div class="label">Total Items:</div>
+    <div class="text">[numberofitems]</div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+  <!--END: order_details-->
+  <div class="invoiceTable">
+    <div class="titles2">
+      <div class="invoice-id">Item ID</div>
+      <div class="invoice-items">Descriptions and Options</div>
+      <div class="invoice-qty">Qty</div>
+      <div class="clear"></div>
+    </div>
+    <!--START: items-->
+    <div class="row">
+      <div class="invoice-id">[id]</div>
+      <div class="invoice-items">[itemname]<!--START: warehouse_location--><br />
+        [warehouse_location] [warehouse_aisle] [warehouse_bin] [warehouse_custom]<!--END: warehouse_location--></div>
+      <div class="invoice-qty">[numitems]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: items-->
+    <div class="orderDetailsBlock">
+      <div class="left-col"> 
+        <!--START: ocomment-->
+        <div class="ocomment"><strong>Order Comments:</strong>
+          <p>[ocomment]</p>
+        </div>
+        <!--END: ocomment--> 
+        <!--START: invoice_terms-->
+        <div class="invoice_terms">[invoice_terms]</div>
+        <!--END: invoice_terms--> 
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <!------ END: Confirmation ------>
+  <div class="clear"></div>
+</section>
+</div>
+</body>
+</html>

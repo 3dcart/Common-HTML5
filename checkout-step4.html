@@ -1,0 +1,234 @@
+<script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+        document.write("<script type=\"text/javascript\" src=\"assets/templates/common-html5/js/jquery.min.js\"></" + "script>");
+    }
+    jQuery.getScript('assets/templates/common-html5/js/jquery.simplemodal.min.js');
+</script>
+<section id="checkoutStep4">
+  <div class="steps right">[checkout1_step] [checkout2_step] [checkout3_step] <span class="steps_on">[checkout4_step]</span></div>
+  <div class="clear"></div>
+  <!--START: CATEGORY_HEADER-->
+  <div class="category-header" id="checkoutStep4Header">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <div id="checkoutThankYou">
+      <h1>[checkout4_Header-ordercompleted]</h1>
+      <!--START: invoicedata-->
+      <h2>[checkout4_invoicemessage]</h2>
+      <!--END: invoicedata-->
+      <!--START: ordercompleted-->
+      <div class="section-1">
+      <i class="icon-mail"></i><p>An email receipt including the details about your order has been sent to the email address provided. Please keep it for your records.</p>
+      <div class="clear"></div>
+      </div>
+      <div class="section-2">
+      <p>You can visit the My Account page at any time to check the status of your order<span class="hidden-mobile"> or click here to <a href="javascript:void(0);" onclick="printInvoiceModal();">print a copy of your receipt</a></span>.</p><i class="icon-print hidden-mobile"></i><i class="icon-laptop show-mobile"></i>
+      <div class="clear"></div>
+      </div>
+      <div class="last-section">
+      <p>We appreciate your trust and we'll do our best to continue to give you the kind of service you deserve. Thanks again, for your business. [thankyoumessage]</p>
+      </div>
+      <!--END: ordercompleted--> 
+  </div>
+  <div id="invoiceContainer">
+    <div id="invoiceData">
+  <button class="btn" id="btnPrintInvoice" onclick="printDiv();"><i class="icon-print"></i> Print Invoice</button>
+  <div id="invoiceView">
+  <div class="invoiceData">
+  <!--START: header-->
+  <div class="header">
+    <h3 class="center">Order [invoicenum_prefix][invoicenum]</h3>
+  </div>
+  <!--END: header--> 
+  <!------ START: Confirmation ------> 
+  <!--START: order_details-->
+  <div class="customerInfoBlock"> 
+    <!--start customer info block-->
+    <div class="left-col"> 
+      <!--START: invoicelogo-->
+      <div class="invoice-logo"><img src="../[invoicelogo]" alt="[company]" /></div>
+      <!--END: invoicelogo-->
+      <p>[company]</p>
+      <p>[address1]</p>
+      <!--START: address2-->
+      <p>[address2]</p>
+      <!--END: address2-->
+      <p>[city], [state] [zip]</p>
+    </div>
+    <!--end customer info block--> 
+    <!--start invoice info block-->
+    <div class="right-col">
+      <div class="label">[invoice_dateordered]</div>
+      <div class="text">[odate]</div>
+      <div class="clear"></div>
+      <div class="label">[invoice_ordernum]</div>
+      <div class="text">[invoicenum_prefix][invoicenum]</div>
+      <div class="clear"></div>
+      <!--START: salesperson-->
+      <div class="label">Sales Person</div>
+      <div class="text">[salesperson]</div>
+      <div class="clear"></div>
+      <!--END: salesperson--> 
+    </div>
+    <!--end invoice info block-->
+    <div class="clear"></div>
+  </div>
+  <div class="billingBlock"> 
+    <!--start billing block-->
+    <div class="left-col">
+      <p><strong>[invoice_billingaddress]</strong></p>
+      <p>[ofirstname] [olastname]</p>
+      <!--START: ocompany-->
+      <p>[ocompany]</p>
+      <!--END: ocompany-->
+      <p>[oaddress]</p>
+      <!--START: oaddress2-->
+      <p>[oaddress2]</p>
+      <!--END: oaddress2-->
+      <p>[ocity], [ostate] [ozip] - [ocountry]</p>
+      <!--START: ophone-->
+      <p>[ophone]</p>
+      <!--END: ophone--> 
+      <!--START: oemail-->
+      <p>[oemail]</p>
+      <!--END: oemail--> 
+    </div>
+    <!--end billing block--> 
+    <!--start shipping block-->
+    <div class="right-col">
+      <p><strong>[invoice_shippingaddress]</strong></p>
+      <!--START: shipping_address-->
+      <p>[oshipfirstname] [oshiplastname]</p>
+      <!--START: oshipcompany-->
+      <p>[oshipcompany]</p>
+      <!--END: oshipcompany-->
+      <p>[oshipaddress]</p>
+      <!--START: oshipaddress2-->
+      <p>[oshipaddress2]</p>
+      <!--END: oshipaddress2-->
+      <p>[oshipcity], [oshipstate] [oshipzip] - [oshipcountry]</p>
+      <!--END: shipping_address--> 
+    </div>
+    <!--end shipping block-->
+    <div class="clear"></div>
+  </div>
+  <div class="shippingInfoBlock"> 
+    <!--START: shipping_info-->
+    <div class="label">[invoice_shipmethod]</div>
+    <div class="text">[oshipmethod] ([totalweight]lbs.)</div>
+    <div class="clear"></div>
+    <!--START: trackingcode-->
+    <div class="label">[invoice_trackingnum]:</div>
+    <div class="text"><a href="shiptracking.asp?trackingnumber=[trackingcode]" target="new">[trackingcode]</a></div>
+    <div class="clear"></div>
+    <!--END: trackingcode--> 
+    <!--START: oshippeddate-->
+    <div class="label">[invoice_shippeddate]</div>
+    <div class="text">[oshippeddate]</div>
+    <div class="clear"></div>
+    <!--END: oshippeddate--> 
+    <!--END: shipping_info--> 
+    <!--START: opaymethod-->
+    <div class="label">[invoice_paymenttype]</div>
+    <div class="text">[opaymethod]</div>
+    <div class="clear"></div>
+    <!--END: opaymethod--> 
+    <!--START: coupon-->
+    <div class="label">[invoice_discounts]</div>
+    <div class="clear"></div>
+    <div class="text">[invoice_coupon]: [coupon] - [coupondiscount]</div>
+    <div class="clear"></div>
+    <!--END: coupon--> 
+  </div>
+  <!--END: order_details-->
+  <div class="invoiceTable">
+    <div class="titles2">
+      <div class="invoice-id">[shoppingcart_itemid]</div>
+      <div class="invoice-items">[shoppingcart_items]</div>
+      <div class="invoice-price">[shoppingcart_price]</div>
+      <div class="invoice-qty">[shoppingcart_quantity]</div>
+      <div class="invoice-total">[shoppingcart_total]</div>
+      <div class="clear"></div>
+    </div>
+    <!--START: items-->
+    <div class="row">
+      <div class="invoice-id">[id]</div>
+      <div class="invoice-items">[itemname]</div>
+      <div class="invoice-price">[unitprice]</div>
+      <div class="invoice-qty">[numitems]</div>
+      <div class="invoice-total">[subtotal]</div>
+      <div class="clear"></div>
+    </div>
+    <!--END: items-->
+    <div class="orderDetailsBlock">
+      <div class="left-col"> 
+        <!--START: invoice_terms-->
+        <div class="invoice_terms">[invoice_terms]</div>
+        <!--END: invoice_terms--> 
+      </div>
+      <div class="right-col">
+        <div class="text" style="width:100px">[subtotal]</div>
+        <div class="label">[shoppingcart_subtotal]:</div>
+        <div class="clear"></div>
+        <div class="text" style="width:100px">[discounts]</div>
+        <div class="label">[shoppingcart_discount]:</div>
+        <div class="clear"></div>
+        <!--START: TAX-->
+        <div class="text" style="width:100px">[tax]</div>
+        <div class="label">[shoppingcart_taxes]:</div>
+        <div class="clear"></div>
+        <!--END: TAX--> 
+        <!--START: TAX2-->
+        <div class="text" style="width:100px">[tax2]</div>
+        <div class="label">[shoppingcart_taxes2]:</div>
+        <div class="clear"></div>
+        <!--END: TAX2--> 
+        <!--START: TAX3-->
+        <div class="text" style="width:100px">[tax3]</div>
+        <div class="label">[shoppingcart_taxes3]:</div>
+        <div class="clear"></div>
+        <!--END: TAX3-->
+        <div class="text" style="width:100px">[shipping]</div>
+        <div class="label">[shoppingcart_shipping]:</div>
+        <div class="clear"></div>
+        <div class="text" style="width:100px">[total]</div>
+        <div class="label">[shoppingcart_total]:</div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!--START: GIFTCERTS--> 
+    <strong>[shoppingcart_giftcertificate]:</strong> [GIFTCERTS] <strong>[shoppingcart_balance]:</strong> [BALANCE] 
+    <!--END: GIFTCERTS-->
+    <div class="clear"></div>
+  </div>
+  <!------ END: Confirmation ------>
+  <div class="clear"></div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <!--START: CATEGORY_FOOTER-->
+  <div class="category-footer" id="checkoutStep4Footer">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
+
+<!--iframe id="ifrmInvoicePrint" src="?action=blank"></iframe-->
+
+<script type="text/javascript">
+    function printInvoiceModal() {
+        jQuery.modal('<iframe src="/ordertracking.asp?action=printInvoiceModal" height="600" width="800" style="border:0">', {
+			closeClass: 'modalCloseImg',
+			closeHTML: '<a href="#">Close</a>',
+			containerCss: {
+				backgroundColor: "#fff",
+				borderColor: "#fff",
+				padding: 0,
+				minHeight: 600,
+				minWidth: 800
+			},
+			overlayClose: true,
+			onShow: function (dialog) {
+				dialog.wrap.css('overflow', 'hidden');
+			}
+		});
+    }
+</script>

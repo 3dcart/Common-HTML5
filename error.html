@@ -1,0 +1,20 @@
+<section id="error"> 
+  <!--START: BODY_HEADER-->
+  <div class="breadcrumbs"><a href="">[frame_breadcrumb-home]</a> > <a href="error.asp?error=[id]">[dberror_name]</a></div>
+  <!--END: BODY_HEADER--> 
+  <!--START: CATEGORY_HEADER-->
+<div class="category-header" id="errorHeader">[CONTENT]</div>
+  <!--END: CATEGORY_HEADER-->
+  <form method="post" action="[dberror_returnpage]">
+    <h1>[dberror_name]</h1>
+    <div class="notice">[dberror]</div>
+    <!--START: RETURNMESSAGE-->
+    <div class="button">
+      <input type="button" value="[error_returnmessage]" class="btn" onclick="location.href='[dberror_returnpage]';" onmouseover="this.className='btn_over'" onmouseout="this.className='btn'" />
+    </div>
+    <!--END: RETURNMESSAGE-->
+  </form>
+  <!--START: CATEGORY_FOOTER-->
+<div class="category-footer" id="errorFooter">[CONTENT]</div>
+  <!--END: CATEGORY_FOOTER--> 
+</section>
